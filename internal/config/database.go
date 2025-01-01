@@ -48,6 +48,7 @@ func AutoMigrate(db *gorm.DB) error {
 		&model.CourseCategory{},
 		&model.CourseModule{},
 		&model.CourseItem{},
+		&model.CourseModuleItem{},
 		&model.User{},
 		// Add more models here as needed
 	); err != nil {

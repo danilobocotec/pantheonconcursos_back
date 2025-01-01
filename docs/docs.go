@@ -4650,6 +4650,12 @@ const docTemplate = `{
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                    }
+                },
                 "tipo": {
                     "type": "string"
                 },
@@ -4668,9 +4674,6 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "created_at": {
-                    "type": "string"
-                },
-                "curso_id": {
                     "type": "string"
                 },
                 "id": {
@@ -4803,6 +4806,12 @@ const docTemplate = `{
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "tipo": {
                     "type": "string",
                     "minLength": 2
@@ -4819,6 +4828,9 @@ const docTemplate = `{
                 "modulo"
             ],
             "properties": {
+                "curso_id": {
+                    "type": "string"
+                },
                 "itens_ids": {
                     "type": "array",
                     "items": {
@@ -5846,6 +5858,12 @@ const docTemplate = `{
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "tipo": {
                     "type": "string",
                     "minLength": 2
@@ -5859,6 +5877,9 @@ const docTemplate = `{
         "github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest": {
             "type": "object",
             "properties": {
+                "curso_id": {
+                    "type": "string"
+                },
                 "itens_ids": {
                     "type": "array",
                     "items": {

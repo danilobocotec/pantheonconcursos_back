@@ -85,6 +85,10 @@ definitions:
         type: string
       modulo_id:
         type: string
+      modulos:
+        items:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseModule'
+        type: array
       tipo:
         type: string
       titulo:
@@ -97,8 +101,6 @@ definitions:
   github_com_thepantheon_api_internal_model.CourseModule:
     properties:
       created_at:
-        type: string
-      curso_id:
         type: string
       id:
         type: string
@@ -184,6 +186,10 @@ definitions:
         type: string
       modulo_id:
         type: string
+      modulos_ids:
+        items:
+          type: string
+        type: array
       tipo:
         minLength: 2
         type: string
@@ -197,6 +203,8 @@ definitions:
     type: object
   github_com_thepantheon_api_internal_model.CreateCourseModuleRequest:
     properties:
+      curso_id:
+        type: string
       itens_ids:
         items:
           type: string
@@ -884,6 +892,10 @@ definitions:
         type: string
       modulo_id:
         type: string
+      modulos_ids:
+        items:
+          type: string
+        type: array
       tipo:
         minLength: 2
         type: string
@@ -893,6 +905,8 @@ definitions:
     type: object
   github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest:
     properties:
+      curso_id:
+        type: string
       itens_ids:
         items:
           type: string
