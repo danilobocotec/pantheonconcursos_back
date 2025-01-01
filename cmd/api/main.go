@@ -154,6 +154,13 @@ func main() {
 			questoes.DELETE("/:id", handlers.DeleteQuestao)
 		}
 
+		meuDesempenho := api.Group("/meu-desempenho")
+		{
+			meuDesempenho.GET("", handlers.GetUserPerformance)
+			meuDesempenho.GET("/resumo", handlers.GetUserPerformanceSummary)
+			meuDesempenho.POST("", handlers.CreateUserPerformance)
+		}
+
 		vade := api.Group("/vade-mecum")
 		{
 			vade.GET("", handlers.GetVadeMecum)

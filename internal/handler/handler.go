@@ -13,6 +13,7 @@ type Handlers struct {
 	planService           *service.PlanService
 	adminSecret           string
 	questaoService        *service.QuestaoService
+	userPerformanceService *service.UserPerformanceService
 	courseService         *service.CourseService
 	vadeMecumService      *service.VadeMecumService
 	codigoService         *service.VadeMecumCodigoService
@@ -30,6 +31,7 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	userRepo := repository.NewUserRepository(db)
 	planRepo := repository.NewPlanRepository(db)
 	questaoRepo := repository.NewQuestaoRepository(db)
+	userPerformanceRepo := repository.NewUserPerformanceRepository(db)
 	courseRepo := repository.NewCourseRepository(db)
 	vadeMecumRepo := repository.NewVadeMecumRepository(db)
 	codigoRepo := repository.NewVadeMecumCodigoRepository(db)
@@ -46,6 +48,7 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	socialAuthService := service.NewSocialAuthService(userService, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL)
 	planService := service.NewPlanService(planRepo)
 	questaoService := service.NewQuestaoService(questaoRepo)
+	userPerformanceService := service.NewUserPerformanceService(userPerformanceRepo)
 	courseService := service.NewCourseService(courseRepo)
 	vadeMecumService := service.NewVadeMecumService(vadeMecumRepo)
 	codigoService := service.NewVadeMecumCodigoService(codigoRepo)
@@ -64,6 +67,7 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 		socialAuthService:     socialAuthService,
 		planService:           planService,
 		questaoService:        questaoService,
+		userPerformanceService: userPerformanceService,
 		courseService:         courseService,
 		vadeMecumService:      vadeMecumService,
 		codigoService:         codigoService,

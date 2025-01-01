@@ -862,6 +862,187 @@
                 }
             }
         },
+        "/meu-desempenho": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meu-desempenho"
+                ],
+                "summary": "Listar desempenho do usuario",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Data inicial (YYYY-MM-DD ou RFC3339)",
+                        "name": "data_inicio",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Data final (YYYY-MM-DD ou RFC3339)",
+                        "name": "data_fim",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UserPerformance"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meu-desempenho"
+                ],
+                "summary": "Registrar desempenho do usuario",
+                "parameters": [
+                    {
+                        "description": "Desempenho",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateUserPerformanceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UserPerformance"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/meu-desempenho/resumo": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meu-desempenho"
+                ],
+                "summary": "Resumo do desempenho do usuario",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Data inicial (YYYY-MM-DD ou RFC3339)",
+                        "name": "data_inicio",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Data final (YYYY-MM-DD ou RFC3339)",
+                        "name": "data_fim",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UserPerformanceSummary"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/meus-cursos/itens": {
             "get": {
                 "produces": [
@@ -4998,6 +5179,26 @@
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.CreateUserPerformanceRequest": {
+            "type": "object",
+            "properties": {
+                "data_gravacao": {
+                    "type": "string"
+                },
+                "questoes_corretas": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "questoes_erradas": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "total_questoes": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.CreateUserRequest": {
             "type": "object",
             "required": [
@@ -6551,6 +6752,55 @@
                 },
                 "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UserPerformance": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "data_gravacao": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "percentual_acerto": {
+                    "type": "number"
+                },
+                "questoes_corretas": {
+                    "type": "integer"
+                },
+                "questoes_erradas": {
+                    "type": "integer"
+                },
+                "total_questoes": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UserPerformanceSummary": {
+            "type": "object",
+            "properties": {
+                "percentual_acerto": {
+                    "type": "number"
+                },
+                "questoes_corretas": {
+                    "type": "integer"
+                },
+                "questoes_erradas": {
+                    "type": "integer"
+                },
+                "total_questoes": {
+                    "type": "integer"
                 }
             }
         },
