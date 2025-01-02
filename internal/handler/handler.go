@@ -25,9 +25,12 @@ type Handlers struct {
 	capaJurisService      *service.CapaVadeMecumJurisprudenciaService
 	estatutoService       *service.VadeMecumEstatutoService
 	constituicaoService   *service.VadeMecumConstituicaoService
+	asaasService          *service.AsaasService
+	asaasCustomerService  *service.AsaasCustomerService
+	asaasPaymentService   *service.AsaasPaymentService
 }
 
-func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL, jwtSecret, adminSecret string) *Handlers {
+func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL, jwtSecret, adminSecret, asaasBaseURL, asaasToken string) *Handlers {
 	userRepo := repository.NewUserRepository(db)
 	planRepo := repository.NewPlanRepository(db)
 	questaoRepo := repository.NewQuestaoRepository(db)
@@ -43,6 +46,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	capaOABRepo := repository.NewCapaVadeMecumOABRepository(db)
 	jurisRepo := repository.NewVadeMecumJurisprudenciaRepository(db)
 	capaJurisRepo := repository.NewCapaVadeMecumJurisprudenciaRepository(db)
+	asaasCustomerRepo := repository.NewAsaasCustomerRepository(db)
+	asaasPaymentRepo := repository.NewAsaasPaymentRepository(db)
 	userService := service.NewUserService(userRepo)
 	authService := service.NewAuthService(userService, jwtSecret)
 	socialAuthService := service.NewSocialAuthService(userService, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL)
@@ -60,6 +65,9 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	capaOABService := service.NewCapaVadeMecumOABService(capaOABRepo)
 	jurisprudenciaService := service.NewVadeMecumJurisprudenciaService(jurisRepo)
 	capaJurisService := service.NewCapaVadeMecumJurisprudenciaService(capaJurisRepo)
+	asaasService := service.NewAsaasService(asaasBaseURL, asaasToken)
+	asaasCustomerService := service.NewAsaasCustomerService(asaasCustomerRepo)
+	asaasPaymentService := service.NewAsaasPaymentService(asaasPaymentRepo)
 
 	return &Handlers{
 		userService:           userService,
@@ -80,5 +88,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 		capaJurisService:      capaJurisService,
 		estatutoService:       estatutoService,
 		constituicaoService:   constituicaoService,
+		asaasService:          asaasService,
+		asaasCustomerService:  asaasCustomerService,
+		asaasPaymentService:   asaasPaymentService,
 	}
 }

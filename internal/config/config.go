@@ -14,6 +14,7 @@ type Config struct {
 	CORS     CORSConfig
 	OAuth    OAuthConfig
 	Admin    AdminConfig
+	Asaas    AsaasConfig
 }
 
 type OAuthConfig struct {
@@ -54,6 +55,11 @@ type AdminConfig struct {
 	Secret string
 }
 
+type AsaasConfig struct {
+	BaseURL string
+	Token   string
+}
+
 func LoadConfig() (*Config, error) {
 	// Load .env file
 	_ = godotenv.Load()
@@ -90,6 +96,10 @@ func LoadConfig() (*Config, error) {
 		},
 		Admin: AdminConfig{
 			Secret: getEnv("ADMIN_SECRET", ""),
+		},
+		Asaas: AsaasConfig{
+			BaseURL: getEnv("ASAAS_BASE_URL", "https://api-sandbox.asaas.com/"),
+			Token:   getEnv("ASAAS_TOKEN", ""),
 		},
 	}
 
