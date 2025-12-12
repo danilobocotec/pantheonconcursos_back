@@ -21,6 +21,7 @@ type DatabaseConfig struct {
 	Password string
 	DBName   string
 	SSLMode  string
+	Timezone string
 }
 
 type ServerConfig struct {
@@ -48,7 +49,8 @@ func LoadConfig() (*Config, error) {
 			User:     getEnv("DB_USER", "postgres"),
 			Password: getEnv("DB_PASSWORD", ""),
 			DBName:   getEnv("DB_NAME", "thepantheon_db"),
-			SSLMode:  getEnv("DB_SSLMODE", "disable"),
+			SSLMode:  getEnv("DB_SSLMODE", "require"),
+			Timezone: getEnv("DB_TIMEZONE", "UTC"),
 		},
 		Server: ServerConfig{
 			Port: getEnv("SERVER_PORT", "8080"),
@@ -68,13 +70,14 @@ func LoadConfig() (*Config, error) {
 
 func (c *DatabaseConfig) GetDSN() string {
 	return fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s TimeZone=%s",
 		c.Host,
 		c.Port,
 		c.User,
 		c.Password,
 		c.DBName,
 		c.SSLMode,
+		c.Timezone,
 	)
 }
 
