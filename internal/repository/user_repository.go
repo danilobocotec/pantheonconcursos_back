@@ -43,7 +43,7 @@ func (r *UserRepository) GetAll(limit, offset int) ([]model.User, error) {
 }
 
 func (r *UserRepository) Update(id uuid.UUID, user *model.User) error {
-	return r.db.Model(&model.User{}, "id = ?", id).Updates(user).Error
+	return r.db.Model(&model.User{}).Where("id = ?", id).Updates(user).Error
 }
 
 func (r *UserRepository) Delete(id uuid.UUID) error {

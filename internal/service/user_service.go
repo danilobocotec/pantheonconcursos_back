@@ -18,6 +18,7 @@ func NewUserService(repo *repository.UserRepository) *UserService {
 }
 
 func (s *UserService) CreateUser(req *model.CreateUserRequest) (*model.User, error) {
+	// Confirm password validation is enforced by binding tag eqfield=Password
 	// Check if user already exists
 	exists, err := s.repo.Exists(req.Email)
 	if err != nil {
@@ -36,7 +37,7 @@ func (s *UserService) CreateUser(req *model.CreateUserRequest) (*model.User, err
 	user := &model.User{
 		ID:       uuid.New(),
 		Email:    req.Email,
-		Name:     req.Name,
+		FullName: req.FullName,
 		Password: string(hashedPassword),
 		Active:   true,
 	}
@@ -69,8 +70,8 @@ func (s *UserService) UpdateUser(id uuid.UUID, req *model.UpdateUserRequest) (*m
 	if req.Email != "" {
 		user.Email = req.Email
 	}
-	if req.Name != "" {
-		user.Name = req.Name
+	if req.FullName != "" {
+		user.FullName = req.FullName
 	}
 	user.Active = req.Active
 

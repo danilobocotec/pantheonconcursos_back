@@ -4,11 +4,34 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/gin-gonic/gin"
 	"github.com/thepantheon/api/internal/config"
 	"github.com/thepantheon/api/internal/handler"
 	"github.com/thepantheon/api/pkg/middleware"
-	"github.com/gin-gonic/gin"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "github.com/thepantheon/api/docs"
 )
+
+// @title           ThePantheon API
+// @version         1.0
+// @description     API REST para sistema de concursos com autenticação JWT
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.email  support@pantheonconcursos.com.br
+
+// @license.name  MIT
+// @license.url   https://opensource.org/licenses/MIT
+
+// @host      localhost:8080
+// @BasePath  /api/v1
+
+// @securityDefinitions.apikey Bearer
+// @in header
+// @name Authorization
+// @description Digite "Bearer" seguido do token JWT
 
 func main() {
 	// Load configuration
@@ -35,7 +58,18 @@ func main() {
 	router.Use(middleware.LoggingMiddleware())
 
 	// Initialize handlers
-	handlers := handler.NewHandlers(db)
+	handlers := handler.NewHandlers(
+		db,
+		cfg.OAuth.GoogleClientID,
+		cfg.OAuth.GoogleClientSecret,
+		cfg.OAuth.FacebookAppID,
+		cfg.OAuth.FacebookAppSecret,
+		cfg.OAuth.RedirectURL,
+		cfg.JWT.Secret,
+	)
+
+	// Swagger route
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// API Routes
 	api := router.Group("/api/v1")
@@ -56,9 +90,22 @@ func main() {
 		// Auth routes
 		auth := api.Group("/auth")
 		{
+			// Traditional auth
 			auth.POST("/login", handlers.Login)
 			auth.POST("/register", handlers.Register)
 			auth.POST("/refresh", middleware.AuthMiddleware(), handlers.RefreshToken)
+
+			// Social auth
+			auth.POST("/social", handlers.SocialLogin)
+			auth.GET("/google/url", handlers.GoogleAuthURL)
+			auth.GET("/google/callback", handlers.GoogleCallback)
+			auth.GET("/facebook/url", handlers.FacebookAuthURL)
+			auth.GET("/facebook/callback", handlers.FacebookCallback)
+		}
+
+		plans := api.Group("/plans")
+		{
+			plans.GET("", handlers.GetPlans)
 		}
 	}
 
