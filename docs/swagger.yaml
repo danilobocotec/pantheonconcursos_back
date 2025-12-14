@@ -1,0 +1,1170 @@
+basePath: /api/v1
+definitions:
+  model.CreateAdminRequest:
+    properties:
+      admin_secret:
+        type: string
+      confirm:
+        type: string
+      email:
+        type: string
+      full_name:
+        minLength: 3
+        type: string
+      password:
+        minLength: 8
+        type: string
+    required:
+    - admin_secret
+    - confirm
+    - email
+    - full_name
+    - password
+    type: object
+  model.CreateUserRequest:
+    properties:
+      confirm:
+        type: string
+      email:
+        type: string
+      full_name:
+        minLength: 3
+        type: string
+      password:
+        minLength: 8
+        type: string
+    required:
+    - confirm
+    - email
+    - full_name
+    - password
+    type: object
+  model.CreateVadeMecumCodigoRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  model.CreateVadeMecumRequest:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        minLength: 3
+        type: string
+      titulo:
+        type: string
+    required:
+    - cabecalho
+    - capitulo
+    - category
+    - description
+    - idcapitulo
+    - idtitulo
+    - textocapitulo
+    - textodotitulo
+    - title
+    - titulo
+    type: object
+  model.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  model.LoginResponse:
+    properties:
+      expires_in:
+        type: integer
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/model.User'
+    type: object
+  model.Plan:
+    properties:
+      active:
+        type: boolean
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      phase:
+        type: string
+      updated_at:
+        type: string
+      users:
+        items:
+          $ref: '#/definitions/model.User'
+        type: array
+    type: object
+  model.SocialAuthRequest:
+    properties:
+      access_token:
+        type: string
+      provider:
+        enum:
+        - google
+        - facebook
+        type: string
+    required:
+    - access_token
+    - provider
+    type: object
+  model.UpdateVadeMecumCodigoRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  model.UpdateVadeMecumRequest:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        minLength: 3
+        type: string
+      titulo:
+        type: string
+    type: object
+  model.User:
+    properties:
+      active:
+        type: boolean
+      avatar:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      plan:
+        $ref: '#/definitions/model.Plan'
+      plan_id:
+        type: string
+      provider:
+        description: local, google, facebook
+        type: string
+      provider_id:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.VadeMecum:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.VadeMecumCodigo:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@pantheonconcursos.com.br
+    name: API Support
+  description: API REST para sistema de concursos com autenticação JWT
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: ThePantheon API
+  version: "1.0"
+paths:
+  /auth/admin/register:
+    post:
+      consumes:
+      - application/json
+      description: Cria uma conta de administrador usando um código secreto
+      parameters:
+      - description: Dados do novo administrador
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateAdminRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Registrar novo administrador
+      tags:
+      - auth
+  /auth/facebook/callback:
+    get:
+      description: Processa retorno do Facebook após autorização
+      parameters:
+      - description: Authorization code
+        in: query
+        name: code
+        required: true
+        type: string
+      - description: State token
+        in: query
+        name: state
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Callback do Facebook OAuth
+      tags:
+      - auth
+  /auth/facebook/url:
+    get:
+      description: Retorna URL para redirecionar usuário ao login do Facebook
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter URL de autenticação do Facebook
+      tags:
+      - auth
+  /auth/google/callback:
+    get:
+      description: Processa retorno do Google após autorização
+      parameters:
+      - description: Authorization code
+        in: query
+        name: code
+        required: true
+        type: string
+      - description: State token
+        in: query
+        name: state
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Callback do Google OAuth
+      tags:
+      - auth
+  /auth/google/url:
+    get:
+      description: Retorna URL para redirecionar usuário ao login do Google
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter URL de autenticação do Google
+      tags:
+      - auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Autentica usuário e retorna token JWT
+      parameters:
+      - description: Credenciais de login
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login de usuário
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Cria uma nova conta de usuário com nome completo, email, senha
+        e confirmação
+      parameters:
+      - description: Dados do novo usuário
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Registrar novo usuário
+      tags:
+      - auth
+  /auth/social:
+    post:
+      consumes:
+      - application/json
+      description: Autentica usuário usando Google ou Facebook OAuth2
+      parameters:
+      - description: Token de acesso do provedor
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.SocialAuthRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login com provedor social
+      tags:
+      - auth
+  /health:
+    get:
+      description: Verifica se a API está funcionando
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check
+      tags:
+      - health
+  /plans:
+    get:
+      description: Retorna todos os planos disponíveis e, para cada um, os usuários
+        atrelados (quando houver)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Plan'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar planos com usuários vinculados
+      tags:
+      - plans
+  /vade-mecum:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.VadeMecum'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar itens de Vade Mecum
+      tags:
+      - vade-mecum
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do Vade Mecum
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item de Vade Mecum
+      tags:
+      - vade-mecum
+  /vade-mecum/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover Vade Mecum
+      tags:
+      - vade-mecum
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter Vade Mecum por ID
+      tags:
+      - vade-mecum
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar Vade Mecum
+      tags:
+      - vade-mecum
+  /vade-mecum/category/{category}:
+    get:
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.VadeMecum'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar itens por categoria
+      tags:
+      - vade-mecum
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item específico por categoria
+      tags:
+      - vade-mecum
+  /vade-mecum/category/{category}/{id}:
+    delete:
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover item de uma categoria
+      tags:
+      - vade-mecum
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar item dentro de uma categoria
+      tags:
+      - vade-mecum
+  /vade-mecum/codigos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.VadeMecumCodigo'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar codigos
+      tags:
+      - vade-mecum-codigos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do codigo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item na categoria codigos
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover codigo
+      tags:
+      - vade-mecum-codigos
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter codigo por ID
+      tags:
+      - vade-mecum-codigos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar codigo
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho
+        padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar codigos via Excel
+      tags:
+      - vade-mecum-codigos
+securityDefinitions:
+  Bearer:
+    description: Digite "Bearer" seguido do token JWT
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
