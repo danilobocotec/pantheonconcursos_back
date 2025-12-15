@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -48,6 +49,26 @@ func (h *Handlers) GetCodigos(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, items)
+}
+
+// GetCodigosGrouped godoc
+// @Summary      Listar codigos agrupados por nomecodigo
+// @Tags         vade-mecum-codigos
+// @Produce      json
+// @Param        priority query []string false "Prioridade dos grupos, pode ser separado por vírgula ou repetido"
+// @Success      200 {array} model.VadeMecumCodigoGroup
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/codigos/grouped [get]
+func (h *Handlers) GetCodigosGrouped(c *gin.Context) {
+	priorities := extractPriorityOrder(c)
+
+	groups, err := h.codigoService.GetGroupedByNomeCodigo(priorities)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, groups)
 }
 
 // GetCodigoByID godoc
@@ -129,6 +150,46 @@ func (h *Handlers) DeleteCodigo(c *gin.Context) {
 	}
 
 	c.Status(http.StatusNoContent)
+}
+
+func extractPriorityOrder(c *gin.Context) []string {
+	values := c.QueryArray("priority")
+	if len(values) == 0 {
+		if raw := c.Query("priorities"); raw != "" {
+			values = append(values, raw)
+		}
+	}
+
+	if len(values) == 0 {
+		return nil
+	}
+
+	normalized := make([]string, 0, len(values))
+	seen := make(map[string]struct{})
+
+	for _, raw := range values {
+		parts := strings.Split(raw, ",")
+		for _, part := range parts {
+			trimmed := strings.TrimSpace(part)
+			if trimmed == "" {
+				continue
+			}
+
+			key := strings.ToLower(trimmed)
+			if _, exists := seen[key]; exists {
+				continue
+			}
+
+			normalized = append(normalized, trimmed)
+			seen[key] = struct{}{}
+		}
+	}
+
+	if len(normalized) == 0 {
+		return nil
+	}
+
+	return normalized
 }
 
 // ImportCodigos godoc

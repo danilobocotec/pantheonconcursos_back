@@ -815,6 +815,49 @@ const docTemplate = `{
                 }
             }
         },
+        "/vade-mecum/codigos/grouped": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Listar codigos agrupados por nomecodigo",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "description": "Prioridade dos grupos, pode ser separado por vírgula ou repetido",
+                        "name": "priority",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.VadeMecumCodigoGroup"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/vade-mecum/codigos/import": {
             "post": {
                 "description": "Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
@@ -1749,6 +1792,23 @@ const docTemplate = `{
                 },
                 "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "model.VadeMecumCodigoGroup": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.VadeMecumCodigo"
+                    }
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
                 }
             }
         }

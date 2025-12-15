@@ -107,3 +107,9 @@ type UpdateVadeMecumCodigoRequest struct {
 	Normativo      string `json:"Normativo"`
 	Ordem          string `json:"Ordem"`
 }
+
+type VadeMecumCodigoGroup struct {
+	NomeCodigo string            `json:"nomecodigo"`
+	Priority   *int              `json:"priority,omitempty"`
+	Items      []VadeMecumCodigo `json:"items"`
+}

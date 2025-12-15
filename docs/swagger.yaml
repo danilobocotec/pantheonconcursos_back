@@ -401,6 +401,17 @@ definitions:
       updated_at:
         type: string
     type: object
+  model.VadeMecumCodigoGroup:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/model.VadeMecumCodigo'
+        type: array
+      nomecodigo:
+        type: string
+      priority:
+        type: integer
+    type: object
 host: localhost:8080
 info:
   contact:
@@ -1124,6 +1135,34 @@ paths:
               type: string
             type: object
       summary: Atualizar codigo
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/grouped:
+    get:
+      parameters:
+      - collectionFormat: csv
+        description: Prioridade dos grupos, pode ser separado por vírgula ou repetido
+        in: query
+        items:
+          type: string
+        name: priority
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.VadeMecumCodigoGroup'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar codigos agrupados por nomecodigo
       tags:
       - vade-mecum-codigos
   /vade-mecum/codigos/import:

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"sort"
 	"strings"
 
 	"github.com/google/uuid"
@@ -120,6 +121,77 @@ func (s *VadeMecumCodigoService) Create(req *model.CreateVadeMecumCodigoRequest)
 
 func (s *VadeMecumCodigoService) GetAll() ([]model.VadeMecumCodigo, error) {
 	return s.repo.GetAll()
+}
+
+func (s *VadeMecumCodigoService) GetGroupedByNomeCodigo(priorityOrder []string) ([]model.VadeMecumCodigoGroup, error) {
+	items, err := s.repo.GetAll()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(items) == 0 {
+		return []model.VadeMecumCodigoGroup{}, nil
+	}
+
+	groups := make(map[string]*model.VadeMecumCodigoGroup)
+
+	for _, item := range items {
+		canonicalName := strings.TrimSpace(item.NomeCodigo)
+		if canonicalName == "" {
+			canonicalName = "Sem nome"
+		}
+
+		key := strings.ToLower(canonicalName)
+
+		group, exists := groups[key]
+		if !exists {
+			group = &model.VadeMecumCodigoGroup{
+				NomeCodigo: canonicalName,
+				Items:      make([]model.VadeMecumCodigo, 0, 1),
+			}
+			groups[key] = group
+		}
+
+		group.Items = append(group.Items, item)
+	}
+
+	ordered := make([]model.VadeMecumCodigoGroup, 0, len(groups))
+
+	for idx, raw := range priorityOrder {
+		normalized := strings.ToLower(strings.TrimSpace(raw))
+		if normalized == "" {
+			continue
+		}
+
+		group, ok := groups[normalized]
+		if !ok {
+			continue
+		}
+
+		priority := idx + 1
+		group.Priority = intPtr(priority)
+		ordered = append(ordered, *group)
+		delete(groups, normalized)
+	}
+
+	if len(groups) == 0 {
+		return ordered, nil
+	}
+
+	remainingKeys := make([]string, 0, len(groups))
+	for key := range groups {
+		remainingKeys = append(remainingKeys, key)
+	}
+
+	sort.Slice(remainingKeys, func(i, j int) bool {
+		return groups[remainingKeys[i]].NomeCodigo < groups[remainingKeys[j]].NomeCodigo
+	})
+
+	for _, key := range remainingKeys {
+		ordered = append(ordered, *groups[key])
+	}
+
+	return ordered, nil
 }
 
 func (s *VadeMecumCodigoService) GetByID(id uuid.UUID) (*model.VadeMecumCodigo, error) {
@@ -445,4 +517,8 @@ func deduplicateCodigos(items []*model.VadeMecumCodigo) []*model.VadeMecumCodigo
 	}
 
 	return unique
+}
+
+func intPtr(value int) *int {
+	return &value
 }

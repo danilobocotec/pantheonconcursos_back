@@ -132,6 +132,7 @@ func main() {
 			codigos.GET("", handlers.GetCodigos)
 			codigos.POST("", handlers.CreateCodigo)
 			codigos.POST("/import", handlers.ImportCodigos)
+			codigos.GET("/grouped", handlers.GetCodigosGrouped)
 			codigos.GET("/:id", handlers.GetCodigoByID)
 			codigos.PUT("/:id", handlers.UpdateCodigo)
 			codigos.DELETE("/:id", handlers.DeleteCodigo)
