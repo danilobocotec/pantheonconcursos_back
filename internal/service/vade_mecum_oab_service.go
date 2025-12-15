@@ -13,41 +13,38 @@ import (
 	"gorm.io/gorm"
 )
 
-type VadeMecumLeiService struct {
-	repo *repository.VadeMecumLeiRepository
+type VadeMecumOABService struct {
+	repo *repository.VadeMecumOABRepository
 }
 
-func NewVadeMecumLeiService(repo *repository.VadeMecumLeiRepository) *VadeMecumLeiService {
-	return &VadeMecumLeiService{repo: repo}
+func NewVadeMecumOABService(repo *repository.VadeMecumOABRepository) *VadeMecumOABService {
+	return &VadeMecumOABService{repo: repo}
 }
 
-var vadeMecumLeisHeaders = []string{
-	"id",
+var vadeMecumOABHeaders = []string{
 	"idtipo",
 	"tipo",
 	"nomecodigo",
 	"Cabecalho",
-	"idPARTE",
-	"PARTE",
-	"PARTETEXTO",
-	"idtitulo",
 	"titulo",
 	"titulotexto",
-	"idcapitulo",
+	"TÍTULO",
 	"capitulo",
 	"capitulotexto",
-	"idsecao",
+	"CAPÍTULO",
 	"secao",
 	"secaotexto",
-	"idsubsecao",
+	"Seção",
 	"subsecao",
 	"subsecaotexto",
+	"Subseção",
 	"num_artigo",
 	"Artigos",
-	"Ordem",
 }
 
-func (s *VadeMecumLeiService) ImportFromExcel(r io.Reader) (int, error) {
+var vadeMecumOABHeadersWithID = append([]string{"id"}, vadeMecumOABHeaders...)
+
+func (s *VadeMecumOABService) ImportFromExcel(r io.Reader) (int, error) {
 	f, err := excelize.OpenReader(r)
 	if err != nil {
 		return 0, fmt.Errorf("falha ao abrir planilha: %w", err)
@@ -69,49 +66,81 @@ func (s *VadeMecumLeiService) ImportFromExcel(r io.Reader) (int, error) {
 	}
 
 	header := normalizeHeader(rows[0])
-	if !headersMatch(header, vadeMecumLeisHeaders) {
-		return 0, fmt.Errorf("cabeçalho inválido: esperado %v", vadeMecumLeisHeaders)
-	}
 
-	var batch []*model.VadeMecumLei
-	for idx, row := range rows[1:] {
+	switch {
+	case headersMatch(header, vadeMecumOABHeadersWithID):
+		return s.importOABRows(rows[1:], true)
+	case headersMatch(header, vadeMecumOABHeaders):
+		return s.importOABRows(rows[1:], false)
+	default:
+		return 0, fmt.Errorf("cabeçalho inválido: esperado %v ou %v", vadeMecumOABHeadersWithID, vadeMecumOABHeaders)
+	}
+}
+
+func (s *VadeMecumOABService) importOABRows(rows [][]string, hasID bool) (int, error) {
+	var batch []*model.VadeMecumOAB
+
+	for idx, row := range rows {
 		if isRowEmpty(row) {
 			continue
 		}
 
-		id := strings.TrimSpace(getCellValue(row, 0))
-		if id == "" {
-			id = uuid.NewString()
+		offset := 0
+		rawID := ""
+		if hasID {
+			rawID = strings.TrimSpace(getCellValue(row, 0))
+			offset = 1
 		}
 
-		item := &model.VadeMecumLei{
-			ID:            id,
-			IDTipo:        getCellValue(row, 1),
-			Tipo:          getCellValue(row, 2),
-			NomeCodigo:    getCellValue(row, 3),
-			Cabecalho:     getCellValue(row, 4),
-			IDParte:       getCellValue(row, 5),
-			Parte:         getCellValue(row, 6),
-			ParteTexto:    getCellValue(row, 7),
-			IDTitulo:      getCellValue(row, 8),
-			Titulo:        getCellValue(row, 9),
-			TituloTexto:   getCellValue(row, 10),
-			IDCapitulo:    getCellValue(row, 11),
-			Capitulo:      getCellValue(row, 12),
-			CapituloTexto: getCellValue(row, 13),
-			IDSecao:       getCellValue(row, 14),
-			Secao:         getCellValue(row, 15),
-			SecaoTexto:    getCellValue(row, 16),
-			IDSubsecao:    getCellValue(row, 17),
-			Subsecao:      getCellValue(row, 18),
-			SubsecaoTexto: getCellValue(row, 19),
-			NumeroArtigo:  getCellValue(row, 20),
-			Artigos:       getCellValue(row, 21),
-			Ordem:         getCellValue(row, 22),
-		}
-
-		if strings.TrimSpace(item.NomeCodigo) == "" {
+		nomeCodigo := strings.TrimSpace(getCellValue(row, offset+2))
+		if nomeCodigo == "" {
 			return 0, fmt.Errorf("linha %d: nomecodigo é obrigatório", idx+2)
+		}
+
+		numeroArtigo := strings.TrimSpace(getCellValue(row, offset+16))
+		artigos := strings.TrimSpace(getCellValue(row, offset+17))
+
+		keyParts := []string{
+			strings.ToLower(nomeCodigo),
+			strings.ToLower(numeroArtigo),
+			strings.ToLower(artigos),
+		}
+		key := strings.Join(keyParts, "|")
+
+		deterministicID := ""
+		if strings.TrimSpace(key) != "" {
+			deterministicID = uuid.NewSHA1(uuid.NameSpaceOID, []byte(key)).String()
+		}
+
+		id := rawID
+		if strings.TrimSpace(id) == "" {
+			if deterministicID != "" {
+				id = deterministicID
+			} else {
+				id = uuid.NewString()
+			}
+		}
+
+		item := &model.VadeMecumOAB{
+			ID:            id,
+			IDTipo:        getCellValue(row, offset+0),
+			Tipo:          getCellValue(row, offset+1),
+			NomeCodigo:    nomeCodigo,
+			Cabecalho:     getCellValue(row, offset+3),
+			Titulo:        getCellValue(row, offset+4),
+			TituloTexto:   getCellValue(row, offset+5),
+			TituloLabel:   getCellValue(row, offset+6),
+			Capitulo:      getCellValue(row, offset+7),
+			CapituloTexto: getCellValue(row, offset+8),
+			CapituloLabel: getCellValue(row, offset+9),
+			Secao:         getCellValue(row, offset+10),
+			SecaoTexto:    getCellValue(row, offset+11),
+			SecaoLabel:    getCellValue(row, offset+12),
+			Subsecao:      getCellValue(row, offset+13),
+			SubsecaoTexto: getCellValue(row, offset+14),
+			SubsecaoLabel: getCellValue(row, offset+15),
+			NumeroArtigo:  numeroArtigo,
+			Artigos:       artigos,
 		}
 
 		batch = append(batch, item)
@@ -121,7 +150,7 @@ func (s *VadeMecumLeiService) ImportFromExcel(r io.Reader) (int, error) {
 		return 0, errors.New("nenhuma linha válida encontrada na planilha")
 	}
 
-	unique := deduplicateLeis(batch)
+	unique := deduplicateOAB(batch)
 
 	if err := s.repo.Upsert(unique); err != nil {
 		return 0, fmt.Errorf("falha ao salvar registros: %w", err)
@@ -130,7 +159,19 @@ func (s *VadeMecumLeiService) ImportFromExcel(r io.Reader) (int, error) {
 	return len(unique), nil
 }
 
-func (s *VadeMecumLeiService) Create(req *model.CreateVadeMecumLeiRequest) (*model.VadeMecumLei, error) {
+func (s *VadeMecumOABService) GetAll() ([]model.VadeMecumOAB, error) {
+	return s.repo.GetAll()
+}
+
+func (s *VadeMecumOABService) GetByID(id string) (*model.VadeMecumOAB, error) {
+	trimmed := strings.TrimSpace(id)
+	if trimmed == "" {
+		return nil, errors.New("id inválido")
+	}
+	return s.repo.GetByID(trimmed)
+}
+
+func (s *VadeMecumOABService) Create(req *model.CreateVadeMecumOABRequest) (*model.VadeMecumOAB, error) {
 	if req == nil {
 		return nil, errors.New("payload obrigatório")
 	}
@@ -145,36 +186,32 @@ func (s *VadeMecumLeiService) Create(req *model.CreateVadeMecumLeiRequest) (*mod
 		id = uuid.NewString()
 	} else {
 		if _, err := s.repo.GetByID(id); err == nil {
-			return nil, fmt.Errorf("lei com id '%s' já existe", id)
+			return nil, fmt.Errorf("registro com id '%s' já existe", id)
 		} else if !errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, err
 		}
 	}
 
-	item := &model.VadeMecumLei{
+	item := &model.VadeMecumOAB{
 		ID:            id,
 		IDTipo:        strings.TrimSpace(req.IDTipo),
 		Tipo:          strings.TrimSpace(req.Tipo),
 		NomeCodigo:    nome,
 		Cabecalho:     strings.TrimSpace(req.Cabecalho),
-		IDParte:       strings.TrimSpace(req.IDParte),
-		Parte:         strings.TrimSpace(req.Parte),
-		ParteTexto:    strings.TrimSpace(req.ParteTexto),
-		IDTitulo:      strings.TrimSpace(req.IDTitulo),
 		Titulo:        strings.TrimSpace(req.Titulo),
 		TituloTexto:   strings.TrimSpace(req.TituloTexto),
-		IDCapitulo:    strings.TrimSpace(req.IDCapitulo),
+		TituloLabel:   strings.TrimSpace(req.TituloLabel),
 		Capitulo:      strings.TrimSpace(req.Capitulo),
 		CapituloTexto: strings.TrimSpace(req.CapituloTexto),
-		IDSecao:       strings.TrimSpace(req.IDSecao),
+		CapituloLabel: strings.TrimSpace(req.CapituloLabel),
 		Secao:         strings.TrimSpace(req.Secao),
 		SecaoTexto:    strings.TrimSpace(req.SecaoTexto),
-		IDSubsecao:    strings.TrimSpace(req.IDSubsecao),
+		SecaoLabel:    strings.TrimSpace(req.SecaoLabel),
 		Subsecao:      strings.TrimSpace(req.Subsecao),
 		SubsecaoTexto: strings.TrimSpace(req.SubsecaoTexto),
+		SubsecaoLabel: strings.TrimSpace(req.SubsecaoLabel),
 		NumeroArtigo:  strings.TrimSpace(req.NumeroArtigo),
 		Artigos:       strings.TrimSpace(req.Artigos),
-		Ordem:         strings.TrimSpace(req.Ordem),
 	}
 
 	if err := s.repo.Create(item); err != nil {
@@ -184,19 +221,7 @@ func (s *VadeMecumLeiService) Create(req *model.CreateVadeMecumLeiRequest) (*mod
 	return item, nil
 }
 
-func (s *VadeMecumLeiService) GetAll() ([]model.VadeMecumLei, error) {
-	return s.repo.GetAll()
-}
-
-func (s *VadeMecumLeiService) GetByID(id string) (*model.VadeMecumLei, error) {
-	trimmed := strings.TrimSpace(id)
-	if trimmed == "" {
-		return nil, errors.New("id inválido")
-	}
-	return s.repo.GetByID(trimmed)
-}
-
-func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiRequest) (*model.VadeMecumLei, error) {
+func (s *VadeMecumOABService) Update(id string, req *model.UpdateVadeMecumOABRequest) (*model.VadeMecumOAB, error) {
 	if req == nil {
 		return nil, errors.New("payload obrigatório")
 	}
@@ -227,26 +252,14 @@ func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiReq
 	if req.Cabecalho != nil {
 		existing.Cabecalho = strings.TrimSpace(*req.Cabecalho)
 	}
-	if req.IDParte != nil {
-		existing.IDParte = strings.TrimSpace(*req.IDParte)
-	}
-	if req.Parte != nil {
-		existing.Parte = strings.TrimSpace(*req.Parte)
-	}
-	if req.ParteTexto != nil {
-		existing.ParteTexto = strings.TrimSpace(*req.ParteTexto)
-	}
-	if req.IDTitulo != nil {
-		existing.IDTitulo = strings.TrimSpace(*req.IDTitulo)
-	}
 	if req.Titulo != nil {
 		existing.Titulo = strings.TrimSpace(*req.Titulo)
 	}
 	if req.TituloTexto != nil {
 		existing.TituloTexto = strings.TrimSpace(*req.TituloTexto)
 	}
-	if req.IDCapitulo != nil {
-		existing.IDCapitulo = strings.TrimSpace(*req.IDCapitulo)
+	if req.TituloLabel != nil {
+		existing.TituloLabel = strings.TrimSpace(*req.TituloLabel)
 	}
 	if req.Capitulo != nil {
 		existing.Capitulo = strings.TrimSpace(*req.Capitulo)
@@ -254,8 +267,8 @@ func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiReq
 	if req.CapituloTexto != nil {
 		existing.CapituloTexto = strings.TrimSpace(*req.CapituloTexto)
 	}
-	if req.IDSecao != nil {
-		existing.IDSecao = strings.TrimSpace(*req.IDSecao)
+	if req.CapituloLabel != nil {
+		existing.CapituloLabel = strings.TrimSpace(*req.CapituloLabel)
 	}
 	if req.Secao != nil {
 		existing.Secao = strings.TrimSpace(*req.Secao)
@@ -263,8 +276,8 @@ func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiReq
 	if req.SecaoTexto != nil {
 		existing.SecaoTexto = strings.TrimSpace(*req.SecaoTexto)
 	}
-	if req.IDSubsecao != nil {
-		existing.IDSubsecao = strings.TrimSpace(*req.IDSubsecao)
+	if req.SecaoLabel != nil {
+		existing.SecaoLabel = strings.TrimSpace(*req.SecaoLabel)
 	}
 	if req.Subsecao != nil {
 		existing.Subsecao = strings.TrimSpace(*req.Subsecao)
@@ -272,14 +285,14 @@ func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiReq
 	if req.SubsecaoTexto != nil {
 		existing.SubsecaoTexto = strings.TrimSpace(*req.SubsecaoTexto)
 	}
+	if req.SubsecaoLabel != nil {
+		existing.SubsecaoLabel = strings.TrimSpace(*req.SubsecaoLabel)
+	}
 	if req.NumeroArtigo != nil {
 		existing.NumeroArtigo = strings.TrimSpace(*req.NumeroArtigo)
 	}
 	if req.Artigos != nil {
 		existing.Artigos = strings.TrimSpace(*req.Artigos)
-	}
-	if req.Ordem != nil {
-		existing.Ordem = strings.TrimSpace(*req.Ordem)
 	}
 
 	if err := s.repo.Update(existing); err != nil {
@@ -289,7 +302,7 @@ func (s *VadeMecumLeiService) Update(id string, req *model.UpdateVadeMecumLeiReq
 	return existing, nil
 }
 
-func (s *VadeMecumLeiService) Delete(id string) error {
+func (s *VadeMecumOABService) Delete(id string) error {
 	trimmed := strings.TrimSpace(id)
 	if trimmed == "" {
 		return errors.New("id inválido")
@@ -297,9 +310,13 @@ func (s *VadeMecumLeiService) Delete(id string) error {
 	return s.repo.Delete(trimmed)
 }
 
-func deduplicateLeis(items []*model.VadeMecumLei) []*model.VadeMecumLei {
+func (s *VadeMecumOABService) Reset() error {
+	return s.repo.DeleteAll()
+}
+
+func deduplicateOAB(items []*model.VadeMecumOAB) []*model.VadeMecumOAB {
 	index := make(map[string]int, len(items))
-	unique := make([]*model.VadeMecumLei, 0, len(items))
+	unique := make([]*model.VadeMecumOAB, 0, len(items))
 
 	for _, item := range items {
 		key := strings.TrimSpace(item.ID)

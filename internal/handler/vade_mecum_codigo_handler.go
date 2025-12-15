@@ -1,12 +1,14 @@
 package handler
 
 import (
+	"errors"
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/thepantheon/api/internal/model"
+	"gorm.io/gorm"
 )
 
 // CreateCodigo godoc
@@ -49,6 +51,107 @@ func (h *Handlers) GetCodigos(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, items)
+}
+
+// CreateCapaVadeMecumCodigo godoc
+// @Summary      Criar capa de vade-mécum código
+// @Tags         vade-mecum-codigos
+// @Accept       json
+// @Produce      json
+// @Param        request body model.CreateCapaVadeMecumCodigoRequest true "Dados da capa"
+// @Success      201 {object} model.CapaVadeMecumCodigo
+// @Failure      400 {object} map[string]string
+// @Failure      409 {object} map[string]string
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/codigos/capas [post]
+func (h *Handlers) CreateCapaVadeMecumCodigo(c *gin.Context) {
+	var req model.CreateCapaVadeMecumCodigoRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	item, err := h.capaCodigoService.Create(&req)
+	if err != nil {
+		if strings.Contains(strings.ToLower(err.Error()), "já existe") {
+			c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusCreated, item)
+}
+
+// GetCapasVadeMecumCodigo godoc
+// @Summary      Listar capas de códigos ou buscar por nome específico
+// @Tags         vade-mecum-codigos
+// @Produce      json
+// @Param        nomecodigo query string false "Filtro por nomecodigo"
+// @Success      200 {array} model.CapaVadeMecumCodigo
+// @Failure      404 {object} map[string]string
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/codigos/capas [get]
+func (h *Handlers) GetCapasVadeMecumCodigo(c *gin.Context) {
+	nome := strings.TrimSpace(c.Query("nomecodigo"))
+
+	if nome != "" {
+		item, err := h.capaCodigoService.GetByNomeCodigo(nome)
+		if err != nil {
+			if errors.Is(err, gorm.ErrRecordNotFound) {
+				c.JSON(http.StatusNotFound, gin.H{"error": "capa não encontrada"})
+				return
+			}
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, []model.CapaVadeMecumCodigo{*item})
+		return
+	}
+
+	items, err := h.capaCodigoService.GetAll()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, items)
+}
+
+// UpdateCapaVadeMecumCodigo godoc
+// @Summary      Atualizar capa de vade-mécum código
+// @Tags         vade-mecum-codigos
+// @Accept       json
+// @Produce      json
+// @Param        nomecodigo path string true "Identificador da capa"
+// @Param        request body model.UpdateCapaVadeMecumCodigoRequest true "Campos para atualização"
+// @Success      200 {object} model.CapaVadeMecumCodigo
+// @Failure      400 {object} map[string]string
+// @Failure      404 {object} map[string]string
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/codigos/capas/{nomecodigo} [put]
+func (h *Handlers) UpdateCapaVadeMecumCodigo(c *gin.Context) {
+	nome := c.Param("nomecodigo")
+
+	var req model.UpdateCapaVadeMecumCodigoRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	item, err := h.capaCodigoService.Update(nome, &req)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{"error": "capa não encontrada"})
+			return
+		}
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, item)
 }
 
 // GetCodigosGrouped godoc

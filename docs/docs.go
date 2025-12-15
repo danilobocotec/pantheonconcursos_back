@@ -43,7 +43,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CreateAdminRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateAdminRequest"
                         }
                     }
                 ],
@@ -51,7 +51,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
                         }
                     },
                     "400": {
@@ -114,7 +114,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.LoginResponse"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
                         }
                     },
                     "400": {
@@ -182,7 +182,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.LoginResponse"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
                         }
                     },
                     "400": {
@@ -240,7 +240,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.LoginRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginRequest"
                         }
                     }
                 ],
@@ -248,7 +248,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.LoginResponse"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
                         }
                     },
                     "400": {
@@ -292,7 +292,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CreateUserRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateUserRequest"
                         }
                     }
                 ],
@@ -300,7 +300,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
                         }
                     },
                     "400": {
@@ -344,7 +344,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.SocialAuthRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.SocialAuthRequest"
                         }
                     }
                 ],
@@ -352,7 +352,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.LoginResponse"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
                         }
                     },
                     "400": {
@@ -415,7 +415,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/model.Plan"
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Plan"
                             }
                         }
                     },
@@ -446,7 +446,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/model.VadeMecum"
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                             }
                         }
                     },
@@ -479,7 +479,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest"
                         }
                     }
                 ],
@@ -487,7 +487,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecum"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                         }
                     },
                     "400": {
@@ -535,7 +535,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/model.VadeMecum"
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                             }
                         }
                     },
@@ -584,7 +584,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest"
                         }
                     }
                 ],
@@ -592,7 +592,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecum"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                         }
                     },
                     "400": {
@@ -649,7 +649,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest"
                         }
                     }
                 ],
@@ -657,7 +657,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecum"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                         }
                     },
                     "400": {
@@ -750,7 +750,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/model.VadeMecumCodigo"
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
                             }
                         }
                     },
@@ -783,7 +783,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CreateVadeMecumCodigoRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest"
                         }
                     }
                 ],
@@ -791,11 +791,184 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/codigos/capas": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Listar capas de códigos ou buscar por nome específico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filtro por nomecodigo",
+                        "name": "nomecodigo",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Criar capa de vade-mécum código",
+                "parameters": [
+                    {
+                        "description": "Dados da capa",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/codigos/capas/{nomecodigo}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Atualizar capa de vade-mécum código",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Identificador da capa",
+                        "name": "nomecodigo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -842,7 +1015,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/model.VadeMecumCodigoGroup"
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup"
                             }
                         }
                     },
@@ -931,7 +1104,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
                         }
                     },
                     "400": {
@@ -979,7 +1152,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UpdateVadeMecumCodigoRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest"
                         }
                     }
                 ],
@@ -987,7 +1160,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
                         }
                     },
                     "400": {
@@ -1049,6 +1222,1264 @@ const docTemplate = `{
                 }
             }
         },
+        "/vade-mecum/jurisprudencia": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Listar jurisprudências",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Criar jurisprudência",
+                "parameters": [
+                    {
+                        "description": "Dados do registro",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/jurisprudencia/capas": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Listar capas de jurisprudência ou buscar por nome específico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filtro por nomecodigo",
+                        "name": "nomecodigo",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Criar capa para jurisprudência",
+                "parameters": [
+                    {
+                        "description": "Dados da capa",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumJurisprudenciaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/jurisprudencia/capas/{nomecodigo}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Atualizar capa de jurisprudência",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Identificador da capa",
+                        "name": "nomecodigo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumJurisprudenciaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/jurisprudencia/import": {
+            "post": {
+                "description": "Recebe um arquivo .xlsx com colunas específicas (vademecum_Jurisprudencia)",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Importar jurisprudências via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/jurisprudencia/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Buscar jurisprudência por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Atualizar jurisprudência",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Remover jurisprudência",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/leis": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Listar leis",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Criar lei",
+                "parameters": [
+                    {
+                        "description": "Dados da lei",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumLeiRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/leis/import": {
+            "post": {
+                "description": "Recebe um arquivo .xlsx e realiza o upsert das leis no banco",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Importar leis via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/leis/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Obter lei por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Atualizar lei",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumLeiRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Remover lei",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/oab": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Listar conteúdo OAB",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Criar registro OAB",
+                "parameters": [
+                    {
+                        "description": "Dados do registro",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumOABRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/oab/capas": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Listar capas OAB ou buscar por nome específico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filtro por nomecodigo",
+                        "name": "nomecodigo",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Criar capa para vade-mécum OAB",
+                "parameters": [
+                    {
+                        "description": "Dados da capa",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumOABRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/oab/capas/{nomecodigo}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Atualizar capa OAB",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Identificador da capa",
+                        "name": "nomecodigo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumOABRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/oab/import": {
+            "post": {
+                "description": "Recebe um arquivo .xlsx para importar registros do Vade Mecum OAB",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Importar conteúdo OAB via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/oab/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Obter registro OAB por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Atualizar registro OAB",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumOABRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-oab"
+                ],
+                "summary": "Remover registro OAB",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/vade-mecum/{id}": {
             "get": {
                 "produces": [
@@ -1071,7 +2502,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecum"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                         }
                     },
                     "400": {
@@ -1119,7 +2550,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest"
                         }
                     }
                 ],
@@ -1127,7 +2558,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.VadeMecum"
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
                         }
                     },
                     "400": {
@@ -1200,7 +2631,49 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "model.CreateAdminRequest": {
+        "github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CapaVadeMecumOAB": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateAdminRequest": {
             "type": "object",
             "required": [
                 "admin_secret",
@@ -1229,7 +2702,58 @@ const docTemplate = `{
                 }
             }
         },
-        "model.CreateUserRequest": {
+        "github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCapaVadeMecumJurisprudenciaRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCapaVadeMecumOABRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateUserRequest": {
             "type": "object",
             "required": [
                 "confirm",
@@ -1254,7 +2778,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.CreateVadeMecumCodigoRequest": {
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest": {
             "type": "object",
             "required": [
                 "nomecodigo"
@@ -1343,7 +2867,223 @@ const docTemplate = `{
                 }
             }
         },
-        "model.CreateVadeMecumRequest": {
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Enunciado": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "Tipo": {
+                    "type": "string"
+                },
+                "assuntotexto": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idassunto": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idenunciado": {
+                    "type": "string"
+                },
+                "idramo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "ramotexto": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumLeiRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "PARTETEXTO": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idPARTE": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumOABRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulo_label": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secao_label": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecao_label": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulo_label": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumRequest": {
             "type": "object",
             "required": [
                 "cabecalho",
@@ -1397,7 +3137,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.LoginRequest": {
+        "github_com_thepantheon_api_internal_model.LoginRequest": {
             "type": "object",
             "required": [
                 "email",
@@ -1412,7 +3152,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.LoginResponse": {
+        "github_com_thepantheon_api_internal_model.LoginResponse": {
             "type": "object",
             "properties": {
                 "expires_in": {
@@ -1422,11 +3162,11 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/model.User"
+                    "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
                 }
             }
         },
-        "model.Plan": {
+        "github_com_thepantheon_api_internal_model.Plan": {
             "type": "object",
             "properties": {
                 "active": {
@@ -1456,12 +3196,12 @@ const docTemplate = `{
                 "users": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/model.User"
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
                     }
                 }
             }
         },
-        "model.SocialAuthRequest": {
+        "github_com_thepantheon_api_internal_model.SocialAuthRequest": {
             "type": "object",
             "required": [
                 "access_token",
@@ -1480,7 +3220,40 @@ const docTemplate = `{
                 }
             }
         },
-        "model.UpdateVadeMecumCodigoRequest": {
+        "github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumJurisprudenciaRequest": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumOABRequest": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest": {
             "type": "object",
             "properties": {
                 "Cabecalho": {
@@ -1566,7 +3339,205 @@ const docTemplate = `{
                 }
             }
         },
-        "model.UpdateVadeMecumRequest": {
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Enunciado": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "Tipo": {
+                    "type": "string"
+                },
+                "assuntotexto": {
+                    "type": "string"
+                },
+                "idassunto": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idenunciado": {
+                    "type": "string"
+                },
+                "idramo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "ramotexto": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumLeiRequest": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "PARTETEXTO": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idPARTE": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumOABRequest": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulo_label": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secao_label": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecao_label": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulo_label": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest": {
             "type": "object",
             "properties": {
                 "cabecalho": {
@@ -1608,7 +3579,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.User": {
+        "github_com_thepantheon_api_internal_model.User": {
             "type": "object",
             "properties": {
                 "active": {
@@ -1630,7 +3601,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "plan": {
-                    "$ref": "#/definitions/model.Plan"
+                    "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Plan"
                 },
                 "plan_id": {
                     "type": "string"
@@ -1650,7 +3621,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.VadeMecum": {
+        "github_com_thepantheon_api_internal_model.VadeMecum": {
             "type": "object",
             "properties": {
                 "cabecalho": {
@@ -1700,7 +3671,7 @@ const docTemplate = `{
                 }
             }
         },
-        "model.VadeMecumCodigo": {
+        "github_com_thepantheon_api_internal_model.VadeMecumCodigo": {
             "type": "object",
             "properties": {
                 "Cabecalho": {
@@ -1795,13 +3766,13 @@ const docTemplate = `{
                 }
             }
         },
-        "model.VadeMecumCodigoGroup": {
+        "github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup": {
             "type": "object",
             "properties": {
                 "items": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/model.VadeMecumCodigo"
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
                     }
                 },
                 "nomecodigo": {
@@ -1809,6 +3780,231 @@ const docTemplate = `{
                 },
                 "priority": {
                     "type": "integer"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Enunciado": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "Tipo": {
+                    "type": "string"
+                },
+                "assuntotexto": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idassunto": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idenunciado": {
+                    "type": "string"
+                },
+                "idramo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "ramotexto": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumLei": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "PARTETEXTO": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idPARTE": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumOAB": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulo_label": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secao_label": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecao_label": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulo_label": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
                 }
             }
         }

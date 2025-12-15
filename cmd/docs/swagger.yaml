@@ -1,0 +1,21 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    email: support@pantheonconcursos.com.br
+    name: API Support
+  description: API REST para sistema de concursos com autenticação JWT
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: ThePantheon API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  Bearer:
+    description: Digite "Bearer" seguido do token JWT
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

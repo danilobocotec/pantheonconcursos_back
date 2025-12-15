@@ -36,6 +36,11 @@ func AutoMigrate(db *gorm.DB) error {
 		&model.VadeMecum{},
 		&model.VadeMecumCodigo{},
 		&model.VadeMecumLei{},
+		&model.VadeMecumOAB{},
+		&model.CapaVadeMecumCodigo{},
+		&model.CapaVadeMecumOAB{},
+		&model.CapaVadeMecumJurisprudencia{},
+		&model.VadeMecumJurisprudencia{},
 		&model.User{},
 		// Add more models here as needed
 	); err != nil {
@@ -97,6 +102,55 @@ func AutoMigrate(db *gorm.DB) error {
 		ALTER COLUMN subsecaotexto TYPE TEXT,
 		ALTER COLUMN num_artigo TYPE TEXT,
 		ALTER COLUMN "Artigos" TYPE TEXT,
+		ALTER COLUMN "Ordem" TYPE TEXT`).Error; err != nil {
+		return err
+	}
+
+	if err := db.Exec(`ALTER TABLE vade_mecum_oab
+		ALTER COLUMN id TYPE TEXT,
+		ALTER COLUMN idtipo TYPE TEXT,
+		ALTER COLUMN tipo TYPE TEXT,
+		ALTER COLUMN nomecodigo TYPE TEXT,
+		ALTER COLUMN "Cabecalho" TYPE TEXT,
+		ALTER COLUMN titulo TYPE TEXT,
+		ALTER COLUMN titulotexto TYPE TEXT,
+		ALTER COLUMN titulo_label TYPE TEXT,
+		ALTER COLUMN capitulo TYPE TEXT,
+		ALTER COLUMN capitulotexto TYPE TEXT,
+		ALTER COLUMN capitulo_label TYPE TEXT,
+		ALTER COLUMN secao TYPE TEXT,
+		ALTER COLUMN secaotexto TYPE TEXT,
+		ALTER COLUMN secao_label TYPE TEXT,
+		ALTER COLUMN subsecao TYPE TEXT,
+		ALTER COLUMN subsecaotexto TYPE TEXT,
+		ALTER COLUMN subsecao_label TYPE TEXT,
+		ALTER COLUMN num_artigo TYPE TEXT,
+		ALTER COLUMN "Artigos" TYPE TEXT`).Error; err != nil {
+		return err
+	}
+
+	if err := db.Exec(`ALTER TABLE vade_mecum_jurisprudencia
+		ALTER COLUMN id TYPE TEXT,
+		ALTER COLUMN idtipo TYPE TEXT,
+		ALTER COLUMN tipo TYPE TEXT,
+		ALTER COLUMN idcodigo TYPE TEXT,
+		ALTER COLUMN nomecodigo TYPE TEXT,
+		ALTER COLUMN "Cabecalho" TYPE TEXT,
+		ALTER COLUMN "Tipo" TYPE TEXT,
+		ALTER COLUMN idramo TYPE TEXT,
+		ALTER COLUMN ramotexto TYPE TEXT,
+		ALTER COLUMN idassunto TYPE TEXT,
+		ALTER COLUMN assuntotexto TYPE TEXT,
+		ALTER COLUMN idenunciado TYPE TEXT,
+		ALTER COLUMN "Enunciado" TYPE TEXT,
+		ALTER COLUMN idsecao TYPE TEXT,
+		ALTER COLUMN secao TYPE TEXT,
+		ALTER COLUMN secaotexto TYPE TEXT,
+		ALTER COLUMN idsubsecao TYPE TEXT,
+		ALTER COLUMN subsecao TYPE TEXT,
+		ALTER COLUMN subsecaotexto TYPE TEXT,
+		ALTER COLUMN num_artigo TYPE TEXT,
+		ALTER COLUMN "Normativo" TYPE TEXT,
 		ALTER COLUMN "Ordem" TYPE TEXT`).Error; err != nil {
 		return err
 	}

@@ -132,6 +132,9 @@ func main() {
 			codigos.GET("", handlers.GetCodigos)
 			codigos.POST("", handlers.CreateCodigo)
 			codigos.POST("/import", handlers.ImportCodigos)
+			codigos.GET("/capas", handlers.GetCapasVadeMecumCodigo)
+			codigos.POST("/capas", handlers.CreateCapaVadeMecumCodigo)
+			codigos.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumCodigo)
 			codigos.GET("/grouped", handlers.GetCodigosGrouped)
 			codigos.GET("/:id", handlers.GetCodigoByID)
 			codigos.PUT("/:id", handlers.UpdateCodigo)
@@ -140,7 +143,38 @@ func main() {
 
 		leis := api.Group("/vade-mecum/leis")
 		{
+			leis.GET("", handlers.GetLeis)
+			leis.POST("", handlers.CreateLei)
+			leis.GET("/:id", handlers.GetLeiByID)
+			leis.PUT("/:id", handlers.UpdateLei)
+			leis.DELETE("/:id", handlers.DeleteLei)
 			leis.POST("/import", handlers.ImportLeis)
+		}
+
+		oab := api.Group("/vade-mecum/oab")
+		{
+			oab.GET("", handlers.GetVadeMecumOAB)
+			oab.POST("", handlers.CreateVadeMecumOAB)
+			oab.GET("/:id", handlers.GetVadeMecumOABByID)
+			oab.PUT("/:id", handlers.UpdateVadeMecumOAB)
+			oab.DELETE("/:id", handlers.DeleteVadeMecumOAB)
+			oab.GET("/capas", handlers.GetCapasVadeMecumOAB)
+			oab.POST("/capas", handlers.CreateCapaVadeMecumOAB)
+			oab.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumOAB)
+			oab.POST("/import", handlers.ImportVadeMecumOAB)
+		}
+
+		juris := api.Group("/vade-mecum/jurisprudencia")
+		{
+			juris.GET("", handlers.GetVadeMecumJurisprudencia)
+			juris.POST("", handlers.CreateVadeMecumJurisprudencia)
+			juris.GET("/capas", handlers.GetCapasVadeMecumJurisprudencia)
+			juris.POST("/capas", handlers.CreateCapaVadeMecumJurisprudencia)
+			juris.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumJurisprudencia)
+			juris.POST("/import", handlers.ImportVadeMecumJurisprudencia)
+			juris.GET("/:id", handlers.GetVadeMecumJurisprudenciaByID)
+			juris.PUT("/:id", handlers.UpdateVadeMecumJurisprudencia)
+			juris.DELETE("/:id", handlers.DeleteVadeMecumJurisprudencia)
 		}
 	}
 
