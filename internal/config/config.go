@@ -13,14 +13,15 @@ type Config struct {
 	JWT      JWTConfig
 	CORS     CORSConfig
 	OAuth    OAuthConfig
+	Admin    AdminConfig
 }
 
 type OAuthConfig struct {
-	GoogleClientID       string
-	GoogleClientSecret   string
-	FacebookAppID        string
-	FacebookAppSecret    string
-	RedirectURL          string
+	GoogleClientID     string
+	GoogleClientSecret string
+	FacebookAppID      string
+	FacebookAppSecret  string
+	RedirectURL        string
 }
 
 type DatabaseConfig struct {
@@ -45,6 +46,10 @@ type JWTConfig struct {
 
 type CORSConfig struct {
 	Origin string
+}
+
+type AdminConfig struct {
+	Secret string
 }
 
 func LoadConfig() (*Config, error) {
@@ -73,11 +78,14 @@ func LoadConfig() (*Config, error) {
 			Origin: getEnv("CORS_ORIGIN", "http://localhost:3000"),
 		},
 		OAuth: OAuthConfig{
-			GoogleClientID:       getEnv("GOOGLE_CLIENT_ID", ""),
-			GoogleClientSecret:   getEnv("GOOGLE_CLIENT_SECRET", ""),
-			FacebookAppID:        getEnv("FACEBOOK_APP_ID", ""),
-			FacebookAppSecret:    getEnv("FACEBOOK_APP_SECRET", ""),
-			RedirectURL:          getEnv("OAUTH_REDIRECT_URL", "http://localhost:8080/api/v1"),
+			GoogleClientID:     getEnv("GOOGLE_CLIENT_ID", ""),
+			GoogleClientSecret: getEnv("GOOGLE_CLIENT_SECRET", ""),
+			FacebookAppID:      getEnv("FACEBOOK_APP_ID", ""),
+			FacebookAppSecret:  getEnv("FACEBOOK_APP_SECRET", ""),
+			RedirectURL:        getEnv("OAUTH_REDIRECT_URL", "http://localhost:8080/api/v1"),
+		},
+		Admin: AdminConfig{
+			Secret: getEnv("ADMIN_SECRET", ""),
 		},
 	}
 

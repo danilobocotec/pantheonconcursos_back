@@ -6,10 +6,10 @@
 2. Selecione seu projeto
 3. Vá em **Settings** > **Database**
 4. Copie os dados de conexão:
-   - **Host**: db.dcdakvwglegcqkozgawy.supabase.co
+   - **Host**: aws-1-us-east-2.pooler.supabase.com
    - **Port**: 5432
    - **Database**: postgres
-   - **User**: postgres
+   - **User**: postgres.hoaiawskdbrdbfhtzqxw
    - **Password**: [Sua senha]
 
 ## Passo 2: Configurar .env
@@ -18,9 +18,9 @@ Edite o arquivo `.env` na raiz do projeto:
 
 ```env
 # Database Configuration - Supabase
-DB_HOST=db.dcdakvwglegcqkozgawy.supabase.co
+DB_HOST=aws-1-us-east-2.pooler.supabase.com
 DB_PORT=5432
-DB_USER=postgres
+DB_USER=postgres.hoaiawskdbrdbfhtzqxw
 DB_PASSWORD=INSIRA_SUA_SENHA_AQUI
 DB_NAME=postgres
 DB_SSLMODE=require

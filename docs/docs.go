@@ -23,6 +23,67 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/auth/admin/register": {
+            "post": {
+                "description": "Cria uma conta de administrador usando um código secreto",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Registrar novo administrador",
+                "parameters": [
+                    {
+                        "description": "Dados do novo administrador",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateAdminRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/auth/facebook/callback": {
             "get": {
                 "description": "Processa retorno do Facebook após autorização",
@@ -369,9 +430,762 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/vade-mecum": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Listar itens de Vade Mecum",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.VadeMecum"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Criar item de Vade Mecum",
+                "parameters": [
+                    {
+                        "description": "Dados do Vade Mecum",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecum"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/category/{category}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Listar itens por categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Categoria",
+                        "name": "category",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.VadeMecum"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Criar item específico por categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Categoria",
+                        "name": "category",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Dados",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecum"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/category/{category}/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Atualizar item dentro de uma categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Categoria",
+                        "name": "category",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Dados",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecum"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Remover item de uma categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Categoria",
+                        "name": "category",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/codigos": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Listar codigos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.VadeMecumCodigo"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Criar item na categoria codigos",
+                "parameters": [
+                    {
+                        "description": "Dados do codigo",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateVadeMecumCodigoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/codigos/import": {
+            "post": {
+                "description": "Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Importar codigos via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/codigos/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Obter codigo por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Atualizar codigo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Dados",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UpdateVadeMecumCodigoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecumCodigo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Remover codigo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Obter Vade Mecum por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecum"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Atualizar Vade Mecum",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Dados para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.VadeMecum"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum"
+                ],
+                "summary": "Remover Vade Mecum",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "model.CreateAdminRequest": {
+            "type": "object",
+            "required": [
+                "admin_secret",
+                "confirm",
+                "email",
+                "full_name",
+                "password"
+            ],
+            "properties": {
+                "admin_secret": {
+                    "type": "string"
+                },
+                "confirm": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string",
+                    "minLength": 3
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8
+                }
+            }
+        },
         "model.CreateUserRequest": {
             "type": "object",
             "required": [
@@ -394,6 +1208,149 @@ const docTemplate = `{
                 "password": {
                     "type": "string",
                     "minLength": 8
+                }
+            }
+        },
+        "model.CreateVadeMecumCodigoRequest": {
+            "type": "object",
+            "required": [
+                "nomecodigo"
+            ],
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.CreateVadeMecumRequest": {
+            "type": "object",
+            "required": [
+                "cabecalho",
+                "capitulo",
+                "category",
+                "description",
+                "idcapitulo",
+                "idtitulo",
+                "textocapitulo",
+                "textodotitulo",
+                "title",
+                "titulo"
+            ],
+            "properties": {
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "file_url": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 3
+                },
+                "titulo": {
+                    "type": "string"
                 }
             }
         },
@@ -480,6 +1437,134 @@ const docTemplate = `{
                 }
             }
         },
+        "model.UpdateVadeMecumCodigoRequest": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.UpdateVadeMecumRequest": {
+            "type": "object",
+            "properties": {
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "file_url": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 3
+                },
+                "titulo": {
+                    "type": "string"
+                }
+            }
+        },
         "model.User": {
             "type": "object",
             "properties": {
@@ -512,6 +1597,154 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "provider_id": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.VadeMecum": {
+            "type": "object",
+            "properties": {
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "file_url": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.VadeMecumCodigo": {
+            "type": "object",
+            "properties": {
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
                     "type": "string"
                 },
                 "updated_at": {

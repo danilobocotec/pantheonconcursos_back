@@ -66,6 +66,7 @@ func main() {
 		cfg.OAuth.FacebookAppSecret,
 		cfg.OAuth.RedirectURL,
 		cfg.JWT.Secret,
+		cfg.Admin.Secret,
 	)
 
 	// Swagger route
@@ -93,6 +94,7 @@ func main() {
 			// Traditional auth
 			auth.POST("/login", handlers.Login)
 			auth.POST("/register", handlers.Register)
+			auth.POST("/admin/register", handlers.RegisterAdmin)
 			auth.POST("/refresh", middleware.AuthMiddleware(), handlers.RefreshToken)
 
 			// Social auth
@@ -106,6 +108,38 @@ func main() {
 		plans := api.Group("/plans")
 		{
 			plans.GET("", handlers.GetPlans)
+		}
+
+		vade := api.Group("/vade-mecum")
+		{
+			vade.GET("", handlers.GetVadeMecum)
+			vade.POST("", handlers.CreateVadeMecum)
+			vade.GET("/:id", handlers.GetVadeMecumByID)
+			vade.PUT("/:id", handlers.UpdateVadeMecum)
+			vade.DELETE("/:id", handlers.DeleteVadeMecum)
+		}
+
+		vadeCategory := api.Group("/vade-mecum/category/:category")
+		{
+			vadeCategory.GET("", handlers.GetVadeMecumByCategory)
+			vadeCategory.POST("", handlers.CreateVadeMecumByCategory)
+			vadeCategory.PUT("/:id", handlers.UpdateVadeMecumByCategory)
+			vadeCategory.DELETE("/:id", handlers.DeleteVadeMecumByCategory)
+		}
+
+		codigos := api.Group("/vade-mecum/codigos")
+		{
+			codigos.GET("", handlers.GetCodigos)
+			codigos.POST("", handlers.CreateCodigo)
+			codigos.POST("/import", handlers.ImportCodigos)
+			codigos.GET("/:id", handlers.GetCodigoByID)
+			codigos.PUT("/:id", handlers.UpdateCodigo)
+			codigos.DELETE("/:id", handlers.DeleteCodigo)
+		}
+
+		leis := api.Group("/vade-mecum/leis")
+		{
+			leis.POST("/import", handlers.ImportLeis)
 		}
 	}
 

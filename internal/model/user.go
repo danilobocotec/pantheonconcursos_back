@@ -15,6 +15,7 @@ type User struct {
 	Avatar     string         `json:"avatar,omitempty"`
 	Provider   string         `json:"provider,omitempty"` // local, google, facebook
 	ProviderID string         `json:"provider_id,omitempty"`
+	Role       string         `gorm:"type:varchar(20);default:user" json:"role"`
 	PlanID     *uuid.UUID     `gorm:"type:uuid" json:"plan_id,omitempty"`
 	Plan       *Plan          `gorm:"foreignKey:PlanID" json:"plan,omitempty"`
 	Active     bool           `gorm:"default:true" json:"active"`
@@ -36,6 +37,14 @@ type CreateUserRequest struct {
 	FullName string `json:"full_name" binding:"required,min=3"`
 	Password string `json:"password" binding:"required,min=8"`
 	Confirm  string `json:"confirm" binding:"required,eqfield=Password"`
+}
+
+type CreateAdminRequest struct {
+	Email       string `json:"email" binding:"required,email"`
+	FullName    string `json:"full_name" binding:"required,min=3"`
+	Password    string `json:"password" binding:"required,min=8"`
+	Confirm     string `json:"confirm" binding:"required,eqfield=Password"`
+	AdminSecret string `json:"admin_secret" binding:"required"`
 }
 
 type UpdateUserRequest struct {

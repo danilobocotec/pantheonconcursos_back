@@ -18,6 +18,14 @@ func NewUserService(repo *repository.UserRepository) *UserService {
 }
 
 func (s *UserService) CreateUser(req *model.CreateUserRequest) (*model.User, error) {
+	return s.createUser(req, "user")
+}
+
+func (s *UserService) CreateAdmin(req *model.CreateUserRequest) (*model.User, error) {
+	return s.createUser(req, "admin")
+}
+
+func (s *UserService) createUser(req *model.CreateUserRequest, role string) (*model.User, error) {
 	// Confirm password validation is enforced by binding tag eqfield=Password
 	// Check if user already exists
 	exists, err := s.repo.Exists(req.Email)
@@ -40,6 +48,7 @@ func (s *UserService) CreateUser(req *model.CreateUserRequest) (*model.User, err
 		FullName: req.FullName,
 		Password: string(hashedPassword),
 		Active:   true,
+		Role:     role,
 	}
 
 	if err := s.repo.Create(user); err != nil {
