@@ -21,9 +21,25 @@ func (r *CapaVadeMecumOABRepository) GetAll() ([]model.CapaVadeMecumOAB, error) 
 	return items, nil
 }
 
+func (r *CapaVadeMecumOABRepository) GetByID(id string) (*model.CapaVadeMecumOAB, error) {
+	var item model.CapaVadeMecumOAB
+	if err := r.db.First(&item, "id = ?", id).Error; err != nil {
+		return nil, err
+	}
+	return &item, nil
+}
+
 func (r *CapaVadeMecumOABRepository) GetByNomeCodigo(nomecodigo string) (*model.CapaVadeMecumOAB, error) {
 	var item model.CapaVadeMecumOAB
 	if err := r.db.First(&item, "nomecodigo = ?", nomecodigo).Error; err != nil {
+		return nil, err
+	}
+	return &item, nil
+}
+
+func (r *CapaVadeMecumOABRepository) GetByGrupo(grupo string) (*model.CapaVadeMecumOAB, error) {
+	var item model.CapaVadeMecumOAB
+	if err := r.db.First(&item, "grupo = ?", grupo).Error; err != nil {
 		return nil, err
 	}
 	return &item, nil

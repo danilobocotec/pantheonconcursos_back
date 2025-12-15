@@ -21,9 +21,25 @@ func (r *CapaVadeMecumCodigoRepository) GetAll() ([]model.CapaVadeMecumCodigo, e
 	return items, nil
 }
 
+func (r *CapaVadeMecumCodigoRepository) GetByID(id string) (*model.CapaVadeMecumCodigo, error) {
+	var item model.CapaVadeMecumCodigo
+	if err := r.db.First(&item, "id = ?", id).Error; err != nil {
+		return nil, err
+	}
+	return &item, nil
+}
+
 func (r *CapaVadeMecumCodigoRepository) GetByNomeCodigo(nomecodigo string) (*model.CapaVadeMecumCodigo, error) {
 	var item model.CapaVadeMecumCodigo
 	if err := r.db.First(&item, "nomecodigo = ?", nomecodigo).Error; err != nil {
+		return nil, err
+	}
+	return &item, nil
+}
+
+func (r *CapaVadeMecumCodigoRepository) GetByGrupo(grupo string) (*model.CapaVadeMecumCodigo, error) {
+	var item model.CapaVadeMecumCodigo
+	if err := r.db.First(&item, "grupo = ?", grupo).Error; err != nil {
 		return nil, err
 	}
 	return &item, nil

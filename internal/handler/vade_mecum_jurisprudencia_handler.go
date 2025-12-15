@@ -199,15 +199,19 @@ func (h *Handlers) UpdateVadeMecumJurisprudencia(c *gin.Context) {
 // @Tags         vade-mecum-jurisprudencia
 // @Accept       json
 // @Produce      json
-// @Param        nomecodigo path string true "Identificador da capa"
+// @Param        id path string true "Identificador da capa"
 // @Param        request body model.UpdateCapaVadeMecumJurisprudenciaRequest true "Campos para atualização"
 // @Success      200 {object} model.CapaVadeMecumJurisprudencia
 // @Failure      400 {object} map[string]string
 // @Failure      404 {object} map[string]string
 // @Failure      500 {object} map[string]string
-// @Router       /vade-mecum/jurisprudencia/capas/{nomecodigo} [put]
+// @Router       /vade-mecum/jurisprudencia/capas/{id} [put]
 func (h *Handlers) UpdateCapaVadeMecumJurisprudencia(c *gin.Context) {
-	nome := c.Param("nomecodigo")
+	id := strings.TrimSpace(c.Param("id"))
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID inválido"})
+		return
+	}
 
 	var req model.UpdateCapaVadeMecumJurisprudenciaRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -215,7 +219,7 @@ func (h *Handlers) UpdateCapaVadeMecumJurisprudencia(c *gin.Context) {
 		return
 	}
 
-	item, err := h.capaJurisService.Update(nome, &req)
+	item, err := h.capaJurisService.Update(id, &req)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(http.StatusNotFound, gin.H{"error": "capa não encontrada"})

@@ -6,6 +6,8 @@ definitions:
         type: string
       grupo:
         type: string
+      id:
+        type: string
       nomecodigo:
         type: string
     type: object
@@ -15,6 +17,8 @@ definitions:
         type: string
       grupo:
         type: string
+      id:
+        type: string
       nomecodigo:
         type: string
     type: object
@@ -23,6 +27,8 @@ definitions:
       Cabecalho:
         type: string
       grupo:
+        type: string
+      id:
         type: string
       nomecodigo:
         type: string
@@ -397,8 +403,6 @@ definitions:
     type: object
   github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest:
     properties:
-      Cabecalho:
-        type: string
       grupo:
         type: string
     type: object
@@ -1710,14 +1714,14 @@ paths:
       summary: Criar capa de vade-mécum código
       tags:
       - vade-mecum-codigos
-  /vade-mecum/codigos/capas/{nomecodigo}:
+  /vade-mecum/codigos/capas/{id}:
     put:
       consumes:
       - application/json
       parameters:
       - description: Identificador da capa
         in: path
-        name: nomecodigo
+        name: id
         required: true
         type: string
       - description: Campos para atualização
@@ -2054,14 +2058,14 @@ paths:
       summary: Criar capa para jurisprudência
       tags:
       - vade-mecum-jurisprudencia
-  /vade-mecum/jurisprudencia/capas/{nomecodigo}:
+  /vade-mecum/jurisprudencia/capas/{id}:
     put:
       consumes:
       - application/json
       parameters:
       - description: Identificador da capa
         in: path
-        name: nomecodigo
+        name: id
         required: true
         type: string
       - description: Campos para atualização
@@ -2565,14 +2569,14 @@ paths:
       summary: Criar capa para vade-mécum OAB
       tags:
       - vade-mecum-oab
-  /vade-mecum/oab/capas/{nomecodigo}:
+  /vade-mecum/oab/capas/{id}:
     put:
       consumes:
       - application/json
       parameters:
       - description: Identificador da capa
         in: path
-        name: nomecodigo
+        name: id
         required: true
         type: string
       - description: Campos para atualização

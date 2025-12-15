@@ -22,6 +22,14 @@ func (s *CapaVadeMecumOABService) GetAll() ([]model.CapaVadeMecumOAB, error) {
 	return s.repo.GetAll()
 }
 
+func (s *CapaVadeMecumOABService) GetByID(id string) (*model.CapaVadeMecumOAB, error) {
+	trimmed := strings.TrimSpace(id)
+	if trimmed == "" {
+		return nil, errors.New("id inválido")
+	}
+	return s.repo.GetByID(trimmed)
+}
+
 func (s *CapaVadeMecumOABService) GetByNomeCodigo(nomecodigo string) (*model.CapaVadeMecumOAB, error) {
 	trimmed := strings.TrimSpace(nomecodigo)
 	if trimmed == "" {
@@ -46,10 +54,19 @@ func (s *CapaVadeMecumOABService) Create(req *model.CreateCapaVadeMecumOABReques
 		return nil, err
 	}
 
+	grupo := strings.TrimSpace(req.Grupo)
+	if grupo != "" {
+		if existing, err := s.repo.GetByGrupo(grupo); err == nil {
+			return nil, fmt.Errorf("grupo '%s' já está vinculado à capa '%s'", grupo, existing.NomeCodigo)
+		} else if !errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, err
+		}
+	}
+
 	item := &model.CapaVadeMecumOAB{
 		NomeCodigo: nome,
 		Cabecalho:  strings.TrimSpace(req.Cabecalho),
-		Grupo:      strings.TrimSpace(req.Grupo),
+		Grupo:      grupo,
 	}
 
 	if err := s.repo.Create(item); err != nil {
@@ -59,17 +76,17 @@ func (s *CapaVadeMecumOABService) Create(req *model.CreateCapaVadeMecumOABReques
 	return item, nil
 }
 
-func (s *CapaVadeMecumOABService) Update(nomecodigo string, req *model.UpdateCapaVadeMecumOABRequest) (*model.CapaVadeMecumOAB, error) {
+func (s *CapaVadeMecumOABService) Update(id string, req *model.UpdateCapaVadeMecumOABRequest) (*model.CapaVadeMecumOAB, error) {
 	if req == nil {
 		return nil, errors.New("payload obrigatório")
 	}
 
-	nome := strings.TrimSpace(nomecodigo)
-	if nome == "" {
-		return nil, errors.New("nomecodigo inválido")
+	trimmed := strings.TrimSpace(id)
+	if trimmed == "" {
+		return nil, errors.New("id inválido")
 	}
 
-	existing, err := s.repo.GetByNomeCodigo(nome)
+	existing, err := s.repo.GetByID(trimmed)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +95,15 @@ func (s *CapaVadeMecumOABService) Update(nomecodigo string, req *model.UpdateCap
 		existing.Cabecalho = strings.TrimSpace(*req.Cabecalho)
 	}
 	if req.Grupo != nil {
-		existing.Grupo = strings.TrimSpace(*req.Grupo)
+		grupo := strings.TrimSpace(*req.Grupo)
+		if grupo != "" {
+			if found, err := s.repo.GetByGrupo(grupo); err == nil && found.ID != existing.ID {
+				return nil, fmt.Errorf("grupo '%s' já está vinculado à capa '%s'", grupo, found.NomeCodigo)
+			} else if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+				return nil, err
+			}
+		}
+		existing.Grupo = grupo
 	}
 
 	if err := s.repo.Update(existing); err != nil {

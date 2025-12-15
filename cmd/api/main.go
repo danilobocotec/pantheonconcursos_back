@@ -134,7 +134,7 @@ func main() {
 			codigos.POST("/import", handlers.ImportCodigos)
 			codigos.GET("/capas", handlers.GetCapasVadeMecumCodigo)
 			codigos.POST("/capas", handlers.CreateCapaVadeMecumCodigo)
-			codigos.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumCodigo)
+			codigos.PUT("/capas/:id", handlers.UpdateCapaVadeMecumCodigo)
 			codigos.GET("/grouped", handlers.GetCodigosGrouped)
 			codigos.GET("/:id", handlers.GetCodigoByID)
 			codigos.PUT("/:id", handlers.UpdateCodigo)
@@ -160,7 +160,7 @@ func main() {
 			oab.DELETE("/:id", handlers.DeleteVadeMecumOAB)
 			oab.GET("/capas", handlers.GetCapasVadeMecumOAB)
 			oab.POST("/capas", handlers.CreateCapaVadeMecumOAB)
-			oab.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumOAB)
+			oab.PUT("/capas/:id", handlers.UpdateCapaVadeMecumOAB)
 			oab.POST("/import", handlers.ImportVadeMecumOAB)
 		}
 
@@ -170,7 +170,7 @@ func main() {
 			juris.POST("", handlers.CreateVadeMecumJurisprudencia)
 			juris.GET("/capas", handlers.GetCapasVadeMecumJurisprudencia)
 			juris.POST("/capas", handlers.CreateCapaVadeMecumJurisprudencia)
-			juris.PUT("/capas/:nomecodigo", handlers.UpdateCapaVadeMecumJurisprudencia)
+			juris.PUT("/capas/:id", handlers.UpdateCapaVadeMecumJurisprudencia)
 			juris.POST("/import", handlers.ImportVadeMecumJurisprudencia)
 			juris.GET("/:id", handlers.GetVadeMecumJurisprudenciaByID)
 			juris.PUT("/:id", handlers.UpdateVadeMecumJurisprudencia)

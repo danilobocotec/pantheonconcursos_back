@@ -22,6 +22,14 @@ func (s *CapaVadeMecumCodigoService) GetAll() ([]model.CapaVadeMecumCodigo, erro
 	return s.repo.GetAll()
 }
 
+func (s *CapaVadeMecumCodigoService) GetByID(id string) (*model.CapaVadeMecumCodigo, error) {
+	trimmed := strings.TrimSpace(id)
+	if trimmed == "" {
+		return nil, errors.New("id inválido")
+	}
+	return s.repo.GetByID(trimmed)
+}
+
 func (s *CapaVadeMecumCodigoService) GetByNomeCodigo(nomecodigo string) (*model.CapaVadeMecumCodigo, error) {
 	trimmed := strings.TrimSpace(nomecodigo)
 	if trimmed == "" {
@@ -46,10 +54,19 @@ func (s *CapaVadeMecumCodigoService) Create(req *model.CreateCapaVadeMecumCodigo
 		return nil, err
 	}
 
+	grupo := strings.TrimSpace(req.Grupo)
+	if grupo != "" {
+		if existing, err := s.repo.GetByGrupo(grupo); err == nil {
+			return nil, fmt.Errorf("grupo '%s' já está vinculado à capa '%s'", grupo, existing.NomeCodigo)
+		} else if !errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, err
+		}
+	}
+
 	item := &model.CapaVadeMecumCodigo{
 		NomeCodigo: nome,
 		Cabecalho:  strings.TrimSpace(req.Cabecalho),
-		Grupo:      strings.TrimSpace(req.Grupo),
+		Grupo:      grupo,
 	}
 
 	if err := s.repo.Create(item); err != nil {
@@ -59,26 +76,31 @@ func (s *CapaVadeMecumCodigoService) Create(req *model.CreateCapaVadeMecumCodigo
 	return item, nil
 }
 
-func (s *CapaVadeMecumCodigoService) Update(nomecodigo string, req *model.UpdateCapaVadeMecumCodigoRequest) (*model.CapaVadeMecumCodigo, error) {
+func (s *CapaVadeMecumCodigoService) Update(id string, req *model.UpdateCapaVadeMecumCodigoRequest) (*model.CapaVadeMecumCodigo, error) {
 	if req == nil {
 		return nil, errors.New("payload obrigatório")
 	}
 
-	nome := strings.TrimSpace(nomecodigo)
-	if nome == "" {
-		return nil, errors.New("nomecodigo inválido")
+	trimmed := strings.TrimSpace(id)
+	if trimmed == "" {
+		return nil, errors.New("id inválido")
 	}
 
-	existing, err := s.repo.GetByNomeCodigo(nome)
+	existing, err := s.repo.GetByID(trimmed)
 	if err != nil {
 		return nil, err
 	}
 
-	if req.Cabecalho != nil {
-		existing.Cabecalho = strings.TrimSpace(*req.Cabecalho)
-	}
 	if req.Grupo != nil {
-		existing.Grupo = strings.TrimSpace(*req.Grupo)
+		grupo := strings.TrimSpace(*req.Grupo)
+		if grupo != "" {
+			if found, err := s.repo.GetByGrupo(grupo); err == nil && found.ID != existing.ID {
+				return nil, fmt.Errorf("grupo '%s' já está vinculado à capa '%s'", grupo, found.NomeCodigo)
+			} else if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+				return nil, err
+			}
+		}
+		existing.Grupo = grupo
 	}
 
 	if err := s.repo.Update(existing); err != nil {

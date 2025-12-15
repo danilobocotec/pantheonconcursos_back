@@ -921,7 +921,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/vade-mecum/codigos/capas/{nomecodigo}": {
+        "/vade-mecum/codigos/capas/{id}": {
             "put": {
                 "consumes": [
                     "application/json"
@@ -937,7 +937,7 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "description": "Identificador da capa",
-                        "name": "nomecodigo",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     },
@@ -1417,7 +1417,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/vade-mecum/jurisprudencia/capas/{nomecodigo}": {
+        "/vade-mecum/jurisprudencia/capas/{id}": {
             "put": {
                 "consumes": [
                     "application/json"
@@ -1433,7 +1433,7 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "description": "Identificador da capa",
-                        "name": "nomecodigo",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     },
@@ -2195,7 +2195,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/vade-mecum/oab/capas/{nomecodigo}": {
+        "/vade-mecum/oab/capas/{id}": {
             "put": {
                 "consumes": [
                     "application/json"
@@ -2211,7 +2211,7 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "description": "Identificador da capa",
-                        "name": "nomecodigo",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     },
@@ -2640,6 +2640,9 @@ const docTemplate = `{
                 "grupo": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "nomecodigo": {
                     "type": "string"
                 }
@@ -2654,6 +2657,9 @@ const docTemplate = `{
                 "grupo": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "nomecodigo": {
                     "type": "string"
                 }
@@ -2666,6 +2672,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "grupo": {
+                    "type": "string"
+                },
+                "id": {
                     "type": "string"
                 },
                 "nomecodigo": {
@@ -3223,9 +3232,6 @@ const docTemplate = `{
         "github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest": {
             "type": "object",
             "properties": {
-                "Cabecalho": {
-                    "type": "string"
-                },
                 "grupo": {
                     "type": "string"
                 }

@@ -34,7 +34,7 @@ func (r *VadeMecumJurisprudenciaRepository) GetAll() ([]model.VadeMecumJurisprud
 	var items []model.VadeMecumJurisprudencia
 	if err := r.db.
 		Order("nomecodigo ASC").
-		Order("Normativo ASC").
+		Order("\"Normativo\" ASC").
 		Order("num_artigo ASC").
 		Find(&items).Error; err != nil {
 		return nil, err

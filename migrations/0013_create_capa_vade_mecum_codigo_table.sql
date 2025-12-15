@@ -2,10 +2,10 @@
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS capa_vade_mecum_codigo (
+    id TEXT PRIMARY KEY DEFAULT md5(random()::text || clock_timestamp()::text),
     nomecodigo TEXT NOT NULL,
     "Cabecalho" TEXT,
-    grupo TEXT,
-    PRIMARY KEY (nomecodigo)
+    grupo TEXT
 );
 
 COMMIT;
