@@ -51,31 +51,7 @@ var vadeMecumImportHeaders = []string{
 	"Ordem",
 }
 
-var vadeMecumImportHeadersV2 = []string{
-	"id",
-	"idtipo",
-	"tipo",
-	"nomecodigo",
-	"Cabecalho",
-	"idPARTE",
-	"PARTE",
-	"PARTETEXTO",
-	"idtitulo",
-	"titulo",
-	"titulotexto",
-	"idcapitulo",
-	"capitulo",
-	"capitulotexto",
-	"idsecao",
-	"secao",
-	"secaotexto",
-	"idsubsecao",
-	"subsecao",
-	"subsecaotexto",
-	"num_artigo",
-	"Artigos",
-	"Ordem",
-}
+<<<<<<< HEAD
 
 func (s *VadeMecumCodigoService) Create(req *model.CreateVadeMecumCodigoRequest) (*model.VadeMecumCodigo, error) {
 	idCodigo := strings.TrimSpace(req.IDCodigo)
@@ -87,6 +63,13 @@ func (s *VadeMecumCodigoService) Create(req *model.CreateVadeMecumCodigoRequest)
 		IDTipo:         req.IDTipo,
 		Tipo:           req.Tipo,
 		IDCodigo:       idCodigo,
+=======
+func (s *VadeMecumCodigoService) Create(req *model.CreateVadeMecumCodigoRequest) (*model.VadeMecumCodigo, error) {
+	item := &model.VadeMecumCodigo{
+		IDTipo:         req.IDTipo,
+		Tipo:           req.Tipo,
+		IDCodigo:       req.IDCodigo,
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 		NomeCodigo:     req.NomeCodigo,
 		Cabecalho:      req.Cabecalho,
 		Parte:          req.Parte,
@@ -123,77 +106,10 @@ func (s *VadeMecumCodigoService) GetAll() ([]model.VadeMecumCodigo, error) {
 	return s.repo.GetAll()
 }
 
-func (s *VadeMecumCodigoService) GetGroupedByNomeCodigo(priorityOrder []string) ([]model.VadeMecumCodigoGroup, error) {
-	items, err := s.repo.GetAll()
-	if err != nil {
-		return nil, err
-	}
+<<<<<<< HEAD
 
-	if len(items) == 0 {
-		return []model.VadeMecumCodigoGroup{}, nil
-	}
-
-	groups := make(map[string]*model.VadeMecumCodigoGroup)
-
-	for _, item := range items {
-		canonicalName := strings.TrimSpace(item.NomeCodigo)
-		if canonicalName == "" {
-			canonicalName = "Sem nome"
-		}
-
-		key := strings.ToLower(canonicalName)
-
-		group, exists := groups[key]
-		if !exists {
-			group = &model.VadeMecumCodigoGroup{
-				NomeCodigo: canonicalName,
-				Items:      make([]model.VadeMecumCodigo, 0, 1),
-			}
-			groups[key] = group
-		}
-
-		group.Items = append(group.Items, item)
-	}
-
-	ordered := make([]model.VadeMecumCodigoGroup, 0, len(groups))
-
-	for idx, raw := range priorityOrder {
-		normalized := strings.ToLower(strings.TrimSpace(raw))
-		if normalized == "" {
-			continue
-		}
-
-		group, ok := groups[normalized]
-		if !ok {
-			continue
-		}
-
-		priority := idx + 1
-		group.Priority = intPtr(priority)
-		ordered = append(ordered, *group)
-		delete(groups, normalized)
-	}
-
-	if len(groups) == 0 {
-		return ordered, nil
-	}
-
-	remainingKeys := make([]string, 0, len(groups))
-	for key := range groups {
-		remainingKeys = append(remainingKeys, key)
-	}
-
-	sort.Slice(remainingKeys, func(i, j int) bool {
-		return groups[remainingKeys[i]].NomeCodigo < groups[remainingKeys[j]].NomeCodigo
-	})
-
-	for _, key := range remainingKeys {
-		ordered = append(ordered, *groups[key])
-	}
-
-	return ordered, nil
-}
-
+=======
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 func (s *VadeMecumCodigoService) GetByID(id uuid.UUID) (*model.VadeMecumCodigo, error) {
 	return s.repo.GetByID(id)
 }
@@ -318,6 +234,7 @@ func (s *VadeMecumCodigoService) ImportFromExcel(r io.Reader) (int, error) {
 		return 0, errors.New("planilha não possui dados além do cabeçalho")
 	}
 
+<<<<<<< HEAD
 	header := normalizeHeader(rows[0])
 
 	switch {
@@ -334,10 +251,19 @@ func (s *VadeMecumCodigoService) importLegacyRows(rows [][]string) (int, error) 
 	var batch []*model.VadeMecumCodigo
 
 	for idx, row := range rows {
+=======
+	if err := validateImportHeader(rows[0]); err != nil {
+		return 0, err
+	}
+
+	var batch []*model.VadeMecumCodigo
+	for idx, row := range rows[1:] {
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 		if isRowEmpty(row) {
 			continue
 		}
 
+<<<<<<< HEAD
 		idCodigo := strings.TrimSpace(getCellValue(row, 2))
 		if idCodigo == "" {
 			idCodigo = uuid.NewString()
@@ -347,6 +273,12 @@ func (s *VadeMecumCodigoService) importLegacyRows(rows [][]string) (int, error) 
 			IDTipo:         getCellValue(row, 0),
 			Tipo:           getCellValue(row, 1),
 			IDCodigo:       idCodigo,
+=======
+		item := &model.VadeMecumCodigo{
+			IDTipo:         getCellValue(row, 0),
+			Tipo:           getCellValue(row, 1),
+			IDCodigo:       getCellValue(row, 2),
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 			NomeCodigo:     getCellValue(row, 3),
 			Cabecalho:      getCellValue(row, 4),
 			Parte:          getCellValue(row, 5),
@@ -384,6 +316,7 @@ func (s *VadeMecumCodigoService) importLegacyRows(rows [][]string) (int, error) 
 		return 0, errors.New("nenhuma linha válida encontrada na planilha")
 	}
 
+<<<<<<< HEAD
 	uniqueBatch := deduplicateCodigos(batch)
 
 	if err := s.repo.UpsertByCodigo(uniqueBatch); err != nil {
@@ -479,6 +412,26 @@ func headersMatch(header []string, expected []string) bool {
 	}
 
 	return true
+=======
+	if err := s.repo.UpsertByCodigo(batch); err != nil {
+		return 0, fmt.Errorf("falha ao salvar registros: %w", err)
+	}
+
+	return len(batch), nil
+}
+
+func validateImportHeader(header []string) error {
+	if len(header) < len(vadeMecumImportHeaders) {
+		return fmt.Errorf("cabeçalho inválido: esperado %d colunas, recebido %d", len(vadeMecumImportHeaders), len(header))
+	}
+	for idx, expected := range vadeMecumImportHeaders {
+		cell := strings.TrimSpace(header[idx])
+		if cell != expected {
+			return fmt.Errorf("cabeçalho inválido na coluna %d: esperado '%s', recebido '%s'", idx+1, expected, cell)
+		}
+	}
+	return nil
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 }
 
 func getCellValue(row []string, idx int) string {
@@ -496,6 +449,7 @@ func isRowEmpty(row []string) bool {
 	}
 	return true
 }
+<<<<<<< HEAD
 
 func deduplicateCodigos(items []*model.VadeMecumCodigo) []*model.VadeMecumCodigo {
 	index := make(map[string]int, len(items))
@@ -522,3 +476,5 @@ func deduplicateCodigos(items []*model.VadeMecumCodigo) []*model.VadeMecumCodigo
 func intPtr(value int) *int {
 	return &value
 }
+=======
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5

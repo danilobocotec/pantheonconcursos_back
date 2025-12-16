@@ -1,5 +1,6 @@
 basePath: /api/v1
 definitions:
+ 
   github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo:
     properties:
       Cabecalho:
@@ -34,6 +35,9 @@ definitions:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.CreateAdminRequest:
+ 
+  model.CreateAdminRequest:
+ 
     properties:
       admin_secret:
         type: string
@@ -54,6 +58,7 @@ definitions:
     - full_name
     - password
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest:
     properties:
       Cabecalho:
@@ -88,6 +93,9 @@ definitions:
     - nomecodigo
     type: object
   github_com_thepantheon_api_internal_model.CreateUserRequest:
+=======
+  model.CreateUserRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       confirm:
         type: string
@@ -105,7 +113,11 @@ definitions:
     - full_name
     - password
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest:
+=======
+  model.CreateVadeMecumCodigoRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       Cabecalho:
         type: string
@@ -164,6 +176,7 @@ definitions:
     required:
     - nomecodigo
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest:
     properties:
       Cabecalho:
@@ -308,6 +321,9 @@ definitions:
     - nomecodigo
     type: object
   github_com_thepantheon_api_internal_model.CreateVadeMecumRequest:
+=======
+  model.CreateVadeMecumRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       cabecalho:
         type: string
@@ -346,7 +362,11 @@ definitions:
     - title
     - titulo
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.LoginRequest:
+=======
+  model.LoginRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       email:
         type: string
@@ -356,16 +376,26 @@ definitions:
     - email
     - password
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.LoginResponse:
+=======
+  model.LoginResponse:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       expires_in:
         type: integer
       token:
         type: string
       user:
+<<<<<<< HEAD
         $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
     type: object
   github_com_thepantheon_api_internal_model.Plan:
+=======
+        $ref: '#/definitions/model.User'
+    type: object
+  model.Plan:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       active:
         type: boolean
@@ -385,10 +415,17 @@ definitions:
         type: string
       users:
         items:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
         type: array
     type: object
   github_com_thepantheon_api_internal_model.SocialAuthRequest:
+=======
+          $ref: '#/definitions/model.User'
+        type: array
+    type: object
+  model.SocialAuthRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       access_token:
         type: string
@@ -401,6 +438,7 @@ definitions:
     - access_token
     - provider
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest:
     properties:
       grupo:
@@ -421,6 +459,9 @@ definitions:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest:
+=======
+  model.UpdateVadeMecumCodigoRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       Cabecalho:
         type: string
@@ -477,6 +518,7 @@ definitions:
       titulotexto:
         type: string
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest:
     properties:
       Cabecalho:
@@ -609,6 +651,9 @@ definitions:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest:
+=======
+  model.UpdateVadeMecumRequest:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       cabecalho:
         type: string
@@ -636,7 +681,11 @@ definitions:
       titulo:
         type: string
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.User:
+=======
+  model.User:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       active:
         type: boolean
@@ -651,7 +700,11 @@ definitions:
       id:
         type: string
       plan:
+<<<<<<< HEAD
         $ref: '#/definitions/github_com_thepantheon_api_internal_model.Plan'
+=======
+        $ref: '#/definitions/model.Plan'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       plan_id:
         type: string
       provider:
@@ -664,7 +717,11 @@ definitions:
       updated_at:
         type: string
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.VadeMecum:
+=======
+  model.VadeMecum:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       cabecalho:
         type: string
@@ -697,7 +754,11 @@ definitions:
       updated_at:
         type: string
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.VadeMecumCodigo:
+=======
+  model.VadeMecumCodigo:
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
     properties:
       Cabecalho:
         type: string
@@ -760,6 +821,7 @@ definitions:
       updated_at:
         type: string
     type: object
+<<<<<<< HEAD
   github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup:
     properties:
       items:
@@ -932,6 +994,8 @@ definitions:
       updated_at:
         type: string
     type: object
+=======
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 host: localhost:8080
 info:
   contact:
@@ -956,14 +1020,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateAdminRequest'
+=======
+          $ref: '#/definitions/model.CreateAdminRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+=======
+            $ref: '#/definitions/model.User'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1005,7 +1077,11 @@ paths:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+=======
+            $ref: '#/definitions/model.LoginResponse'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1050,7 +1126,11 @@ paths:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+=======
+            $ref: '#/definitions/model.LoginResponse'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1086,14 +1166,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginRequest'
+=======
+          $ref: '#/definitions/model.LoginRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+=======
+            $ref: '#/definitions/model.LoginResponse'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1121,14 +1209,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateUserRequest'
+=======
+          $ref: '#/definitions/model.CreateUserRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+=======
+            $ref: '#/definitions/model.User'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1155,14 +1251,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.SocialAuthRequest'
+=======
+          $ref: '#/definitions/model.SocialAuthRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+=======
+            $ref: '#/definitions/model.LoginResponse'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1204,7 +1308,11 @@ paths:
           description: OK
           schema:
             items:
+<<<<<<< HEAD
               $ref: '#/definitions/github_com_thepantheon_api_internal_model.Plan'
+=======
+              $ref: '#/definitions/model.Plan'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             type: array
         "500":
           description: Internal Server Error
@@ -1224,7 +1332,11 @@ paths:
           description: OK
           schema:
             items:
+<<<<<<< HEAD
               $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+              $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             type: array
         "500":
           description: Internal Server Error
@@ -1244,14 +1356,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest'
+=======
+          $ref: '#/definitions/model.CreateVadeMecumRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+            $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1306,7 +1426,11 @@ paths:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+            $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1336,14 +1460,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest'
+=======
+          $ref: '#/definitions/model.UpdateVadeMecumRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+            $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1380,7 +1512,11 @@ paths:
           description: OK
           schema:
             items:
+<<<<<<< HEAD
               $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+              $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             type: array
         "400":
           description: Bad Request
@@ -1411,14 +1547,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest'
+=======
+          $ref: '#/definitions/model.CreateVadeMecumRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+            $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1484,14 +1628,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest'
+=======
+          $ref: '#/definitions/model.UpdateVadeMecumRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+=======
+            $ref: '#/definitions/model.VadeMecum'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1522,7 +1674,11 @@ paths:
           description: OK
           schema:
             items:
+<<<<<<< HEAD
               $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+=======
+              $ref: '#/definitions/model.VadeMecumCodigo'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             type: array
         "500":
           description: Internal Server Error
@@ -1542,14 +1698,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest'
+=======
+          $ref: '#/definitions/model.CreateVadeMecumCodigoRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+=======
+            $ref: '#/definitions/model.VadeMecumCodigo'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1604,7 +1768,11 @@ paths:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+=======
+            $ref: '#/definitions/model.VadeMecumCodigo'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1634,14 +1802,22 @@ paths:
         name: request
         required: true
         schema:
+<<<<<<< HEAD
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest'
+=======
+          $ref: '#/definitions/model.UpdateVadeMecumCodigoRequest'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+=======
+            $ref: '#/definitions/model.VadeMecumCodigo'
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "400":
           description: Bad Request
           schema:
@@ -1657,6 +1833,7 @@ paths:
       summary: Atualizar codigo
       tags:
       - vade-mecum-codigos
+<<<<<<< HEAD
   /vade-mecum/codigos/capas:
     get:
       parameters:
@@ -1798,6 +1975,8 @@ paths:
       summary: Listar codigos agrupados por nomecodigo
       tags:
       - vade-mecum-codigos
+=======
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
   /vade-mecum/codigos/import:
     post:
       consumes:
@@ -1833,6 +2012,7 @@ paths:
       summary: Importar codigos via Excel
       tags:
       - vade-mecum-codigos
+<<<<<<< HEAD
   /vade-mecum/jurisprudencia:
     get:
       produces:
@@ -2700,6 +2880,8 @@ paths:
       summary: Importar conteúdo OAB via Excel
       tags:
       - vade-mecum-oab
+=======
+>>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 securityDefinitions:
   Bearer:
     description: Digite "Bearer" seguido do token JWT

@@ -43,6 +43,12 @@ func (r *VadeMecumCodigoRepository) UpsertByCodigo(items []*model.VadeMecumCodig
 		}
 		return nil
 	})
+	return r.db.
+		Clauses(clause.OnConflict{
+			Columns:   []clause.Column{{Name: "idcodigo"}},
+			UpdateAll: true,
+		}).
+		Create(&items).Error
 }
 
 func (r *VadeMecumCodigoRepository) GetAll() ([]model.VadeMecumCodigo, error) {
