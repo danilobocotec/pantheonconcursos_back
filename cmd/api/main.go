@@ -144,6 +144,7 @@ func main() {
 		leis := api.Group("/vade-mecum/leis")
 		{
 			leis.GET("", handlers.GetLeis)
+			leis.GET("/gruposervico", handlers.GetLeiGrupoServico)
 			leis.POST("", handlers.CreateLei)
 			leis.GET("/:id", handlers.GetLeiByID)
 			leis.PUT("/:id", handlers.UpdateLei)
@@ -167,6 +168,7 @@ func main() {
 		juris := api.Group("/vade-mecum/jurisprudencia")
 		{
 			juris.GET("", handlers.GetVadeMecumJurisprudencia)
+			juris.GET("/grouped", handlers.GetVadeMecumJurisprudenciaGrouped)
 			juris.POST("", handlers.CreateVadeMecumJurisprudencia)
 			juris.GET("/capas", handlers.GetCapasVadeMecumJurisprudencia)
 			juris.POST("/capas", handlers.CreateCapaVadeMecumJurisprudencia)

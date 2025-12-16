@@ -42,6 +42,34 @@ func (r *VadeMecumJurisprudenciaRepository) GetAll() ([]model.VadeMecumJurisprud
 	return items, nil
 }
 
+func (r *VadeMecumJurisprudenciaRepository) GetGroupedByNomeCodigo() ([]model.VadeMecumJurisprudenciaGroup, error) {
+	type row struct {
+		Cabecalho  string `gorm:"column:cabecalho"`
+		Quantidade int64  `gorm:"column:quantidade"`
+	}
+
+	var rows []row
+	if err := r.db.
+		Table((model.VadeMecumJurisprudencia{}).TableName()).
+		Select("\"Cabecalho\" AS cabecalho, COUNT(*) AS quantidade").
+		Group("\"Cabecalho\"").
+		Order("\"Cabecalho\" ASC").
+		Scan(&rows).Error; err != nil {
+		return nil, err
+	}
+
+	groups := make([]model.VadeMecumJurisprudenciaGroup, 0, len(rows))
+	for _, item := range rows {
+		group := model.VadeMecumJurisprudenciaGroup{
+			Cabecalho:  item.Cabecalho,
+			Quantidade: item.Quantidade,
+		}
+		groups = append(groups, group)
+	}
+
+	return groups, nil
+}
+
 func (r *VadeMecumJurisprudenciaRepository) DeleteAll() error {
 	return r.db.Session(&gorm.Session{AllowGlobalUpdate: true}).Delete(&model.VadeMecumJurisprudencia{}).Error
 }

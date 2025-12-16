@@ -822,6 +822,13 @@ definitions:
       updated_at:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup:
+    properties:
+      cabecalho:
+        type: string
+      quantidade:
+        type: integer
+    type: object
   github_com_thepantheon_api_internal_model.VadeMecumLei:
     properties:
       Artigos:
@@ -873,6 +880,11 @@ definitions:
       titulotexto:
         type: string
       updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico:
+    properties:
+      nomecodigo:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.VadeMecumOAB:
@@ -2102,6 +2114,27 @@ paths:
       summary: Atualizar capa de jurisprudência
       tags:
       - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/grouped:
+    get:
+      operationId: GetVadeMecumJurisprudenciaGrouped
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar jurisprudencias agrupadas por nomecodigo
+      tags:
+      - vade-mecum-jurisprudencia
   /vade-mecum/jurisprudencia/import:
     post:
       consumes:
@@ -2296,6 +2329,26 @@ paths:
               type: string
             type: object
       summary: Atualizar lei
+      tags:
+      - vade-mecum-leis
+  /vade-mecum/leis/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de leis por nomecodigo (grupo servico)
       tags:
       - vade-mecum-leis
   /vade-mecum/leis/import:

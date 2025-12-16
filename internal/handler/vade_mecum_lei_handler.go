@@ -58,6 +58,23 @@ func (h *Handlers) GetLeis(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetLeiGrupoServico godoc
+// @Summary      Listar grupos de leis por nomecodigo (grupo servico)
+// @Tags         vade-mecum-leis
+// @Produce      json
+// @Success      200 {array} model.VadeMecumLeiGrupoServico
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/leis/gruposervico [get]
+func (h *Handlers) GetLeiGrupoServico(c *gin.Context) {
+	items, err := h.leisService.GrupoServico()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, items)
+}
+
 // GetLeiByID godoc
 // @Summary      Obter lei por ID
 // @Tags         vade-mecum-leis

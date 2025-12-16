@@ -35,6 +35,10 @@ type VadeMecumLei struct {
 	DeletedAt     gorm.DeletedAt `gorm:"index" json:"-"`
 }
 
+func (VadeMecumLei) TableName() string {
+	return "vade_mecum_leis"
+}
+
 type CreateVadeMecumLeiRequest struct {
 	ID            string `json:"id"`
 	IDTipo        string `json:"idtipo"`
@@ -84,4 +88,8 @@ type UpdateVadeMecumLeiRequest struct {
 	NumeroArtigo  *string `json:"num_artigo"`
 	Artigos       *string `json:"Artigos"`
 	Ordem         *string `json:"Ordem"`
+}
+
+type VadeMecumLeiGrupoServico struct {
+	NomeCodigo string `json:"nomecodigo"`
 }

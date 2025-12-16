@@ -22,7 +22,6 @@ func NewVadeMecumLeiService(repo *repository.VadeMecumLeiRepository) *VadeMecumL
 }
 
 var vadeMecumLeisHeaders = []string{
-	"id",
 	"idtipo",
 	"tipo",
 	"nomecodigo",
@@ -79,35 +78,29 @@ func (s *VadeMecumLeiService) ImportFromExcel(r io.Reader) (int, error) {
 			continue
 		}
 
-		id := strings.TrimSpace(getCellValue(row, 0))
-		if id == "" {
-			id = uuid.NewString()
-		}
-
 		item := &model.VadeMecumLei{
-			ID:            id,
-			IDTipo:        getCellValue(row, 1),
-			Tipo:          getCellValue(row, 2),
-			NomeCodigo:    getCellValue(row, 3),
-			Cabecalho:     getCellValue(row, 4),
-			IDParte:       getCellValue(row, 5),
-			Parte:         getCellValue(row, 6),
-			ParteTexto:    getCellValue(row, 7),
-			IDTitulo:      getCellValue(row, 8),
-			Titulo:        getCellValue(row, 9),
-			TituloTexto:   getCellValue(row, 10),
-			IDCapitulo:    getCellValue(row, 11),
-			Capitulo:      getCellValue(row, 12),
-			CapituloTexto: getCellValue(row, 13),
-			IDSecao:       getCellValue(row, 14),
-			Secao:         getCellValue(row, 15),
-			SecaoTexto:    getCellValue(row, 16),
-			IDSubsecao:    getCellValue(row, 17),
-			Subsecao:      getCellValue(row, 18),
-			SubsecaoTexto: getCellValue(row, 19),
-			NumeroArtigo:  getCellValue(row, 20),
-			Artigos:       getCellValue(row, 21),
-			Ordem:         getCellValue(row, 22),
+			IDTipo:        getCellValue(row, 0),
+			Tipo:          getCellValue(row, 1),
+			NomeCodigo:    getCellValue(row, 2),
+			Cabecalho:     getCellValue(row, 3),
+			IDParte:       getCellValue(row, 4),
+			Parte:         getCellValue(row, 5),
+			ParteTexto:    getCellValue(row, 6),
+			IDTitulo:      getCellValue(row, 7),
+			Titulo:        getCellValue(row, 8),
+			TituloTexto:   getCellValue(row, 9),
+			IDCapitulo:    getCellValue(row, 10),
+			Capitulo:      getCellValue(row, 11),
+			CapituloTexto: getCellValue(row, 12),
+			IDSecao:       getCellValue(row, 13),
+			Secao:         getCellValue(row, 14),
+			SecaoTexto:    getCellValue(row, 15),
+			IDSubsecao:    getCellValue(row, 16),
+			Subsecao:      getCellValue(row, 17),
+			SubsecaoTexto: getCellValue(row, 18),
+			NumeroArtigo:  getCellValue(row, 19),
+			Artigos:       getCellValue(row, 20),
+			Ordem:         getCellValue(row, 21),
 		}
 
 		if strings.TrimSpace(item.NomeCodigo) == "" {
@@ -186,6 +179,10 @@ func (s *VadeMecumLeiService) Create(req *model.CreateVadeMecumLeiRequest) (*mod
 
 func (s *VadeMecumLeiService) GetAll() ([]model.VadeMecumLei, error) {
 	return s.repo.GetAll()
+}
+
+func (s *VadeMecumLeiService) GrupoServico() ([]model.VadeMecumLeiGrupoServico, error) {
+	return s.repo.GetGrupoServico()
 }
 
 func (s *VadeMecumLeiService) GetByID(id string) (*model.VadeMecumLei, error) {

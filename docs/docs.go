@@ -1484,6 +1484,38 @@ const docTemplate = `{
                 }
             }
         },
+        "/vade-mecum/jurisprudencia/grouped": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-jurisprudencia"
+                ],
+                "summary": "Listar jurisprudencias agrupadas por nomecodigo",
+                "operationId": "GetVadeMecumJurisprudenciaGrouped",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/vade-mecum/jurisprudencia/import": {
             "post": {
                 "description": "Recebe um arquivo .xlsx com colunas específicas (vademecum_Jurisprudencia)",
@@ -1776,6 +1808,37 @@ const docTemplate = `{
                             "type": "object",
                             "additionalProperties": {
                                 "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/leis/gruposervico": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-leis"
+                ],
+                "summary": "Listar grupos de leis por nomecodigo (grupo servico)",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico"
                             }
                         }
                     },
@@ -3866,6 +3929,17 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup": {
+            "type": "object",
+            "properties": {
+                "cabecalho": {
+                    "type": "string"
+                },
+                "quantidade": {
+                    "type": "integer"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.VadeMecumLei": {
             "type": "object",
             "properties": {
@@ -3942,6 +4016,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico": {
+            "type": "object",
+            "properties": {
+                "nomecodigo": {
                     "type": "string"
                 }
             }

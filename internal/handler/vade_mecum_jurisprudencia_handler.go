@@ -30,6 +30,24 @@ func (h *Handlers) GetVadeMecumJurisprudencia(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetVadeMecumJurisprudenciaGrouped godoc
+// @Summary      Listar jurisprudencias agrupadas por nomecodigo
+// @ID           GetVadeMecumJurisprudenciaGrouped
+// @Tags         vade-mecum-jurisprudencia
+// @Produce      json
+// @Success      200 {array} model.VadeMecumJurisprudenciaGroup
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/jurisprudencia/grouped [get]
+func (h *Handlers) GetVadeMecumJurisprudenciaGrouped(c *gin.Context) {
+	groups, err := h.jurisprudenciaService.GetGroupedByNomeCodigo()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, groups)
+}
+
 // GetCapasVadeMecumJurisprudencia godoc
 // @Summary      Listar capas de jurisprudência ou buscar por nome específico
 // @Tags         vade-mecum-jurisprudencia

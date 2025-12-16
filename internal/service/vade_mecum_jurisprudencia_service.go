@@ -179,6 +179,10 @@ func (s *VadeMecumJurisprudenciaService) GetAll() ([]model.VadeMecumJurisprudenc
 	return s.repo.GetAll()
 }
 
+func (s *VadeMecumJurisprudenciaService) GetGroupedByNomeCodigo() ([]model.VadeMecumJurisprudenciaGroup, error) {
+	return s.repo.GetGroupedByNomeCodigo()
+}
+
 func (s *VadeMecumJurisprudenciaService) Reset() error {
 	return s.repo.DeleteAll()
 }

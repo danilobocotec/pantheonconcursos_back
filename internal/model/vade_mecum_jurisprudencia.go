@@ -96,3 +96,8 @@ type UpdateVadeMecumJurisprudenciaRequest struct {
 	Normativo     *string `json:"Normativo"`
 	Ordem         *string `json:"Ordem"`
 }
+
+type VadeMecumJurisprudenciaGroup struct {
+	Cabecalho  string `json:"cabecalho"`
+	Quantidade int64  `json:"quantidade"`
+}

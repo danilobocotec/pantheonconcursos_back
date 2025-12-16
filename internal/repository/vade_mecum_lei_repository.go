@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"strings"
+
 	"github.com/thepantheon/api/internal/model"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -44,6 +46,34 @@ func (r *VadeMecumLeiRepository) GetAll() ([]model.VadeMecumLei, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+func (r *VadeMecumLeiRepository) GetGrupoServico() ([]model.VadeMecumLeiGrupoServico, error) {
+	type row struct {
+		NomeCodigo string `gorm:"column:nomecodigo"`
+	}
+
+	var rows []row
+	if err := r.db.
+		Table((model.VadeMecumLei{}).TableName()).
+		Select("nomecodigo").
+		Group("nomecodigo").
+		Order("nomecodigo ASC").
+		Scan(&rows).Error; err != nil {
+		return nil, err
+	}
+
+	result := make([]model.VadeMecumLeiGrupoServico, 0, len(rows))
+	for _, item := range rows {
+		if strings.TrimSpace(item.NomeCodigo) == "" {
+			continue
+		}
+		result = append(result, model.VadeMecumLeiGrupoServico{
+			NomeCodigo: item.NomeCodigo,
+		})
+	}
+
+	return result, nil
 }
 
 func (r *VadeMecumLeiRepository) GetByID(id string) (*model.VadeMecumLei, error) {
