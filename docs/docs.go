@@ -182,11 +182,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
-=======
-                            "$ref": "#/definitions/model.LoginResponse"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -252,11 +248,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.LoginResponse"
-=======
-                            "$ref": "#/definitions/model.LoginResponse"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -423,11 +415,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-<<<<<<< HEAD
                                 "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Plan"
-=======
-                                "$ref": "#/definitions/model.Plan"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                             }
                         }
                     },
@@ -458,11 +446,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-<<<<<<< HEAD
                                 "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                                "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                             }
                         }
                     },
@@ -495,11 +479,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest"
-=======
-                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -507,11 +487,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                            "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -559,11 +535,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-<<<<<<< HEAD
                                 "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                                "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                             }
                         }
                     },
@@ -612,11 +584,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest"
-=======
-                            "$ref": "#/definitions/model.CreateVadeMecumRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -624,11 +592,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                            "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -685,11 +649,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest"
-=======
-                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -697,11 +657,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                            "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -794,11 +750,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-<<<<<<< HEAD
                                 "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
-=======
-                                "$ref": "#/definitions/model.VadeMecumCodigo"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                             }
                         }
                     },
@@ -831,11 +783,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest"
-=======
-                            "$ref": "#/definitions/model.CreateVadeMecumCodigoRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -843,11 +791,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
-=======
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -871,7 +815,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "/vade-mecum/codigos/capas": {
             "get": {
                 "produces": [
@@ -1088,8 +1031,6 @@ const docTemplate = `{
                 }
             }
         },
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "/vade-mecum/codigos/import": {
             "post": {
                 "description": "Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
@@ -1163,11 +1104,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
-=======
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -1215,11 +1152,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest"
-=======
-                            "$ref": "#/definitions/model.UpdateVadeMecumCodigoRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -1227,11 +1160,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo"
-=======
-                            "$ref": "#/definitions/model.VadeMecumCodigo"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -1293,7 +1222,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "/vade-mecum/jurisprudencia": {
             "get": {
                 "produces": [
@@ -2615,8 +2543,6 @@ const docTemplate = `{
                 }
             }
         },
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         "/vade-mecum/{id}": {
             "get": {
                 "produces": [
@@ -2639,11 +2565,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                            "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -2691,11 +2613,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest"
-=======
-                            "$ref": "#/definitions/model.UpdateVadeMecumRequest"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     }
                 ],
@@ -2703,11 +2621,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-<<<<<<< HEAD
                             "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecum"
-=======
-                            "$ref": "#/definitions/model.VadeMecum"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                         }
                     },
                     "400": {
@@ -2780,7 +2694,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo": {
             "type": "object",
             "properties": {
@@ -2833,9 +2746,6 @@ const docTemplate = `{
             }
         },
         "github_com_thepantheon_api_internal_model.CreateAdminRequest": {
-=======
-        "model.CreateAdminRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "admin_secret",
@@ -2864,7 +2774,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest": {
             "type": "object",
             "required": [
@@ -2917,9 +2826,6 @@ const docTemplate = `{
             }
         },
         "github_com_thepantheon_api_internal_model.CreateUserRequest": {
-=======
-        "model.CreateUserRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "confirm",
@@ -2944,11 +2850,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest": {
-=======
-        "model.CreateVadeMecumCodigoRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "nomecodigo"
@@ -3037,7 +2939,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest": {
             "type": "object",
             "required": [
@@ -3255,9 +3156,6 @@ const docTemplate = `{
             }
         },
         "github_com_thepantheon_api_internal_model.CreateVadeMecumRequest": {
-=======
-        "model.CreateVadeMecumRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "cabecalho",
@@ -3311,11 +3209,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.LoginRequest": {
-=======
-        "model.LoginRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "email",
@@ -3330,11 +3224,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.LoginResponse": {
-=======
-        "model.LoginResponse": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "expires_in": {
@@ -3344,19 +3234,11 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "user": {
-<<<<<<< HEAD
                     "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
                 }
             }
         },
         "github_com_thepantheon_api_internal_model.Plan": {
-=======
-                    "$ref": "#/definitions/model.User"
-                }
-            }
-        },
-        "model.Plan": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "active": {
@@ -3386,20 +3268,12 @@ const docTemplate = `{
                 "users": {
                     "type": "array",
                     "items": {
-<<<<<<< HEAD
                         "$ref": "#/definitions/github_com_thepantheon_api_internal_model.User"
-=======
-                        "$ref": "#/definitions/model.User"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                     }
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.SocialAuthRequest": {
-=======
-        "model.SocialAuthRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "required": [
                 "access_token",
@@ -3418,7 +3292,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest": {
             "type": "object",
             "properties": {
@@ -3450,9 +3323,6 @@ const docTemplate = `{
             }
         },
         "github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest": {
-=======
-        "model.UpdateVadeMecumCodigoRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "Cabecalho": {
@@ -3538,7 +3408,6 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest": {
             "type": "object",
             "properties": {
@@ -3738,9 +3607,6 @@ const docTemplate = `{
             }
         },
         "github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest": {
-=======
-        "model.UpdateVadeMecumRequest": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "cabecalho": {
@@ -3782,11 +3648,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.User": {
-=======
-        "model.User": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "active": {
@@ -3808,11 +3670,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "plan": {
-<<<<<<< HEAD
                     "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Plan"
-=======
-                    "$ref": "#/definitions/model.Plan"
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
                 },
                 "plan_id": {
                     "type": "string"
@@ -3832,11 +3690,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.VadeMecum": {
-=======
-        "model.VadeMecum": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "cabecalho": {
@@ -3886,11 +3740,7 @@ const docTemplate = `{
                 }
             }
         },
-<<<<<<< HEAD
         "github_com_thepantheon_api_internal_model.VadeMecumCodigo": {
-=======
-        "model.VadeMecumCodigo": {
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
             "type": "object",
             "properties": {
                 "Cabecalho": {
@@ -3984,7 +3834,6 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
-<<<<<<< HEAD
         },
         "github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup": {
             "type": "object",
@@ -4246,8 +4095,6 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
         }
     },
     "securityDefinitions": {

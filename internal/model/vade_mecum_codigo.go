@@ -36,33 +36,6 @@ type VadeMecumCodigo struct {
 	NumeroArtigo   string         `gorm:"column:num_artigo;type:text" json:"num_artigo"`
 	Normativo      string         `gorm:"column:Normativo;type:text" json:"Normativo"`
 	Ordem          string         `gorm:"column:Ordem;type:text" json:"Ordem"`
-	IDTipo         string         `gorm:"column:idtipo;type:varchar" json:"idtipo"`
-	Tipo           string         `gorm:"column:tipo;type:varchar" json:"tipo"`
-	IDCodigo       string         `gorm:"column:idcodigo;type:varchar" json:"idcodigo"`
-	NomeCodigo     string         `gorm:"not null;column:nomecodigo;type:varchar" json:"nomecodigo"`
-	Cabecalho      string         `gorm:"column:Cabecalho;type:varchar" json:"Cabecalho"`
-	Parte          string         `gorm:"column:PARTE;type:varchar" json:"PARTE"`
-	LivroID        string         `gorm:"column:idlivro;type:varchar" json:"idlivro"`
-	Livro          string         `gorm:"column:livro;type:varchar" json:"livro"`
-	LivroTexto     string         `gorm:"column:livrotexto;type:varchar" json:"livrotexto"`
-	TituloID       string         `gorm:"column:idtitulo;type:varchar" json:"idtitulo"`
-	Titulo         string         `gorm:"column:titulo;type:varchar" json:"titulo"`
-	TituloTexto    string         `gorm:"column:titulotexto;type:varchar" json:"titulotexto"`
-	SubtituloID    string         `gorm:"column:idsubtitulo;type:varchar" json:"idsubtitulo"`
-	Subtitulo      string         `gorm:"column:subtitulo;type:varchar" json:"subtitulo"`
-	SubtituloTexto string         `gorm:"column:subtitulotexto;type:varchar" json:"subtitulotexto"`
-	CapituloID     string         `gorm:"column:idcapitulo;type:varchar" json:"idcapitulo"`
-	Capitulo       string         `gorm:"column:capitulo;type:varchar" json:"capitulo"`
-	CapituloTexto  string         `gorm:"column:capitulotexto;type:varchar" json:"capitulotexto"`
-	SecaoID        string         `gorm:"column:idsecao;type:varchar" json:"idsecao"`
-	Secao          string         `gorm:"column:secao;type:varchar" json:"secao"`
-	SecaoTexto     string         `gorm:"column:secaotexto;type:varchar" json:"secaotexto"`
-	SubsecaoID     string         `gorm:"column:idsubsecao;type:varchar" json:"idsubsecao"`
-	Subsecao       string         `gorm:"column:subsecao;type:varchar" json:"subsecao"`
-	SubsecaoTexto  string         `gorm:"column:subsecaotexto;type:varchar" json:"subsecaotexto"`
-	NumeroArtigo   string         `gorm:"column:num_artigo;type:varchar" json:"num_artigo"`
-	Normativo      string         `gorm:"column:Normativo;type:varchar" json:"Normativo"`
-	Ordem          string         `gorm:"column:Ordem;type:varchar" json:"Ordem"`
 	CreatedAt      time.Time      `json:"created_at"`
 	UpdatedAt      time.Time      `json:"updated_at"`
 	DeletedAt      gorm.DeletedAt `gorm:"index" json:"-"`
@@ -134,12 +107,9 @@ type UpdateVadeMecumCodigoRequest struct {
 	Normativo      string `json:"Normativo"`
 	Ordem          string `json:"Ordem"`
 }
-<<<<<<< HEAD
 
 type VadeMecumCodigoGroup struct {
 	NomeCodigo string            `json:"nomecodigo"`
 	Priority   *int              `json:"priority,omitempty"`
 	Items      []VadeMecumCodigo `json:"items"`
 }
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5

@@ -4,7 +4,6 @@ import (
 	"errors"
 	"net/http"
 	"strings"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -260,7 +259,6 @@ func (h *Handlers) DeleteCodigo(c *gin.Context) {
 	c.Status(http.StatusNoContent)
 }
 
-<<<<<<< HEAD
 func extractPriorityOrder(c *gin.Context) []string {
 	values := c.QueryArray("priority")
 	if len(values) == 0 {
@@ -301,8 +299,6 @@ func extractPriorityOrder(c *gin.Context) []string {
 	return normalized
 }
 
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 // ImportCodigos godoc
 // @Summary      Importar codigos via Excel
 // @Description  Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão
