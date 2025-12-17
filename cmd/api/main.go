@@ -5,13 +5,13 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	docs "github.com/thepantheon/api/docs"
 	"github.com/thepantheon/api/internal/config"
 	"github.com/thepantheon/api/internal/handler"
 	"github.com/thepantheon/api/pkg/middleware"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	_ "github.com/thepantheon/api/docs"
 )
 
 // @title           ThePantheon API
@@ -38,6 +38,16 @@ func main() {
 	cfg, err := config.LoadConfig()
 	if err != nil {
 		log.Fatalf("Failed to load configuration: %v", err)
+	}
+
+	// Override Swagger host/scheme based on environment configuration
+	swaggerHost := cfg.Server.Host
+	if swaggerHost == "" {
+		swaggerHost = fmt.Sprintf("localhost:%s", cfg.Server.Port)
+	}
+	docs.SwaggerInfo.Host = swaggerHost
+	if cfg.Server.Scheme != "" {
+		docs.SwaggerInfo.Schemes = []string{cfg.Server.Scheme}
 	}
 
 	// Initialize database

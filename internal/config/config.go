@@ -35,8 +35,10 @@ type DatabaseConfig struct {
 }
 
 type ServerConfig struct {
-	Port string
-	Env  string
+	Port   string
+	Env    string
+	Host   string
+	Scheme string
 }
 
 type JWTConfig struct {
@@ -67,8 +69,10 @@ func LoadConfig() (*Config, error) {
 			Timezone: getEnv("DB_TIMEZONE", "UTC"),
 		},
 		Server: ServerConfig{
-			Port: getEnv("SERVER_PORT", "8080"),
-			Env:  getEnv("SERVER_ENV", "development"),
+			Port:   getEnv("SERVER_PORT", "8080"),
+			Env:    getEnv("SERVER_ENV", "development"),
+			Host:   getEnv("SERVER_HOST", "localhost:8080"),
+			Scheme: getEnv("SERVER_SCHEME", "http"),
 		},
 		JWT: JWTConfig{
 			Secret:     getEnv("JWT_SECRET", "your_secret_key"),
