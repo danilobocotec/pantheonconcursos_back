@@ -34,3 +34,5 @@ go.work
 # Build output
 bin/
 dist/
+.vercel
+.env*.local
