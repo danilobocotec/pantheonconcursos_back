@@ -3,10 +3,7 @@ package config
 import (
 	"errors"
 	"log"
-<<<<<<< HEAD
 	"strings"
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 
 	"github.com/thepantheon/api/internal/model"
 	"gorm.io/driver/postgres"
@@ -50,7 +47,6 @@ func AutoMigrate(db *gorm.DB) error {
 		return err
 	}
 
-<<<<<<< HEAD
 	// Guarantee all codigo columns stay as TEXT to support planilhas sem limite de caracteres.
 	if err := db.Exec(`ALTER TABLE vade_mecum_codigos
 		ALTER COLUMN idtipo TYPE TEXT,
@@ -159,8 +155,6 @@ func AutoMigrate(db *gorm.DB) error {
 		return err
 	}
 
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 	// Ensure legacy column "name" is renamed to "full_name"
 	migrator := db.Migrator()
 
@@ -247,7 +241,6 @@ func AutoMigrate(db *gorm.DB) error {
 		}
 	}
 
-<<<<<<< HEAD
 	if !migrator.HasConstraint(&model.VadeMecumCodigo{}, "vade_mecum_codigos_idcodigo_key") {
 		if err := db.Exec(`ALTER TABLE vade_mecum_codigos ADD CONSTRAINT vade_mecum_codigos_idcodigo_key UNIQUE (idcodigo)`).Error; err != nil {
 			if !strings.Contains(err.Error(), "already exists") {
@@ -256,8 +249,6 @@ func AutoMigrate(db *gorm.DB) error {
 		}
 	}
 
-=======
->>>>>>> 451427c4618a62b6f9ac9376f15b00d127a565e5
 	if migrator.HasColumn(&model.User{}, "role") {
 		if err := db.Model(&model.User{}).
 			Where("role IS NULL OR role = ''").
