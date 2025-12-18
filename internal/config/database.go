@@ -35,6 +35,8 @@ func AutoMigrate(db *gorm.DB) error {
 		&model.Plan{},
 		&model.VadeMecum{},
 		&model.VadeMecumCodigo{},
+		&model.VadeMecumEstatuto{},
+		&model.VadeMecumConstituicao{},
 		&model.VadeMecumLei{},
 		&model.VadeMecumOAB{},
 		&model.CapaVadeMecumCodigo{},

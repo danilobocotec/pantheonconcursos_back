@@ -142,6 +142,7 @@ func main() {
 			codigos.GET("", handlers.GetCodigos)
 			codigos.POST("", handlers.CreateCodigo)
 			codigos.POST("/import", handlers.ImportCodigos)
+			codigos.POST("/import/estatuto", handlers.ImportEstatuto)
 			codigos.GET("/capas", handlers.GetCapasVadeMecumCodigo)
 			codigos.POST("/capas", handlers.CreateCapaVadeMecumCodigo)
 			codigos.PUT("/capas/:id", handlers.UpdateCapaVadeMecumCodigo)
@@ -149,6 +150,25 @@ func main() {
 			codigos.GET("/:id", handlers.GetCodigoByID)
 			codigos.PUT("/:id", handlers.UpdateCodigo)
 			codigos.DELETE("/:id", handlers.DeleteCodigo)
+		}
+
+		estatutos := api.Group("/vade-mecum/estatutos")
+		{
+			estatutos.GET("", handlers.GetEstatutos)
+			estatutos.POST("", handlers.CreateEstatuto)
+			estatutos.GET("/:id", handlers.GetEstatutoByID)
+			estatutos.PUT("/:id", handlers.UpdateEstatuto)
+			estatutos.DELETE("/:id", handlers.DeleteEstatuto)
+		}
+
+		constituicao := api.Group("/vade-mecum/constituicao")
+		{
+			constituicao.GET("", handlers.GetConstituicoes)
+			constituicao.POST("", handlers.CreateConstituicao)
+			constituicao.GET("/:id", handlers.GetConstituicaoByID)
+			constituicao.PUT("/:id", handlers.UpdateConstituicao)
+			constituicao.DELETE("/:id", handlers.DeleteConstituicao)
+			constituicao.POST("/import", handlers.ImportConstituicao)
 		}
 
 		leis := api.Group("/vade-mecum/leis")
