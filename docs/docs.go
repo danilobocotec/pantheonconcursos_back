@@ -1082,6 +1082,57 @@ const docTemplate = `{
                 }
             }
         },
+        "/vade-mecum/codigos/import/estatuto": {
+            "post": {
+                "description": "Importa registros de estatuto utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-codigos"
+                ],
+                "summary": "Importar estatutos via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/vade-mecum/codigos/{id}": {
             "get": {
                 "produces": [
@@ -1188,6 +1239,497 @@ const docTemplate = `{
                     "vade-mecum-codigos"
                 ],
                 "summary": "Remover codigo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/constituicao": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Listar constituições",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Criar constituição",
+                "parameters": [
+                    {
+                        "description": "Dados",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/constituicao/import": {
+            "post": {
+                "description": "Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Importar constituição via Excel",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Arquivo Excel (.xlsx)",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/constituicao/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Obter constituição por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Atualizar constituição",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Remover constituição",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/estatutos": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Listar estatutos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Criar estatuto",
+                "parameters": [
+                    {
+                        "description": "Dados do estatuto",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/estatutos/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Obter estatuto por ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Atualizar estatuto",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualização",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Remover estatuto",
                 "parameters": [
                     {
                         "type": "string",
@@ -2939,6 +3481,148 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest": {
+            "type": "object",
+            "properties": {
+                "Normativo": {
+                    "type": "string"
+                },
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "registro_id": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "textosecao": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest": {
             "type": "object",
             "required": [
@@ -3329,6 +4013,148 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "Normativo": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest": {
+            "type": "object",
+            "properties": {
+                "Normativo": {
+                    "type": "string"
+                },
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "registro_id": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "textosecao": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
                     "type": "string"
                 },
                 "Ordem": {
@@ -3849,6 +4675,166 @@ const docTemplate = `{
                 },
                 "priority": {
                     "type": "integer"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumConstituicao": {
+            "type": "object",
+            "properties": {
+                "Normativo": {
+                    "type": "string"
+                },
+                "cabecalho": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "registro_id": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "textocapitulo": {
+                    "type": "string"
+                },
+                "textodotitulo": {
+                    "type": "string"
+                },
+                "textosecao": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumEstatuto": {
+            "type": "object",
+            "properties": {
+                "Artigos": {
+                    "type": "string"
+                },
+                "Cabecalho": {
+                    "type": "string"
+                },
+                "Ordem": {
+                    "type": "string"
+                },
+                "PARTE": {
+                    "type": "string"
+                },
+                "capitulo": {
+                    "type": "string"
+                },
+                "capitulotexto": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "idcapitulo": {
+                    "type": "string"
+                },
+                "idcodigo": {
+                    "type": "string"
+                },
+                "idlivro": {
+                    "type": "string"
+                },
+                "idsecao": {
+                    "type": "string"
+                },
+                "idsubsecao": {
+                    "type": "string"
+                },
+                "idsubtitulo": {
+                    "type": "string"
+                },
+                "idtipo": {
+                    "type": "string"
+                },
+                "idtitulo": {
+                    "type": "string"
+                },
+                "livro": {
+                    "type": "string"
+                },
+                "livrotexto": {
+                    "type": "string"
+                },
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "num_artigo": {
+                    "type": "string"
+                },
+                "secao": {
+                    "type": "string"
+                },
+                "secaotexto": {
+                    "type": "string"
+                },
+                "subsecao": {
+                    "type": "string"
+                },
+                "subsecaotexto": {
+                    "type": "string"
+                },
+                "subtitulo": {
+                    "type": "string"
+                },
+                "subtitulotexto": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "titulotexto": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
                 }
             }
         },

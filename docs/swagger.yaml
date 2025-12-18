@@ -1,6 +1,5 @@
 basePath: /api/v1
 definitions:
- 
   github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo:
     properties:
       Cabecalho:
@@ -35,9 +34,6 @@ definitions:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.CreateAdminRequest:
- 
-  model.CreateAdminRequest:
- 
     properties:
       admin_secret:
         type: string
@@ -167,6 +163,100 @@ definitions:
         type: string
     required:
     - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
     type: object
   github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest:
     properties:
@@ -429,6 +519,100 @@ definitions:
       Cabecalho:
         type: string
       Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
         type: string
       Ordem:
         type: string
@@ -774,6 +958,112 @@ definitions:
         type: string
       priority:
         type: integer
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumConstituicao:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumEstatuto:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
     type: object
   github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia:
     properties:
@@ -1837,6 +2127,364 @@ paths:
       summary: Importar codigos via Excel
       tags:
       - vade-mecum-codigos
+  /vade-mecum/codigos/import/estatuto:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros de estatuto utilizando um arquivo Excel (.xlsx)
+        com cabeçalho padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar estatutos via Excel
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/constituicao:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar constituições
+      tags:
+      - vade-mecum-constituicao
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar constituição
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/constituicao/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover constituição
+      tags:
+      - vade-mecum-constituicao
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter constituição por ID
+      tags:
+      - vade-mecum-constituicao
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar constituição
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/constituicao/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho
+        padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar constituição via Excel
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/estatutos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar estatutos
+      tags:
+      - vade-mecum-estatutos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do estatuto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar estatuto
+      tags:
+      - vade-mecum-estatutos
+  /vade-mecum/estatutos/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover estatuto
+      tags:
+      - vade-mecum-estatutos
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter estatuto por ID
+      tags:
+      - vade-mecum-estatutos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar estatuto
+      tags:
+      - vade-mecum-estatutos
   /vade-mecum/jurisprudencia:
     get:
       produces:

@@ -334,3 +334,39 @@ func (h *Handlers) ImportCodigos(c *gin.Context) {
 		"imported": count,
 	})
 }
+
+// ImportEstatuto godoc
+// @Summary      Importar estatutos via Excel
+// @Description  Importa registros de estatuto utilizando um arquivo Excel (.xlsx) com cabeçalho padrão
+// @Tags         vade-mecum-codigos
+// @Accept       mpfd
+// @Produce      json
+// @Param        file formData file true "Arquivo Excel (.xlsx)"
+// @Success      200 {object} map[string]interface{}
+// @Failure      400 {object} map[string]string
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/codigos/import/estatuto [post]
+func (h *Handlers) ImportEstatuto(c *gin.Context) {
+	file, err := c.FormFile("file")
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Arquivo não enviado"})
+		return
+	}
+
+	src, err := file.Open()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Não foi possível abrir o arquivo"})
+		return
+	}
+	defer src.Close()
+
+	count, err := h.estatutoService.ImportEstatuto(src)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"imported": count,
+	})
+}

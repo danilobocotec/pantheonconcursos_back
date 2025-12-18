@@ -20,6 +20,8 @@ type Handlers struct {
 	capaOABService        *service.CapaVadeMecumOABService
 	jurisprudenciaService *service.VadeMecumJurisprudenciaService
 	capaJurisService      *service.CapaVadeMecumJurisprudenciaService
+	estatutoService       *service.VadeMecumEstatutoService
+	constituicaoService   *service.VadeMecumConstituicaoService
 }
 
 func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL, jwtSecret, adminSecret string) *Handlers {
@@ -27,6 +29,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	planRepo := repository.NewPlanRepository(db)
 	vadeMecumRepo := repository.NewVadeMecumRepository(db)
 	codigoRepo := repository.NewVadeMecumCodigoRepository(db)
+	estatutoRepo := repository.NewVadeMecumEstatutoRepository(db)
+	constituicaoRepo := repository.NewVadeMecumConstituicaoRepository(db)
 	leisRepo := repository.NewVadeMecumLeiRepository(db)
 	capaCodigoRepo := repository.NewCapaVadeMecumCodigoRepository(db)
 	oabRepo := repository.NewVadeMecumOABRepository(db)
@@ -39,6 +43,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	planService := service.NewPlanService(planRepo)
 	vadeMecumService := service.NewVadeMecumService(vadeMecumRepo)
 	codigoService := service.NewVadeMecumCodigoService(codigoRepo)
+	estatutoService := service.NewVadeMecumEstatutoService(estatutoRepo)
+	constituicaoService := service.NewVadeMecumConstituicaoService(constituicaoRepo)
 	leisService := service.NewVadeMecumLeiService(leisRepo)
 	capaCodigoService := service.NewCapaVadeMecumCodigoService(capaCodigoRepo)
 	oabService := service.NewVadeMecumOABService(oabRepo)
@@ -60,5 +66,7 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 		capaOABService:        capaOABService,
 		jurisprudenciaService: jurisprudenciaService,
 		capaJurisService:      capaJurisService,
+		estatutoService:       estatutoService,
+		constituicaoService:   constituicaoService,
 	}
 }
