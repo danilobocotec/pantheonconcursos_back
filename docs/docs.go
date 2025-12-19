@@ -1353,6 +1353,37 @@ const docTemplate = `{
                 }
             }
         },
+        "/vade-mecum/constituicao/gruposervico": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-constituicao"
+                ],
+                "summary": "Listar grupos de constituição por titulo (grupo servico)",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/vade-mecum/constituicao/import": {
             "post": {
                 "description": "Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho padrão",
@@ -1609,6 +1640,37 @@ const docTemplate = `{
                             "type": "object",
                             "additionalProperties": {
                                 "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/vade-mecum/estatutos/gruposervico": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vade-mecum-estatutos"
+                ],
+                "summary": "Listar grupos de estatutos por nomecodigo (grupo servico)",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico"
                             }
                         }
                     },
@@ -4743,6 +4805,14 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico": {
+            "type": "object",
+            "properties": {
+                "titulo": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.VadeMecumEstatuto": {
             "type": "object",
             "properties": {
@@ -4834,6 +4904,17 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico": {
+            "type": "object",
+            "properties": {
+                "nomecodigo": {
+                    "type": "string"
+                },
+                "titulo": {
                     "type": "string"
                 }
             }

@@ -25,6 +25,23 @@ func (h *Handlers) GetConstituicoes(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetConstituicaoGrupoServico godoc
+// @Summary      Listar grupos de constituição por titulo (grupo servico)
+// @Tags         vade-mecum-constituicao
+// @Produce      json
+// @Success      200 {array} model.VadeMecumConstituicaoGrupoServico
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/constituicao/gruposervico [get]
+func (h *Handlers) GetConstituicaoGrupoServico(c *gin.Context) {
+	items, err := h.constituicaoService.GrupoServico()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, items)
+}
+
 // GetConstituicaoByID godoc
 // @Summary      Obter constituição por ID
 // @Tags         vade-mecum-constituicao

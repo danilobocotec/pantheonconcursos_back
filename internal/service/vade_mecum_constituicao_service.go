@@ -143,6 +143,10 @@ func (s *VadeMecumConstituicaoService) GetAll() ([]model.VadeMecumConstituicao, 
 	return s.repo.GetAll()
 }
 
+func (s *VadeMecumConstituicaoService) GrupoServico() ([]model.VadeMecumConstituicaoGrupoServico, error) {
+	return s.repo.GetGrupoServico()
+}
+
 func (s *VadeMecumConstituicaoService) GetByID(id uuid.UUID) (*model.VadeMecumConstituicao, error) {
 	return s.repo.GetByID(id)
 }

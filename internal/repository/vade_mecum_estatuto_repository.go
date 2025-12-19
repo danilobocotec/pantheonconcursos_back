@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"strings"
+
 	"github.com/google/uuid"
 	"github.com/thepantheon/api/internal/model"
 	"gorm.io/gorm"
@@ -53,6 +55,36 @@ func (r *VadeMecumEstatutoRepository) GetAll() ([]model.VadeMecumEstatuto, error
 		return nil, err
 	}
 	return items, nil
+}
+
+func (r *VadeMecumEstatutoRepository) GetGrupoServico() ([]model.VadeMecumEstatutoGrupoServico, error) {
+	type row struct {
+		NomeCodigo string `gorm:"column:nomecodigo"`
+		Titulo     string `gorm:"column:titulo"`
+	}
+
+	var rows []row
+	if err := r.db.
+		Table((model.VadeMecumEstatuto{}).TableName()).
+		Select("nomecodigo, titulo").
+		Group("nomecodigo, titulo").
+		Order("nomecodigo ASC, titulo ASC").
+		Scan(&rows).Error; err != nil {
+		return nil, err
+	}
+
+	result := make([]model.VadeMecumEstatutoGrupoServico, 0, len(rows))
+	for _, item := range rows {
+		if strings.TrimSpace(item.NomeCodigo) == "" {
+			continue
+		}
+		result = append(result, model.VadeMecumEstatutoGrupoServico{
+			NomeCodigo: item.NomeCodigo,
+			Titulo:     item.Titulo,
+		})
+	}
+
+	return result, nil
 }
 
 func (r *VadeMecumEstatutoRepository) Create(item *model.VadeMecumEstatuto) error {
