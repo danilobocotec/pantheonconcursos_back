@@ -138,6 +138,10 @@ func (s *VadeMecumEstatutoService) GetAll() ([]model.VadeMecumEstatuto, error) {
 	return s.repo.GetAll()
 }
 
+func (s *VadeMecumEstatutoService) GrupoServico() ([]model.VadeMecumEstatutoGrupoServico, error) {
+	return s.repo.GetGrupoServico()
+}
+
 func (s *VadeMecumEstatutoService) GetByID(id uuid.UUID) (*model.VadeMecumEstatuto, error) {
 	return s.repo.GetByID(id)
 }

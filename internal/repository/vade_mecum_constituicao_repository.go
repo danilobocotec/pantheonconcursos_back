@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"strings"
+
 	"github.com/google/uuid"
 	"github.com/thepantheon/api/internal/model"
 	"gorm.io/gorm"
@@ -41,6 +43,32 @@ func (r *VadeMecumConstituicaoRepository) GetAll() ([]model.VadeMecumConstituica
 		return nil, err
 	}
 	return items, nil
+}
+
+func (r *VadeMecumConstituicaoRepository) GetGrupoServico() ([]model.VadeMecumConstituicaoGrupoServico, error) {
+	type row struct {
+		Titulo string `gorm:"column:titulo"`
+	}
+
+	var rows []row
+	if err := r.db.
+		Table((model.VadeMecumConstituicao{}).TableName()).
+		Select("titulo").
+		Group("titulo").
+		Order("titulo ASC").
+		Scan(&rows).Error; err != nil {
+		return nil, err
+	}
+
+	result := make([]model.VadeMecumConstituicaoGrupoServico, 0, len(rows))
+	for _, item := range rows {
+		if strings.TrimSpace(item.Titulo) == "" {
+			continue
+		}
+		result = append(result, model.VadeMecumConstituicaoGrupoServico{Titulo: item.Titulo})
+	}
+
+	return result, nil
 }
 
 func (r *VadeMecumConstituicaoRepository) GetByID(id uuid.UUID) (*model.VadeMecumConstituicao, error) {

@@ -51,3 +51,8 @@ func (v *VadeMecumEstatuto) BeforeCreate(tx *gorm.DB) error {
 	}
 	return nil
 }
+
+type VadeMecumEstatutoGrupoServico struct {
+	NomeCodigo string `json:"nomecodigo"`
+	Titulo     string `json:"titulo"`
+}

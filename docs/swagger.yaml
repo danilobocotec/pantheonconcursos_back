@@ -1002,6 +1002,11 @@ definitions:
       updated_at:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico:
+    properties:
+      titulo:
+        type: string
+    type: object
   github_com_thepantheon_api_internal_model.VadeMecumEstatuto:
     properties:
       Artigos:
@@ -1063,6 +1068,13 @@ definitions:
       titulotexto:
         type: string
       updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico:
+    properties:
+      nomecodigo:
+        type: string
+      titulo:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia:
@@ -2306,6 +2318,26 @@ paths:
       summary: Atualizar constituição
       tags:
       - vade-mecum-constituicao
+  /vade-mecum/constituicao/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de constituição por titulo (grupo servico)
+      tags:
+      - vade-mecum-constituicao
   /vade-mecum/constituicao/import:
     post:
       consumes:
@@ -2483,6 +2515,26 @@ paths:
               type: string
             type: object
       summary: Atualizar estatuto
+      tags:
+      - vade-mecum-estatutos
+  /vade-mecum/estatutos/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de estatutos por nomecodigo (grupo servico)
       tags:
       - vade-mecum-estatutos
   /vade-mecum/jurisprudencia:

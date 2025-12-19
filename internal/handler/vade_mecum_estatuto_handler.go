@@ -25,6 +25,23 @@ func (h *Handlers) GetEstatutos(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetEstatutoGrupoServico godoc
+// @Summary      Listar grupos de estatutos por nomecodigo (grupo servico)
+// @Tags         vade-mecum-estatutos
+// @Produce      json
+// @Success      200 {array} model.VadeMecumEstatutoGrupoServico
+// @Failure      500 {object} map[string]string
+// @Router       /vade-mecum/estatutos/gruposervico [get]
+func (h *Handlers) GetEstatutoGrupoServico(c *gin.Context) {
+	items, err := h.estatutoService.GrupoServico()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, items)
+}
+
 // GetEstatutoByID godoc
 // @Summary      Obter estatuto por ID
 // @Tags         vade-mecum-estatutos

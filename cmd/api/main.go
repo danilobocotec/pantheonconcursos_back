@@ -155,6 +155,7 @@ func main() {
 		estatutos := api.Group("/vade-mecum/estatutos")
 		{
 			estatutos.GET("", handlers.GetEstatutos)
+			estatutos.GET("/gruposervico", handlers.GetEstatutoGrupoServico)
 			estatutos.POST("", handlers.CreateEstatuto)
 			estatutos.GET("/:id", handlers.GetEstatutoByID)
 			estatutos.PUT("/:id", handlers.UpdateEstatuto)
@@ -164,6 +165,7 @@ func main() {
 		constituicao := api.Group("/vade-mecum/constituicao")
 		{
 			constituicao.GET("", handlers.GetConstituicoes)
+			constituicao.GET("/gruposervico", handlers.GetConstituicaoGrupoServico)
 			constituicao.POST("", handlers.CreateConstituicao)
 			constituicao.GET("/:id", handlers.GetConstituicaoByID)
 			constituicao.PUT("/:id", handlers.UpdateConstituicao)
