@@ -163,6 +163,10 @@ func (s *VadeMecumOABService) GetAll() ([]model.VadeMecumOAB, error) {
 	return s.repo.GetAll()
 }
 
+func (s *VadeMecumOABService) GetNomeCodigoGrouped() ([]string, error) {
+	return s.repo.GetNomeCodigoGrouped()
+}
+
 func (s *VadeMecumOABService) GetByID(id string) (*model.VadeMecumOAB, error) {
 	trimmed := strings.TrimSpace(id)
 	if trimmed == "" {
@@ -335,3 +339,5 @@ func deduplicateOAB(items []*model.VadeMecumOAB) []*model.VadeMecumOAB {
 
 	return unique
 }
+
+

@@ -21,7 +21,7 @@ func NewVadeMecumJurisprudenciaService(repo *repository.VadeMecumJurisprudenciaR
 	return &VadeMecumJurisprudenciaService{repo: repo}
 }
 
-var jurisprudenciaHeaders = []string{
+var jurisprudenciaHeadersSplitEnunciadoLegacy = []string{
 	"idtipo",
 	"tipo",
 	"idcodigo",
@@ -34,12 +34,12 @@ var jurisprudenciaHeaders = []string{
 	"assuntotexto",
 	"idenunciado",
 	"Enunciado",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"",
+	"Enunciado1",
+	"Enunciado2",
+	"Enunciado3",
+	"Enunciado4",
+	"Enunciado5",
+	"Enunciado6",
 	"idsecao",
 	"secao",
 	"secaotexto",
@@ -51,7 +51,17 @@ var jurisprudenciaHeaders = []string{
 	"Ordem",
 }
 
-var jurisprudenciaHeadersWithID = append([]string{"id"}, jurisprudenciaHeaders...)
+var jurisprudenciaHeadersSplitEnunciadoLegacyWithID = append([]string{"id"}, jurisprudenciaHeadersSplitEnunciadoLegacy...)
+
+type jurisprudenciaImportSchema struct {
+	enunciadoOffsets []int
+	idSecaoOffset    int
+}
+
+var jurisprudenciaSchemaSplitEnunciadoLegacy = jurisprudenciaImportSchema{
+	enunciadoOffsets: []int{11, 12, 13, 14, 15, 16, 17},
+	idSecaoOffset:    18,
+}
 
 func (s *VadeMecumJurisprudenciaService) ImportFromExcel(r io.Reader) (int, error) {
 	f, err := excelize.OpenReader(r)
@@ -76,16 +86,16 @@ func (s *VadeMecumJurisprudenciaService) ImportFromExcel(r io.Reader) (int, erro
 
 	header := normalizeHeader(rows[0])
 	switch {
-	case headersMatch(header, jurisprudenciaHeadersWithID):
-		return s.importRows(rows[1:], true)
-	case headersMatch(header, jurisprudenciaHeaders):
-		return s.importRows(rows[1:], false)
+	case headersMatch(header, jurisprudenciaHeadersSplitEnunciadoLegacyWithID):
+		return s.importRows(rows[1:], true, jurisprudenciaSchemaSplitEnunciadoLegacy)
+	case headersMatch(header, jurisprudenciaHeadersSplitEnunciadoLegacy):
+		return s.importRows(rows[1:], false, jurisprudenciaSchemaSplitEnunciadoLegacy)
 	default:
-		return 0, fmt.Errorf("cabeçalho inválido: esperado %v ou %v", jurisprudenciaHeadersWithID, jurisprudenciaHeaders)
+		return 0, fmt.Errorf("cabecalho invalido: esperado %v ou %v", jurisprudenciaHeadersSplitEnunciadoLegacyWithID, jurisprudenciaHeadersSplitEnunciadoLegacy)
 	}
 }
 
-func (s *VadeMecumJurisprudenciaService) importRows(rows [][]string, hasID bool) (int, error) {
+func (s *VadeMecumJurisprudenciaService) importRows(rows [][]string, hasID bool, schema jurisprudenciaImportSchema) (int, error) {
 	var batch []*model.VadeMecumJurisprudencia
 
 	for idx, row := range rows {
@@ -105,16 +115,16 @@ func (s *VadeMecumJurisprudenciaService) importRows(rows [][]string, hasID bool)
 			return 0, fmt.Errorf("linha %d: nomecodigo é obrigatório", idx+2)
 		}
 
-		enunciado := strings.TrimSpace(getCellValue(row, offset+11))
-		idSecaoIdx := offset + 18
-		secaoIdx := offset + 19
-		secaoTextoIdx := offset + 20
-		idSubsecaoIdx := offset + 21
-		subsecaoIdx := offset + 22
-		subsecaoTextoIdx := offset + 23
-		numArtigoIdx := offset + 24
-		normativoIdx := offset + 25
-		ordemIdx := offset + 26
+		enunciado := buildEnunciado(row, offset, schema.enunciadoOffsets)
+		idSecaoIdx := offset + schema.idSecaoOffset
+		secaoIdx := idSecaoIdx + 1
+		secaoTextoIdx := idSecaoIdx + 2
+		idSubsecaoIdx := idSecaoIdx + 3
+		subsecaoIdx := idSecaoIdx + 4
+		subsecaoTextoIdx := idSecaoIdx + 5
+		numArtigoIdx := idSecaoIdx + 6
+		normativoIdx := idSecaoIdx + 7
+		ordemIdx := idSecaoIdx + 8
 
 		numArtigo := strings.TrimSpace(getCellValue(row, numArtigoIdx))
 		normativo := strings.TrimSpace(getCellValue(row, normativoIdx))
@@ -173,6 +183,17 @@ func (s *VadeMecumJurisprudenciaService) importRows(rows [][]string, hasID bool)
 	}
 
 	return len(unique), nil
+}
+
+func buildEnunciado(row []string, offset int, enunciadoOffsets []int) string {
+	parts := make([]string, 0, len(enunciadoOffsets))
+	for _, enunciadoOffset := range enunciadoOffsets {
+		value := strings.TrimSpace(getCellValue(row, offset+enunciadoOffset))
+		if value != "" {
+			parts = append(parts, value)
+		}
+	}
+	return strings.Join(parts, " ")
 }
 
 func (s *VadeMecumJurisprudenciaService) GetAll() ([]model.VadeMecumJurisprudencia, error) {
@@ -367,3 +388,21 @@ func deduplicateJurisprudencia(items []*model.VadeMecumJurisprudencia) []*model.
 
 	return unique
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

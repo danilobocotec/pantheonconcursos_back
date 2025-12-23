@@ -2764,30 +2764,13 @@ const docTemplate = `{
                 "tags": [
                     "vade-mecum-oab"
                 ],
-                "summary": "Listar capas OAB ou buscar por nome específico",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Filtro por nomecodigo",
-                        "name": "nomecodigo",
-                        "in": "query"
-                    }
-                ],
+                "summary": "Listar nomecodigo da OAB",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": {
                                 "type": "string"
                             }
                         }
