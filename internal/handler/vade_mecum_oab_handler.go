@@ -62,33 +62,14 @@ func (h *Handlers) CreateCapaVadeMecumOAB(c *gin.Context) {
 }
 
 // GetCapasVadeMecumOAB godoc
-// @Summary      Listar capas OAB ou buscar por nome específico
+// @Summary      Listar nomecodigo da OAB
 // @Tags         vade-mecum-oab
 // @Produce      json
-// @Param        nomecodigo query string false "Filtro por nomecodigo"
-// @Success      200 {array} model.CapaVadeMecumOAB
-// @Failure      404 {object} map[string]string
+// @Success      200 {array} string
 // @Failure      500 {object} map[string]string
 // @Router       /vade-mecum/oab/capas [get]
 func (h *Handlers) GetCapasVadeMecumOAB(c *gin.Context) {
-	nome := strings.TrimSpace(c.Query("nomecodigo"))
-
-	if nome != "" {
-		item, err := h.capaOABService.GetByNomeCodigo(nome)
-		if err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				c.JSON(http.StatusNotFound, gin.H{"error": "capa não encontrada"})
-				return
-			}
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
-		}
-
-		c.JSON(http.StatusOK, []model.CapaVadeMecumOAB{*item})
-		return
-	}
-
-	items, err := h.capaOABService.GetAll()
+	items, err := h.oabService.GetNomeCodigoGrouped()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -292,3 +273,6 @@ func (h *Handlers) ImportVadeMecumOAB(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"imported": count})
 }
+
+
+

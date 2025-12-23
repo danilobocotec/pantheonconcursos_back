@@ -3259,11 +3259,6 @@ paths:
       - vade-mecum-oab
   /vade-mecum/oab/capas:
     get:
-      parameters:
-      - description: Filtro por nomecodigo
-        in: query
-        name: nomecodigo
-        type: string
       produces:
       - application/json
       responses:
@@ -3271,21 +3266,15 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB'
-            type: array
-        "404":
-          description: Not Found
-          schema:
-            additionalProperties:
               type: string
-            type: object
+            type: array
         "500":
           description: Internal Server Error
           schema:
             additionalProperties:
               type: string
             type: object
-      summary: Listar capas OAB ou buscar por nome específico
+      summary: Listar nomecodigo da OAB
       tags:
       - vade-mecum-oab
     post:

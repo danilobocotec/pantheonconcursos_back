@@ -42,6 +42,29 @@ func (r *VadeMecumOABRepository) GetAll() ([]model.VadeMecumOAB, error) {
 	return results, nil
 }
 
+func (r *VadeMecumOABRepository) GetNomeCodigoGrouped() ([]string, error) {
+	type row struct {
+		NomeCodigo string `gorm:"column:nomecodigo"`
+	}
+
+	var rows []row
+	if err := r.db.
+		Table((model.VadeMecumOAB{}).TableName()).
+		Select("nomecodigo").
+		Group("nomecodigo").
+		Order("nomecodigo ASC").
+		Scan(&rows).Error; err != nil {
+		return nil, err
+	}
+
+	names := make([]string, 0, len(rows))
+	for _, item := range rows {
+		names = append(names, item.NomeCodigo)
+	}
+
+	return names, nil
+}
+
 func (r *VadeMecumOABRepository) DeleteAll() error {
 	return r.db.Session(&gorm.Session{AllowGlobalUpdate: true}).Delete(&model.VadeMecumOAB{}).Error
 }

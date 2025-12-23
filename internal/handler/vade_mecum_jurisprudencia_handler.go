@@ -2,6 +2,7 @@ package handler
 
 import (
 	"errors"
+	"log"
 	"net/http"
 	"strings"
 
@@ -292,12 +293,14 @@ func (h *Handlers) DeleteVadeMecumJurisprudencia(c *gin.Context) {
 func (h *Handlers) ImportVadeMecumJurisprudencia(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
+		log.Printf("import jurisprudencia: missing file: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Arquivo não enviado"})
 		return
 	}
 
 	src, err := file.Open()
 	if err != nil {
+		log.Printf("import jurisprudencia: open file error: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Não foi possível abrir o arquivo"})
 		return
 	}
@@ -305,9 +308,11 @@ func (h *Handlers) ImportVadeMecumJurisprudencia(c *gin.Context) {
 
 	count, err := h.jurisprudenciaService.ImportFromExcel(src)
 	if err != nil {
+		log.Printf("import jurisprudencia: import error: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"imported": count})
 }
+
