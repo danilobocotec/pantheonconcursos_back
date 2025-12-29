@@ -12,6 +12,8 @@ type Handlers struct {
 	socialAuthService     *service.SocialAuthService
 	planService           *service.PlanService
 	adminSecret           string
+	questaoService        *service.QuestaoService
+	courseService         *service.CourseService
 	vadeMecumService      *service.VadeMecumService
 	codigoService         *service.VadeMecumCodigoService
 	leisService           *service.VadeMecumLeiService
@@ -27,6 +29,8 @@ type Handlers struct {
 func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL, jwtSecret, adminSecret string) *Handlers {
 	userRepo := repository.NewUserRepository(db)
 	planRepo := repository.NewPlanRepository(db)
+	questaoRepo := repository.NewQuestaoRepository(db)
+	courseRepo := repository.NewCourseRepository(db)
 	vadeMecumRepo := repository.NewVadeMecumRepository(db)
 	codigoRepo := repository.NewVadeMecumCodigoRepository(db)
 	estatutoRepo := repository.NewVadeMecumEstatutoRepository(db)
@@ -41,6 +45,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 	authService := service.NewAuthService(userService, jwtSecret)
 	socialAuthService := service.NewSocialAuthService(userService, googleClientID, googleClientSecret, facebookAppID, facebookAppSecret, redirectURL)
 	planService := service.NewPlanService(planRepo)
+	questaoService := service.NewQuestaoService(questaoRepo)
+	courseService := service.NewCourseService(courseRepo)
 	vadeMecumService := service.NewVadeMecumService(vadeMecumRepo)
 	codigoService := service.NewVadeMecumCodigoService(codigoRepo)
 	estatutoService := service.NewVadeMecumEstatutoService(estatutoRepo)
@@ -57,6 +63,8 @@ func NewHandlers(db *gorm.DB, googleClientID, googleClientSecret, facebookAppID,
 		authService:           authService,
 		socialAuthService:     socialAuthService,
 		planService:           planService,
+		questaoService:        questaoService,
+		courseService:         courseService,
 		vadeMecumService:      vadeMecumService,
 		codigoService:         codigoService,
 		leisService:           leisService,

@@ -33,6 +33,7 @@ func InitDB(cfg *Config) (*gorm.DB, error) {
 func AutoMigrate(db *gorm.DB) error {
 	if err := db.AutoMigrate(
 		&model.Plan{},
+		&model.Questao{},
 		&model.VadeMecum{},
 		&model.VadeMecumCodigo{},
 		&model.VadeMecumEstatuto{},
@@ -43,6 +44,10 @@ func AutoMigrate(db *gorm.DB) error {
 		&model.CapaVadeMecumOAB{},
 		&model.CapaVadeMecumJurisprudencia{},
 		&model.VadeMecumJurisprudencia{},
+		&model.Course{},
+		&model.CourseCategory{},
+		&model.CourseModule{},
+		&model.CourseItem{},
 		&model.User{},
 		// Add more models here as needed
 	); err != nil {
