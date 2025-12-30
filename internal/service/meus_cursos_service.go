@@ -20,12 +20,24 @@ func (s *CourseService) GetMyModules(userID uuid.UUID) ([]model.CourseModule, er
 	return s.repo.GetModulesByUser(userID)
 }
 
+func (s *CourseService) GetAllModules() ([]model.CourseModule, error) {
+	return s.repo.GetAllModules()
+}
+
 func (s *CourseService) GetMyCourses(userID uuid.UUID) ([]model.Course, error) {
 	return s.repo.GetCoursesByUser(userID)
 }
 
+func (s *CourseService) GetAllCourses() ([]model.Course, error) {
+	return s.repo.GetAllCourses()
+}
+
 func (s *CourseService) GetMyCategories(userID uuid.UUID) ([]model.CourseCategory, error) {
 	return s.repo.GetCategoriesByUser(userID)
+}
+
+func (s *CourseService) GetAllCategories() ([]model.CourseCategory, error) {
+	return s.repo.GetAllCategories()
 }
 
 func (s *CourseService) CreateCourse(userID uuid.UUID, req *model.CreateCourseRequest) (*model.Course, error) {
@@ -182,6 +194,10 @@ func (s *CourseService) DeleteModule(userID, moduleID uuid.UUID) error {
 
 func (s *CourseService) GetMyItems(userID uuid.UUID) ([]model.CourseItem, error) {
 	return s.repo.GetItemsByUser(userID)
+}
+
+func (s *CourseService) GetAllItems() ([]model.CourseItem, error) {
+	return s.repo.GetAllItems()
 }
 
 func (s *CourseService) CreateItem(userID uuid.UUID, req *model.CreateCourseItemRequest) (*model.CourseItem, error) {

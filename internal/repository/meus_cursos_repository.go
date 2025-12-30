@@ -22,9 +22,25 @@ func (r *CourseRepository) GetModulesByUser(userID uuid.UUID) ([]model.CourseMod
 	return modules, nil
 }
 
+func (r *CourseRepository) GetAllModules() ([]model.CourseModule, error) {
+	var modules []model.CourseModule
+	if err := r.db.Find(&modules).Error; err != nil {
+		return nil, err
+	}
+	return modules, nil
+}
+
 func (r *CourseRepository) GetCoursesByUser(userID uuid.UUID) ([]model.Course, error) {
 	var courses []model.Course
 	if err := r.db.Preload("Modules").Preload("Category").Where("user_id = ?", userID).Find(&courses).Error; err != nil {
+		return nil, err
+	}
+	return courses, nil
+}
+
+func (r *CourseRepository) GetAllCourses() ([]model.Course, error) {
+	var courses []model.Course
+	if err := r.db.Preload("Modules").Preload("Category").Find(&courses).Error; err != nil {
 		return nil, err
 	}
 	return courses, nil
@@ -53,6 +69,14 @@ func (r *CourseRepository) DeleteCourse(id uuid.UUID) error {
 func (r *CourseRepository) GetCategoriesByUser(userID uuid.UUID) ([]model.CourseCategory, error) {
 	var categories []model.CourseCategory
 	if err := r.db.Preload("Courses").Where("user_id = ?", userID).Find(&categories).Error; err != nil {
+		return nil, err
+	}
+	return categories, nil
+}
+
+func (r *CourseRepository) GetAllCategories() ([]model.CourseCategory, error) {
+	var categories []model.CourseCategory
+	if err := r.db.Preload("Courses").Find(&categories).Error; err != nil {
 		return nil, err
 	}
 	return categories, nil
@@ -176,6 +200,14 @@ func (r *CourseRepository) ClearCategoryFromOtherCourses(userID, categoryID uuid
 func (r *CourseRepository) GetItemsByUser(userID uuid.UUID) ([]model.CourseItem, error) {
 	var items []model.CourseItem
 	if err := r.db.Where("user_id = ?", userID).Find(&items).Error; err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+func (r *CourseRepository) GetAllItems() ([]model.CourseItem, error) {
+	var items []model.CourseItem
+	if err := r.db.Find(&items).Error; err != nil {
 		return nil, err
 	}
 	return items, nil

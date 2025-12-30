@@ -37,6 +37,33 @@ func (h *Handlers) getUserIDFromRequest(c *gin.Context) (uuid.UUID, bool) {
 	return userID, true
 }
 
+func (h *Handlers) getUserIDFromRequestOptional(c *gin.Context) (uuid.UUID, bool, bool) {
+	authHeader := c.GetHeader("Authorization")
+	if authHeader == "" {
+		return uuid.Nil, false, true
+	}
+
+	parts := strings.SplitN(authHeader, " ", 2)
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid authorization header format"})
+		return uuid.Nil, false, false
+	}
+
+	claims, err := h.authService.ValidateToken(parts[1])
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+		return uuid.Nil, false, false
+	}
+
+	userID, err := uuid.Parse(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid user id"})
+		return uuid.Nil, false, false
+	}
+
+	return userID, true, true
+}
+
 // GetMyModules godoc
 // @Summary      Listar modulos
 // @Tags         meus-cursos
@@ -46,12 +73,12 @@ func (h *Handlers) getUserIDFromRequest(c *gin.Context) (uuid.UUID, bool) {
 // @Failure      500 {object} map[string]string
 // @Router       /meus-cursos/modulos [get]
 func (h *Handlers) GetMyModules(c *gin.Context) {
-	userID, ok := h.getUserIDFromRequest(c)
+	_, _, ok := h.getUserIDFromRequestOptional(c)
 	if !ok {
 		return
 	}
 
-	modules, err := h.courseService.GetMyModules(userID)
+	modules, err := h.courseService.GetAllModules()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -69,12 +96,12 @@ func (h *Handlers) GetMyModules(c *gin.Context) {
 // @Failure      500 {object} map[string]string
 // @Router       /cursos [get]
 func (h *Handlers) GetCourses(c *gin.Context) {
-	userID, ok := h.getUserIDFromRequest(c)
+	_, _, ok := h.getUserIDFromRequestOptional(c)
 	if !ok {
 		return
 	}
 
-	courses, err := h.courseService.GetMyCourses(userID)
+	courses, err := h.courseService.GetAllCourses()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -92,12 +119,12 @@ func (h *Handlers) GetCourses(c *gin.Context) {
 // @Failure      500 {object} map[string]string
 // @Router       /cursos/categorias [get]
 func (h *Handlers) GetCourseCategories(c *gin.Context) {
-	userID, ok := h.getUserIDFromRequest(c)
+	_, _, ok := h.getUserIDFromRequestOptional(c)
 	if !ok {
 		return
 	}
 
-	categories, err := h.courseService.GetMyCategories(userID)
+	categories, err := h.courseService.GetAllCategories()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -439,12 +466,12 @@ func (h *Handlers) DeleteCourseModule(c *gin.Context) {
 // @Failure      500 {object} map[string]string
 // @Router       /meus-cursos/itens [get]
 func (h *Handlers) GetMyItems(c *gin.Context) {
-	userID, ok := h.getUserIDFromRequest(c)
+	_, _, ok := h.getUserIDFromRequestOptional(c)
 	if !ok {
 		return
 	}
 
-	items, err := h.courseService.GetMyItems(userID)
+	items, err := h.courseService.GetAllItems()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
