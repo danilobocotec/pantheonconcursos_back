@@ -1,0 +1,4328 @@
+basePath: /api/v1
+definitions:
+  github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      id:
+        type: string
+      nomecodigo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      id:
+        type: string
+      nomecodigo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CapaVadeMecumOAB:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      id:
+        type: string
+      nomecodigo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CreateAdminRequest:
+    properties:
+      admin_secret:
+        type: string
+      confirm:
+        type: string
+      email:
+        type: string
+      full_name:
+        minLength: 3
+        type: string
+      password:
+        minLength: 8
+        type: string
+    required:
+    - admin_secret
+    - confirm
+    - email
+    - full_name
+    - password
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      nomecodigo:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCapaVadeMecumJurisprudenciaRequest:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      nomecodigo:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCapaVadeMecumOABRequest:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+      nomecodigo:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateQuestaoRequest:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CreateUserRequest:
+    properties:
+      confirm:
+        type: string
+      email:
+        type: string
+      full_name:
+        minLength: 3
+        type: string
+      password:
+        minLength: 8
+        type: string
+    required:
+    - confirm
+    - email
+    - full_name
+    - password
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Enunciado:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      Tipo:
+        type: string
+      assuntotexto:
+        type: string
+      id:
+        type: string
+      idassunto:
+        type: string
+      idcodigo:
+        type: string
+      idenunciado:
+        type: string
+      idramo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      ramotexto:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumLeiRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      PARTETEXTO:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      id:
+        type: string
+      idPARTE:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumOABRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      capitulo:
+        type: string
+      capitulo_label:
+        type: string
+      capitulotexto:
+        type: string
+      id:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secao_label:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecao_label:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulo_label:
+        type: string
+      titulotexto:
+        type: string
+    required:
+    - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateVadeMecumRequest:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        minLength: 3
+        type: string
+      titulo:
+        type: string
+    required:
+    - cabecalho
+    - capitulo
+    - category
+    - description
+    - idcapitulo
+    - idtitulo
+    - textocapitulo
+    - textodotitulo
+    - title
+    - titulo
+    type: object
+  github_com_thepantheon_api_internal_model.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  github_com_thepantheon_api_internal_model.LoginResponse:
+    properties:
+      expires_in:
+        type: integer
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+    type: object
+  github_com_thepantheon_api_internal_model.Plan:
+    properties:
+      active:
+        type: boolean
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      phase:
+        type: string
+      updated_at:
+        type: string
+      users:
+        items:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+        type: array
+    type: object
+  github_com_thepantheon_api_internal_model.Questao:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id:
+        type: integer
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.SocialAuthRequest:
+    properties:
+      access_token:
+        type: string
+      provider:
+        enum:
+        - google
+        - facebook
+        type: string
+    required:
+    - access_token
+    - provider
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest:
+    properties:
+      grupo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumJurisprudenciaRequest:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumOABRequest:
+    properties:
+      Cabecalho:
+        type: string
+      grupo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateQuestaoRequest:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest:
+    properties:
+      Cabecalho:
+        type: string
+      Enunciado:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      Tipo:
+        type: string
+      assuntotexto:
+        type: string
+      idassunto:
+        type: string
+      idcodigo:
+        type: string
+      idenunciado:
+        type: string
+      idramo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      ramotexto:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumLeiRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      PARTETEXTO:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      idPARTE:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumOABRequest:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      capitulo:
+        type: string
+      capitulo_label:
+        type: string
+      capitulotexto:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secao_label:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecao_label:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulo_label:
+        type: string
+      titulotexto:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        minLength: 3
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.User:
+    properties:
+      active:
+        type: boolean
+      avatar:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      plan:
+        $ref: '#/definitions/github_com_thepantheon_api_internal_model.Plan'
+      plan_id:
+        type: string
+      provider:
+        description: local, google, facebook
+        type: string
+      provider_id:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecum:
+    properties:
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      category:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      file_url:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idtitulo:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      title:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumCodigo:
+    properties:
+      Cabecalho:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+        type: array
+      nomecodigo:
+        type: string
+      priority:
+        type: integer
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumConstituicao:
+    properties:
+      Normativo:
+        type: string
+      cabecalho:
+        type: string
+      capitulo:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      registro_id:
+        type: string
+      secao:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      textocapitulo:
+        type: string
+      textodotitulo:
+        type: string
+      textosecao:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico:
+    properties:
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumEstatuto:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idcapitulo:
+        type: string
+      idcodigo:
+        type: string
+      idlivro:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idsubtitulo:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      livro:
+        type: string
+      livrotexto:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      subtitulo:
+        type: string
+      subtitulotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico:
+    properties:
+      nomecodigo:
+        type: string
+      titulo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia:
+    properties:
+      Cabecalho:
+        type: string
+      Enunciado:
+        type: string
+      Normativo:
+        type: string
+      Ordem:
+        type: string
+      Tipo:
+        type: string
+      assuntotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idassunto:
+        type: string
+      idcodigo:
+        type: string
+      idenunciado:
+        type: string
+      idramo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      ramotexto:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup:
+    properties:
+      cabecalho:
+        type: string
+      quantidade:
+        type: integer
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumLei:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      Ordem:
+        type: string
+      PARTE:
+        type: string
+      PARTETEXTO:
+        type: string
+      capitulo:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idPARTE:
+        type: string
+      idcapitulo:
+        type: string
+      idsecao:
+        type: string
+      idsubsecao:
+        type: string
+      idtipo:
+        type: string
+      idtitulo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico:
+    properties:
+      nomecodigo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.VadeMecumOAB:
+    properties:
+      Artigos:
+        type: string
+      Cabecalho:
+        type: string
+      capitulo:
+        type: string
+      capitulo_label:
+        type: string
+      capitulotexto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      idtipo:
+        type: string
+      nomecodigo:
+        type: string
+      num_artigo:
+        type: string
+      secao:
+        type: string
+      secao_label:
+        type: string
+      secaotexto:
+        type: string
+      subsecao:
+        type: string
+      subsecao_label:
+        type: string
+      subsecaotexto:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      titulo_label:
+        type: string
+      titulotexto:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.CourseItem:
+    properties:
+      conteudo:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      modulo_id:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.CourseModule:
+    properties:
+      assunto_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      modulo:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.CourseSubject:
+    properties:
+      assunto:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      modulos:
+        items:
+          $ref: '#/definitions/model.CourseModule'
+        type: array
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.CreateCourseItemRequest:
+    properties:
+      conteudo:
+        minLength: 2
+        type: string
+      modulo_id:
+        type: string
+      tipo:
+        minLength: 2
+        type: string
+      titulo:
+        minLength: 2
+        type: string
+    required:
+    - conteudo
+    - tipo
+    - titulo
+    type: object
+  model.CreateCourseModuleRequest:
+    properties:
+      assunto_id:
+        type: string
+      modulo:
+        minLength: 2
+        type: string
+    required:
+    - modulo
+    type: object
+  model.CreateCourseSubjectRequest:
+    properties:
+      assunto:
+        minLength: 2
+        type: string
+    required:
+    - assunto
+    type: object
+  model.UpdateCourseModuleRequest:
+    properties:
+      modulo:
+        minLength: 2
+        type: string
+    type: object
+  model.UpdateCourseSubjectRequest:
+    properties:
+      assunto:
+        minLength: 2
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@pantheonconcursos.com.br
+    name: API Support
+  description: API REST para sistema de concursos com autenticação JWT
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: ThePantheon API
+  version: "1.0"
+paths:
+  /auth/admin/register:
+    post:
+      consumes:
+      - application/json
+      description: Cria uma conta de administrador usando um código secreto
+      parameters:
+      - description: Dados do novo administrador
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateAdminRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Registrar novo administrador
+      tags:
+      - auth
+  /auth/facebook/callback:
+    get:
+      description: Processa retorno do Facebook após autorização
+      parameters:
+      - description: Authorization code
+        in: query
+        name: code
+        required: true
+        type: string
+      - description: State token
+        in: query
+        name: state
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Callback do Facebook OAuth
+      tags:
+      - auth
+  /auth/facebook/url:
+    get:
+      description: Retorna URL para redirecionar usuário ao login do Facebook
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter URL de autenticação do Facebook
+      tags:
+      - auth
+  /auth/google/callback:
+    get:
+      description: Processa retorno do Google após autorização
+      parameters:
+      - description: Authorization code
+        in: query
+        name: code
+        required: true
+        type: string
+      - description: State token
+        in: query
+        name: state
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Callback do Google OAuth
+      tags:
+      - auth
+  /auth/google/url:
+    get:
+      description: Retorna URL para redirecionar usuário ao login do Google
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter URL de autenticação do Google
+      tags:
+      - auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Autentica usuário e retorna token JWT
+      parameters:
+      - description: Credenciais de login
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login de usuário
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Cria uma nova conta de usuário com nome completo, email, senha
+        e confirmação
+      parameters:
+      - description: Dados do novo usuário
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Registrar novo usuário
+      tags:
+      - auth
+  /auth/social:
+    post:
+      consumes:
+      - application/json
+      description: Autentica usuário usando Google ou Facebook OAuth2
+      parameters:
+      - description: Token de acesso do provedor
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.SocialAuthRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Login com provedor social
+      tags:
+      - auth
+  /health:
+    get:
+      description: Verifica se a API está funcionando
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check
+      tags:
+      - health
+  /meus-cursos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.CourseSubject'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar meus cursos agrupados
+      tags:
+      - meus-cursos
+  /meus-cursos/assuntos:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Assunto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateCourseSubjectRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.CourseSubject'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar assunto
+      tags:
+      - meus-cursos
+  /meus-cursos/assuntos/{assunto_id}/modulos:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID do assunto
+        in: path
+        name: assunto_id
+        required: true
+        type: string
+      - description: Modulo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateCourseModuleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.CourseModule'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar modulo dentro de um assunto
+      tags:
+      - meus-cursos
+  /meus-cursos/assuntos/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover assunto
+      tags:
+      - meus-cursos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Assunto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateCourseSubjectRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CourseSubject'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar assunto
+      tags:
+      - meus-cursos
+  /meus-cursos/itens:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Item
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateCourseItemRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.CourseItem'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item sem modulo
+      tags:
+      - meus-cursos
+  /meus-cursos/modulos:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Modulo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateCourseModuleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.CourseModule'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar modulo sem assunto
+      tags:
+      - meus-cursos
+  /meus-cursos/modulos/{id}:
+    delete:
+      parameters:
+      - description: ID do modulo
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover modulo
+      tags:
+      - meus-cursos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID do modulo
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Modulo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateCourseModuleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CourseModule'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar modulo
+      tags:
+      - meus-cursos
+  /plans:
+    get:
+      description: Retorna todos os planos disponíveis e, para cada um, os usuários
+        atrelados (quando houver)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.Plan'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar planos com usuários vinculados
+      tags:
+      - plans
+  /questoes:
+    get:
+      parameters:
+      - description: Disciplina
+        in: query
+        name: disciplina
+        type: string
+      - description: Assunto
+        in: query
+        name: assunto
+        type: string
+      - description: Banca
+        in: query
+        name: banca
+        type: string
+      - description: Orgao
+        in: query
+        name: orgao
+        type: string
+      - description: Cargo
+        in: query
+        name: cargo
+        type: string
+      - description: Concurso
+        in: query
+        name: concurso
+        type: string
+      - description: Area de conhecimento
+        in: query
+        name: area_conhecimento
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar questoes
+      tags:
+      - questoes
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da questao
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateQuestaoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar questao
+      tags:
+      - questoes
+  /questoes/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover questao
+      tags:
+      - questoes
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter questao por ID
+      tags:
+      - questoes
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Campos para atualizacao
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateQuestaoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar questao
+      tags:
+      - questoes
+  /vade-mecum:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar itens de Vade Mecum
+      tags:
+      - vade-mecum
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do Vade Mecum
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item de Vade Mecum
+      tags:
+      - vade-mecum
+  /vade-mecum/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover Vade Mecum
+      tags:
+      - vade-mecum
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter Vade Mecum por ID
+      tags:
+      - vade-mecum
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar Vade Mecum
+      tags:
+      - vade-mecum
+  /vade-mecum/category/{category}:
+    get:
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar itens por categoria
+      tags:
+      - vade-mecum
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item específico por categoria
+      tags:
+      - vade-mecum
+  /vade-mecum/category/{category}/{id}:
+    delete:
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover item de uma categoria
+      tags:
+      - vade-mecum
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Categoria
+        in: path
+        name: category
+        required: true
+        type: string
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecum'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar item dentro de uma categoria
+      tags:
+      - vade-mecum
+  /vade-mecum/codigos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar codigos
+      tags:
+      - vade-mecum-codigos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do codigo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item na categoria codigos
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover codigo
+      tags:
+      - vade-mecum-codigos
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter codigo por ID
+      tags:
+      - vade-mecum-codigos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar codigo
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/capas:
+    get:
+      parameters:
+      - description: Filtro por nomecodigo
+        in: query
+        name: nomecodigo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar capas de códigos ou buscar por nome específico
+      tags:
+      - vade-mecum-codigos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da capa
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar capa de vade-mécum código
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/capas/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Identificador da capa
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumCodigoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar capa de vade-mécum código
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/grouped:
+    get:
+      parameters:
+      - collectionFormat: csv
+        description: Prioridade dos grupos, pode ser separado por vírgula ou repetido
+        in: query
+        items:
+          type: string
+        name: priority
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumCodigoGroup'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar codigos agrupados por nomecodigo
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho
+        padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar codigos via Excel
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/codigos/import/estatuto:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros de estatuto utilizando um arquivo Excel (.xlsx)
+        com cabeçalho padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar estatutos via Excel
+      tags:
+      - vade-mecum-codigos
+  /vade-mecum/constituicao:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar constituições
+      tags:
+      - vade-mecum-constituicao
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumConstituicaoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar constituição
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/constituicao/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover constituição
+      tags:
+      - vade-mecum-constituicao
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter constituição por ID
+      tags:
+      - vade-mecum-constituicao
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumConstituicaoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar constituição
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/constituicao/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumConstituicaoGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de constituição por titulo (grupo servico)
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/constituicao/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Importa registros utilizando um arquivo Excel (.xlsx) com cabeçalho
+        padrão
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar constituição via Excel
+      tags:
+      - vade-mecum-constituicao
+  /vade-mecum/estatutos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar estatutos
+      tags:
+      - vade-mecum-estatutos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do estatuto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumEstatutoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar estatuto
+      tags:
+      - vade-mecum-estatutos
+  /vade-mecum/estatutos/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover estatuto
+      tags:
+      - vade-mecum-estatutos
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter estatuto por ID
+      tags:
+      - vade-mecum-estatutos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumEstatutoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatuto'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar estatuto
+      tags:
+      - vade-mecum-estatutos
+  /vade-mecum/estatutos/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumEstatutoGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de estatutos por nomecodigo (grupo servico)
+      tags:
+      - vade-mecum-estatutos
+  /vade-mecum/jurisprudencia:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar jurisprudências
+      tags:
+      - vade-mecum-jurisprudencia
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do registro
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumJurisprudenciaRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar jurisprudência
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover jurisprudência
+      tags:
+      - vade-mecum-jurisprudencia
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Buscar jurisprudência por ID
+      tags:
+      - vade-mecum-jurisprudencia
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumJurisprudenciaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudencia'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar jurisprudência
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/capas:
+    get:
+      parameters:
+      - description: Filtro por nomecodigo
+        in: query
+        name: nomecodigo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar capas de jurisprudência ou buscar por nome específico
+      tags:
+      - vade-mecum-jurisprudencia
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da capa
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumJurisprudenciaRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar capa para jurisprudência
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/capas/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Identificador da capa
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumJurisprudenciaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumJurisprudencia'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar capa de jurisprudência
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/grouped:
+    get:
+      operationId: GetVadeMecumJurisprudenciaGrouped
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumJurisprudenciaGroup'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar jurisprudencias agrupadas por nomecodigo
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/jurisprudencia/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Recebe um arquivo .xlsx com colunas específicas (vademecum_Jurisprudencia)
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar jurisprudências via Excel
+      tags:
+      - vade-mecum-jurisprudencia
+  /vade-mecum/leis:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar leis
+      tags:
+      - vade-mecum-leis
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da lei
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumLeiRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar lei
+      tags:
+      - vade-mecum-leis
+  /vade-mecum/leis/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover lei
+      tags:
+      - vade-mecum-leis
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter lei por ID
+      tags:
+      - vade-mecum-leis
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumLeiRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLei'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar lei
+      tags:
+      - vade-mecum-leis
+  /vade-mecum/leis/gruposervico:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumLeiGrupoServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar grupos de leis por nomecodigo (grupo servico)
+      tags:
+      - vade-mecum-leis
+  /vade-mecum/leis/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Recebe um arquivo .xlsx e realiza o upsert das leis no banco
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar leis via Excel
+      tags:
+      - vade-mecum-leis
+  /vade-mecum/oab:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar conteúdo OAB
+      tags:
+      - vade-mecum-oab
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados do registro
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateVadeMecumOABRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar registro OAB
+      tags:
+      - vade-mecum-oab
+  /vade-mecum/oab/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover registro OAB
+      tags:
+      - vade-mecum-oab
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter registro OAB por ID
+      tags:
+      - vade-mecum-oab
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateVadeMecumOABRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.VadeMecumOAB'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar registro OAB
+      tags:
+      - vade-mecum-oab
+  /vade-mecum/oab/capas:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar nomecodigo da OAB
+      tags:
+      - vade-mecum-oab
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da capa
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCapaVadeMecumOABRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar capa para vade-mécum OAB
+      tags:
+      - vade-mecum-oab
+  /vade-mecum/oab/capas/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Identificador da capa
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Campos para atualização
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCapaVadeMecumOABRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CapaVadeMecumOAB'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar capa OAB
+      tags:
+      - vade-mecum-oab
+  /vade-mecum/oab/import:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Recebe um arquivo .xlsx para importar registros do Vade Mecum OAB
+      parameters:
+      - description: Arquivo Excel (.xlsx)
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Importar conteúdo OAB via Excel
+      tags:
+      - vade-mecum-oab
+securityDefinitions:
+  Bearer:
+    description: Digite "Bearer" seguido do token JWT
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

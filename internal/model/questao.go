@@ -158,3 +158,13 @@ type QuestaoFilters struct {
 	Concurso         *string
 	AreaConhecimento *string
 }
+
+type QuestaoFiltersResponse struct {
+	Disciplina       []string `json:"disciplina"`
+	Assunto          []string `json:"assunto"`
+	Banca            []string `json:"banca"`
+	Orgao            []string `json:"orgao"`
+	Cargo            []string `json:"cargo"`
+	Concurso         []string `json:"concurso"`
+	AreaConhecimento []string `json:"area_conhecimento"`
+}

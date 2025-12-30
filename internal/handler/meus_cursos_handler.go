@@ -525,3 +525,33 @@ func (h *Handlers) UpdateCourseItem(c *gin.Context) {
 
 	c.JSON(http.StatusOK, item)
 }
+
+// DeleteCourseItem godoc
+// @Summary      Remover item
+// @Tags         meus-cursos
+// @Param        id path string true "ID do item"
+// @Success      204
+// @Failure      400 {object} map[string]string
+// @Failure      401 {object} map[string]string
+// @Failure      404 {object} map[string]string
+// @Failure      500 {object} map[string]string
+// @Router       /meus-cursos/itens/{id} [delete]
+func (h *Handlers) DeleteCourseItem(c *gin.Context) {
+	userID, ok := h.getUserIDFromRequest(c)
+	if !ok {
+		return
+	}
+
+	itemID, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	if err := h.courseService.DeleteItem(userID, itemID); err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.Status(http.StatusNoContent)
+}

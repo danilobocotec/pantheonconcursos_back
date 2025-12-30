@@ -44,11 +44,13 @@ func (c *CourseItem) BeforeCreate(tx *gorm.DB) error {
 }
 
 type CreateCourseModuleRequest struct {
-	Modulo string `json:"modulo" binding:"required,min=2"`
+	Modulo   string      `json:"modulo" binding:"required,min=2"`
+	ItensIDs []uuid.UUID `json:"itens_ids"`
 }
 
 type UpdateCourseModuleRequest struct {
-	Modulo string `json:"modulo" binding:"omitempty,min=2"`
+	Modulo   string       `json:"modulo" binding:"omitempty,min=2"`
+	ItensIDs *[]uuid.UUID `json:"itens_ids"`
 }
 
 type Course struct {

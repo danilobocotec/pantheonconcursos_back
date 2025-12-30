@@ -197,6 +197,10 @@ definitions:
     type: object
   github_com_thepantheon_api_internal_model.CreateCourseModuleRequest:
     properties:
+      itens_ids:
+        items:
+          type: string
+        type: array
       modulo:
         minLength: 2
         type: string
@@ -798,6 +802,37 @@ definitions:
       url:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.QuestaoFiltersResponse:
+    properties:
+      area_conhecimento:
+        items:
+          type: string
+        type: array
+      assunto:
+        items:
+          type: string
+        type: array
+      banca:
+        items:
+          type: string
+        type: array
+      cargo:
+        items:
+          type: string
+        type: array
+      concurso:
+        items:
+          type: string
+        type: array
+      disciplina:
+        items:
+          type: string
+        type: array
+      orgao:
+        items:
+          type: string
+        type: array
+    type: object
   github_com_thepantheon_api_internal_model.SocialAuthRequest:
     properties:
       access_token:
@@ -858,6 +893,10 @@ definitions:
     type: object
   github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest:
     properties:
+      itens_ids:
+        items:
+          type: string
+        type: array
       modulo:
         minLength: 2
         type: string
@@ -2331,6 +2370,43 @@ paths:
       tags:
       - meus-cursos
   /meus-cursos/itens/{id}:
+    delete:
+      parameters:
+      - description: ID do item
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover item
+      tags:
+      - meus-cursos
     put:
       consumes:
       - application/json
@@ -2730,6 +2806,24 @@ paths:
               type: string
             type: object
       summary: Atualizar questao
+      tags:
+      - questoes
+  /questoes/filtros:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.QuestaoFiltersResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar filtros de questoes
       tags:
       - questoes
   /vade-mecum:

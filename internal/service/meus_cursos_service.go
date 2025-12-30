@@ -146,6 +146,11 @@ func (s *CourseService) CreateModule(userID uuid.UUID, req *model.CreateCourseMo
 	if err := s.repo.CreateModule(module); err != nil {
 		return nil, err
 	}
+	if len(req.ItensIDs) > 0 {
+		if err := s.attachItemsToModule(userID, module.ID, req.ItensIDs); err != nil {
+			return nil, err
+		}
+	}
 	return module, nil
 }
 
@@ -159,6 +164,11 @@ func (s *CourseService) UpdateModule(userID, moduleID uuid.UUID, req *model.Upda
 	}
 	if err := s.repo.UpdateModule(module); err != nil {
 		return nil, err
+	}
+	if req.ItensIDs != nil {
+		if err := s.attachItemsToModule(userID, module.ID, *req.ItensIDs); err != nil {
+			return nil, err
+		}
 	}
 	return module, nil
 }
@@ -219,6 +229,13 @@ func (s *CourseService) UpdateItem(userID, itemID uuid.UUID, req *model.UpdateCo
 	return item, nil
 }
 
+func (s *CourseService) DeleteItem(userID, itemID uuid.UUID) error {
+	if _, err := s.repo.GetItemByIDAndUser(itemID, userID); err != nil {
+		return err
+	}
+	return s.repo.DeleteItem(itemID)
+}
+
 func (s *CourseService) attachModulesToCourse(userID, courseID uuid.UUID, moduleIDs []uuid.UUID) error {
 	if len(moduleIDs) > 0 {
 		count, err := s.repo.CountModulesByIDsAndUser(moduleIDs, userID)
@@ -249,4 +266,20 @@ func (s *CourseService) attachCoursesToCategory(userID, categoryID uuid.UUID, co
 		}
 	}
 	return s.repo.ClearCategoryFromOtherCourses(userID, categoryID, courseIDs)
+}
+
+func (s *CourseService) attachItemsToModule(userID, moduleID uuid.UUID, itemIDs []uuid.UUID) error {
+	if len(itemIDs) > 0 {
+		count, err := s.repo.CountItemsByIDsAndUser(itemIDs, userID)
+		if err != nil {
+			return err
+		}
+		if count != int64(len(itemIDs)) {
+			return errors.New("item not found")
+		}
+		if err := s.repo.SetItemsModuleID(userID, moduleID, itemIDs); err != nil {
+			return err
+		}
+	}
+	return s.repo.ClearModuleFromOtherItems(userID, moduleID, itemIDs)
 }

@@ -118,6 +118,16 @@ func (r *CourseRepository) CountCoursesByIDsAndUser(ids []uuid.UUID, userID uuid
 	return count, nil
 }
 
+func (r *CourseRepository) CountItemsByIDsAndUser(ids []uuid.UUID, userID uuid.UUID) (int64, error) {
+	var count int64
+	if err := r.db.Model(&model.CourseItem{}).
+		Where("id IN ? AND user_id = ?", ids, userID).
+		Count(&count).Error; err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
 func (r *CourseRepository) SetModulesCourseID(userID, courseID uuid.UUID, ids []uuid.UUID) error {
 	return r.db.Model(&model.CourseModule{}).
 		Where("id IN ? AND user_id = ?", ids, userID).
@@ -131,6 +141,21 @@ func (r *CourseRepository) ClearCourseFromOtherModules(userID, courseID uuid.UUI
 		query = query.Where("id NOT IN ?", keepIDs)
 	}
 	return query.Update("course_id", nil).Error
+}
+
+func (r *CourseRepository) SetItemsModuleID(userID, moduleID uuid.UUID, ids []uuid.UUID) error {
+	return r.db.Model(&model.CourseItem{}).
+		Where("id IN ? AND user_id = ?", ids, userID).
+		Update("module_id", moduleID).Error
+}
+
+func (r *CourseRepository) ClearModuleFromOtherItems(userID, moduleID uuid.UUID, keepIDs []uuid.UUID) error {
+	query := r.db.Model(&model.CourseItem{}).
+		Where("module_id = ? AND user_id = ?", moduleID, userID)
+	if len(keepIDs) > 0 {
+		query = query.Where("id NOT IN ?", keepIDs)
+	}
+	return query.Update("module_id", nil).Error
 }
 
 func (r *CourseRepository) SetCoursesCategoryID(userID, categoryID uuid.UUID, ids []uuid.UUID) error {
@@ -170,4 +195,8 @@ func (r *CourseRepository) CreateItem(item *model.CourseItem) error {
 
 func (r *CourseRepository) UpdateItem(item *model.CourseItem) error {
 	return r.db.Save(item).Error
+}
+
+func (r *CourseRepository) DeleteItem(id uuid.UUID) error {
+	return r.db.Delete(&model.CourseItem{}, "id = ?", id).Error
 }
