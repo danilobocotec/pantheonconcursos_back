@@ -245,6 +245,10 @@ func (s *QuestaoService) Delete(id int) error {
 	return s.repo.Delete(id)
 }
 
+func (s *QuestaoService) GetFilterOptions() (*model.QuestaoFiltersResponse, error) {
+	return s.repo.GetFilterOptions()
+}
+
 func trimStringPtr(value *string) *string {
 	if value == nil {
 		return nil

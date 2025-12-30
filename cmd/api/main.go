@@ -139,6 +139,7 @@ func main() {
 			meusCursos.GET("/itens", handlers.GetMyItems)
 			meusCursos.POST("/itens", handlers.CreateCourseItemStandalone)
 			meusCursos.PUT("/itens/:id", handlers.UpdateCourseItem)
+			meusCursos.DELETE("/itens/:id", handlers.DeleteCourseItem)
 			meusCursos.PUT("/modulos/:id", handlers.UpdateCourseModule)
 			meusCursos.DELETE("/modulos/:id", handlers.DeleteCourseModule)
 		}
@@ -146,6 +147,7 @@ func main() {
 		questoes := api.Group("/questoes")
 		{
 			questoes.GET("", handlers.GetQuestoes)
+			questoes.GET("/filtros", handlers.GetQuestaoFilters)
 			questoes.POST("", handlers.CreateQuestao)
 			questoes.GET("/:id", handlers.GetQuestaoByID)
 			questoes.PUT("/:id", handlers.UpdateQuestao)

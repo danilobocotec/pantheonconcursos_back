@@ -65,3 +65,40 @@ func (r *QuestaoRepository) Update(item *model.Questao) error {
 func (r *QuestaoRepository) Delete(id int) error {
 	return r.db.Delete(&model.Questao{}, "id = ?", id).Error
 }
+
+func (r *QuestaoRepository) GetFilterOptions() (*model.QuestaoFiltersResponse, error) {
+	response := &model.QuestaoFiltersResponse{}
+
+	loadDistinct := func(column string, dest *[]string) error {
+		return r.db.
+			Model(&model.Questao{}).
+			Where(column+" IS NOT NULL AND "+column+" <> ''").
+			Distinct().
+			Order(column).
+			Pluck(column, dest).Error
+	}
+
+	if err := loadDistinct("disciplina", &response.Disciplina); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("assunto", &response.Assunto); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("banca", &response.Banca); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("orgao", &response.Orgao); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("cargo", &response.Cargo); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("concurso", &response.Concurso); err != nil {
+		return nil, err
+	}
+	if err := loadDistinct("area_conhecimento", &response.AreaConhecimento); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}

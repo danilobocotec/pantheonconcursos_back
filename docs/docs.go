@@ -1049,6 +1049,62 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Remover item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do item",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
             }
         },
         "/meus-cursos/modulos": {
@@ -1432,6 +1488,34 @@ const docTemplate = `{
                             "additionalProperties": {
                                 "type": "string"
                             }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questoes/filtros": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Listar filtros de questoes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.QuestaoFiltersResponse"
                         }
                     },
                     "500": {
@@ -4735,6 +4819,12 @@ const docTemplate = `{
                 "modulo"
             ],
             "properties": {
+                "itens_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "modulo": {
                     "type": "string",
                     "minLength": 2
@@ -5632,6 +5722,53 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.QuestaoFiltersResponse": {
+            "type": "object",
+            "properties": {
+                "area_conhecimento": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "assunto": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "banca": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cargo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "concurso": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "disciplina": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "orgao": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.SocialAuthRequest": {
             "type": "object",
             "required": [
@@ -5722,6 +5859,12 @@ const docTemplate = `{
         "github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest": {
             "type": "object",
             "properties": {
+                "itens_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "modulo": {
                     "type": "string",
                     "minLength": 2

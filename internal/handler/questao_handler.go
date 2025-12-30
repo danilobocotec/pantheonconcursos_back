@@ -33,6 +33,22 @@ func (h *Handlers) GetQuestoes(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetQuestaoFilters godoc
+// @Summary      Listar filtros de questoes
+// @Tags         questoes
+// @Produce      json
+// @Success      200 {object} model.QuestaoFiltersResponse
+// @Failure      500 {object} map[string]string
+// @Router       /questoes/filtros [get]
+func (h *Handlers) GetQuestaoFilters(c *gin.Context) {
+	items, err := h.questaoService.GetFilterOptions()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, items)
+}
+
 // GetQuestaoByID godoc
 // @Summary      Obter questao por ID
 // @Tags         questoes
