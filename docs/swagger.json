@@ -370,6 +370,475 @@
                 }
             }
         },
+        "/cursos": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cursos"
+                ],
+                "summary": "Listar cursos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Course"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cursos"
+                ],
+                "summary": "Criar curso",
+                "parameters": [
+                    {
+                        "description": "Curso",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCourseRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Course"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos/categorias": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Listar categorias",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseCategory"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Criar categoria",
+                "parameters": [
+                    {
+                        "description": "Categoria",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCourseCategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseCategory"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos/categorias/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Atualizar categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID da categoria",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Categoria",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseCategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseCategory"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Remover categoria",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID da categoria",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cursos"
+                ],
+                "summary": "Atualizar curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do curso",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Curso",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Course"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "cursos"
+                ],
+                "summary": "Remover curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do curso",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/health": {
             "get": {
                 "description": "Verifica se a API está funcionando",
@@ -383,6 +852,428 @@
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/meus-cursos/itens": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Listar itens",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseItem"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Criar item sem modulo",
+                "parameters": [
+                    {
+                        "description": "Item",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCourseItemRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseItem"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/meus-cursos/itens/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Atualizar item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do item",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Item",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseItemRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseItem"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/meus-cursos/modulos": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Listar modulos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Criar modulo",
+                "parameters": [
+                    {
+                        "description": "Modulo",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateCourseModuleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/meus-cursos/modulos/{id}": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Atualizar modulo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do modulo",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Modulo",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "meus-cursos"
+                ],
+                "summary": "Remover modulo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do modulo",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -410,6 +1301,270 @@
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Plan"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questoes": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Listar questoes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Disciplina",
+                        "name": "disciplina",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Assunto",
+                        "name": "assunto",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Banca",
+                        "name": "banca",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Orgao",
+                        "name": "orgao",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cargo",
+                        "name": "cargo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Concurso",
+                        "name": "concurso",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Area de conhecimento",
+                        "name": "area_conhecimento",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Questao"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Criar questao",
+                "parameters": [
+                    {
+                        "description": "Dados da questao",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CreateQuestaoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Questao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questoes/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Obter questao por ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Questao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Atualizar questao",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Campos para atualizacao",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.UpdateQuestaoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Questao"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Remover questao",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
                             }
                         }
                     },
@@ -3326,6 +4481,122 @@
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.Course": {
+            "type": "object",
+            "properties": {
+                "categoria": {
+                    "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseCategory"
+                },
+                "categoria_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "modulos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                    }
+                },
+                "nome": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CourseCategory": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "cursos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.Course"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CourseItem": {
+            "type": "object",
+            "properties": {
+                "conteudo": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "modulo_id": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CourseModule": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "curso_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "modulo": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.CreateAdminRequest": {
             "type": "object",
             "required": [
@@ -3402,6 +4673,225 @@
                     "type": "string"
                 },
                 "nomecodigo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCourseCategoryRequest": {
+            "type": "object",
+            "required": [
+                "nome"
+            ],
+            "properties": {
+                "cursos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCourseItemRequest": {
+            "type": "object",
+            "required": [
+                "conteudo",
+                "tipo",
+                "titulo"
+            ],
+            "properties": {
+                "conteudo": {
+                    "type": "string",
+                    "minLength": 2
+                },
+                "modulo_id": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string",
+                    "minLength": 2
+                },
+                "titulo": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCourseModuleRequest": {
+            "type": "object",
+            "required": [
+                "modulo"
+            ],
+            "properties": {
+                "modulo": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateCourseRequest": {
+            "type": "object",
+            "required": [
+                "nome"
+            ],
+            "properties": {
+                "categoria_id": {
+                    "type": "string"
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "nome": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.CreateQuestaoRequest": {
+            "type": "object",
+            "properties": {
+                "acertos_percentual": {
+                    "type": "number"
+                },
+                "alternativa_a": {
+                    "type": "string"
+                },
+                "alternativa_b": {
+                    "type": "string"
+                },
+                "alternativa_c": {
+                    "type": "string"
+                },
+                "alternativa_d": {
+                    "type": "string"
+                },
+                "alternativa_e": {
+                    "type": "string"
+                },
+                "ano": {
+                    "type": "integer"
+                },
+                "anulada": {
+                    "type": "boolean"
+                },
+                "area_conhecimento": {
+                    "type": "string"
+                },
+                "assunto": {
+                    "type": "string"
+                },
+                "banca": {
+                    "type": "string"
+                },
+                "campos_json": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "cargo": {
+                    "type": "string"
+                },
+                "comentario": {
+                    "type": "string"
+                },
+                "concurso": {
+                    "type": "string"
+                },
+                "correcao_questao": {
+                    "type": "boolean"
+                },
+                "data_atualizacao": {
+                    "type": "string"
+                },
+                "data_captura": {
+                    "type": "string"
+                },
+                "desatualizada": {
+                    "type": "boolean"
+                },
+                "dificuldade": {
+                    "type": "string"
+                },
+                "disciplina": {
+                    "type": "string"
+                },
+                "enunciado": {
+                    "type": "string"
+                },
+                "formato_questao": {
+                    "type": "string"
+                },
+                "gabarito": {
+                    "type": "string"
+                },
+                "gabarito_preliminar": {
+                    "type": "boolean"
+                },
+                "html_completo": {
+                    "type": "string"
+                },
+                "id_questao": {
+                    "type": "string"
+                },
+                "id_questao_original": {
+                    "type": "string"
+                },
+                "instituicao": {
+                    "type": "string"
+                },
+                "localizacao": {
+                    "type": "string"
+                },
+                "nivel": {
+                    "type": "string"
+                },
+                "numero_alternativa_correta": {
+                    "type": "integer"
+                },
+                "orgao": {
+                    "type": "string"
+                },
+                "possui_resolucao_banca": {
+                    "type": "boolean"
+                },
+                "quantidade_resolucoes": {
+                    "type": "integer"
+                },
+                "questao_id": {
+                    "type": "integer"
+                },
+                "questao_oculta": {
+                    "type": "boolean"
+                },
+                "resolucao_banca": {
+                    "type": "string"
+                },
+                "resposta_correta": {
+                    "type": "string"
+                },
+                "tipo_prova": {
+                    "type": "string"
+                },
+                "tipo_questao": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "url": {
                     "type": "string"
                 }
             }
@@ -3996,6 +5486,146 @@
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.Questao": {
+            "type": "object",
+            "properties": {
+                "acertos_percentual": {
+                    "type": "number"
+                },
+                "alternativa_a": {
+                    "type": "string"
+                },
+                "alternativa_b": {
+                    "type": "string"
+                },
+                "alternativa_c": {
+                    "type": "string"
+                },
+                "alternativa_d": {
+                    "type": "string"
+                },
+                "alternativa_e": {
+                    "type": "string"
+                },
+                "ano": {
+                    "type": "integer"
+                },
+                "anulada": {
+                    "type": "boolean"
+                },
+                "area_conhecimento": {
+                    "type": "string"
+                },
+                "assunto": {
+                    "type": "string"
+                },
+                "banca": {
+                    "type": "string"
+                },
+                "campos_json": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "cargo": {
+                    "type": "string"
+                },
+                "comentario": {
+                    "type": "string"
+                },
+                "concurso": {
+                    "type": "string"
+                },
+                "correcao_questao": {
+                    "type": "boolean"
+                },
+                "data_atualizacao": {
+                    "type": "string"
+                },
+                "data_captura": {
+                    "type": "string"
+                },
+                "desatualizada": {
+                    "type": "boolean"
+                },
+                "dificuldade": {
+                    "type": "string"
+                },
+                "disciplina": {
+                    "type": "string"
+                },
+                "enunciado": {
+                    "type": "string"
+                },
+                "formato_questao": {
+                    "type": "string"
+                },
+                "gabarito": {
+                    "type": "string"
+                },
+                "gabarito_preliminar": {
+                    "type": "boolean"
+                },
+                "html_completo": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_questao": {
+                    "type": "string"
+                },
+                "id_questao_original": {
+                    "type": "string"
+                },
+                "instituicao": {
+                    "type": "string"
+                },
+                "localizacao": {
+                    "type": "string"
+                },
+                "nivel": {
+                    "type": "string"
+                },
+                "numero_alternativa_correta": {
+                    "type": "integer"
+                },
+                "orgao": {
+                    "type": "string"
+                },
+                "possui_resolucao_banca": {
+                    "type": "boolean"
+                },
+                "quantidade_resolucoes": {
+                    "type": "integer"
+                },
+                "questao_id": {
+                    "type": "integer"
+                },
+                "questao_oculta": {
+                    "type": "boolean"
+                },
+                "resolucao_banca": {
+                    "type": "string"
+                },
+                "resposta_correta": {
+                    "type": "string"
+                },
+                "tipo_prova": {
+                    "type": "string"
+                },
+                "tipo_questao": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.SocialAuthRequest": {
             "type": "object",
             "required": [
@@ -4041,6 +5671,211 @@
                     "type": "string"
                 },
                 "grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCourseCategoryRequest": {
+            "type": "object",
+            "properties": {
+                "cursos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCourseItemRequest": {
+            "type": "object",
+            "properties": {
+                "conteudo": {
+                    "type": "string",
+                    "minLength": 2
+                },
+                "modulo_id": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "string",
+                    "minLength": 2
+                },
+                "titulo": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest": {
+            "type": "object",
+            "properties": {
+                "modulo": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateCourseRequest": {
+            "type": "object",
+            "properties": {
+                "categoria_id": {
+                    "type": "string"
+                },
+                "imagem": {
+                    "type": "string"
+                },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "nome": {
+                    "type": "string",
+                    "minLength": 2
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.UpdateQuestaoRequest": {
+            "type": "object",
+            "properties": {
+                "acertos_percentual": {
+                    "type": "number"
+                },
+                "alternativa_a": {
+                    "type": "string"
+                },
+                "alternativa_b": {
+                    "type": "string"
+                },
+                "alternativa_c": {
+                    "type": "string"
+                },
+                "alternativa_d": {
+                    "type": "string"
+                },
+                "alternativa_e": {
+                    "type": "string"
+                },
+                "ano": {
+                    "type": "integer"
+                },
+                "anulada": {
+                    "type": "boolean"
+                },
+                "area_conhecimento": {
+                    "type": "string"
+                },
+                "assunto": {
+                    "type": "string"
+                },
+                "banca": {
+                    "type": "string"
+                },
+                "campos_json": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "cargo": {
+                    "type": "string"
+                },
+                "comentario": {
+                    "type": "string"
+                },
+                "concurso": {
+                    "type": "string"
+                },
+                "correcao_questao": {
+                    "type": "boolean"
+                },
+                "data_atualizacao": {
+                    "type": "string"
+                },
+                "data_captura": {
+                    "type": "string"
+                },
+                "desatualizada": {
+                    "type": "boolean"
+                },
+                "dificuldade": {
+                    "type": "string"
+                },
+                "disciplina": {
+                    "type": "string"
+                },
+                "enunciado": {
+                    "type": "string"
+                },
+                "formato_questao": {
+                    "type": "string"
+                },
+                "gabarito": {
+                    "type": "string"
+                },
+                "gabarito_preliminar": {
+                    "type": "boolean"
+                },
+                "html_completo": {
+                    "type": "string"
+                },
+                "id_questao": {
+                    "type": "string"
+                },
+                "id_questao_original": {
+                    "type": "string"
+                },
+                "instituicao": {
+                    "type": "string"
+                },
+                "localizacao": {
+                    "type": "string"
+                },
+                "nivel": {
+                    "type": "string"
+                },
+                "numero_alternativa_correta": {
+                    "type": "integer"
+                },
+                "orgao": {
+                    "type": "string"
+                },
+                "possui_resolucao_banca": {
+                    "type": "boolean"
+                },
+                "quantidade_resolucoes": {
+                    "type": "integer"
+                },
+                "questao_id": {
+                    "type": "integer"
+                },
+                "questao_oculta": {
+                    "type": "boolean"
+                },
+                "resolucao_banca": {
+                    "type": "string"
+                },
+                "resposta_correta": {
+                    "type": "string"
+                },
+                "tipo_prova": {
+                    "type": "string"
+                },
+                "tipo_questao": {
+                    "type": "string"
+                },
+                "titulo": {
+                    "type": "string"
+                },
+                "url": {
                     "type": "string"
                 }
             }

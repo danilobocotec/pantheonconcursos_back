@@ -120,6 +120,38 @@ func main() {
 			plans.GET("", handlers.GetPlans)
 		}
 
+		cursos := api.Group("/cursos")
+		{
+			cursos.GET("", handlers.GetCourses)
+			cursos.POST("", handlers.CreateCourse)
+			cursos.GET("/categorias", handlers.GetCourseCategories)
+			cursos.POST("/categorias", handlers.CreateCourseCategory)
+			cursos.PUT("/categorias/:id", handlers.UpdateCourseCategory)
+			cursos.DELETE("/categorias/:id", handlers.DeleteCourseCategory)
+			cursos.PUT("/:id", handlers.UpdateCourse)
+			cursos.DELETE("/:id", handlers.DeleteCourse)
+		}
+
+		meusCursos := api.Group("/meus-cursos")
+		{
+			meusCursos.GET("/modulos", handlers.GetMyModules)
+			meusCursos.POST("/modulos", handlers.CreateCourseModuleStandalone)
+			meusCursos.GET("/itens", handlers.GetMyItems)
+			meusCursos.POST("/itens", handlers.CreateCourseItemStandalone)
+			meusCursos.PUT("/itens/:id", handlers.UpdateCourseItem)
+			meusCursos.PUT("/modulos/:id", handlers.UpdateCourseModule)
+			meusCursos.DELETE("/modulos/:id", handlers.DeleteCourseModule)
+		}
+
+		questoes := api.Group("/questoes")
+		{
+			questoes.GET("", handlers.GetQuestoes)
+			questoes.POST("", handlers.CreateQuestao)
+			questoes.GET("/:id", handlers.GetQuestaoByID)
+			questoes.PUT("/:id", handlers.UpdateQuestao)
+			questoes.DELETE("/:id", handlers.DeleteQuestao)
+		}
+
 		vade := api.Group("/vade-mecum")
 		{
 			vade.GET("", handlers.GetVadeMecum)

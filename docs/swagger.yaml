@@ -33,6 +33,82 @@ definitions:
       nomecodigo:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.Course:
+    properties:
+      categoria:
+        $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseCategory'
+      categoria_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      imagem:
+        type: string
+      modulos:
+        items:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseModule'
+        type: array
+      nome:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CourseCategory:
+    properties:
+      created_at:
+        type: string
+      cursos:
+        items:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.Course'
+        type: array
+      id:
+        type: string
+      imagem:
+        type: string
+      nome:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CourseItem:
+    properties:
+      conteudo:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      modulo_id:
+        type: string
+      tipo:
+        type: string
+      titulo:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.CourseModule:
+    properties:
+      created_at:
+        type: string
+      curso_id:
+        type: string
+      id:
+        type: string
+      modulo:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
   github_com_thepantheon_api_internal_model.CreateAdminRequest:
     properties:
       admin_secret:
@@ -86,6 +162,153 @@ definitions:
         type: string
     required:
     - nomecodigo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCourseCategoryRequest:
+    properties:
+      cursos_ids:
+        items:
+          type: string
+        type: array
+      imagem:
+        type: string
+      nome:
+        minLength: 2
+        type: string
+    required:
+    - nome
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCourseItemRequest:
+    properties:
+      conteudo:
+        minLength: 2
+        type: string
+      modulo_id:
+        type: string
+      tipo:
+        minLength: 2
+        type: string
+      titulo:
+        minLength: 2
+        type: string
+    required:
+    - conteudo
+    - tipo
+    - titulo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCourseModuleRequest:
+    properties:
+      modulo:
+        minLength: 2
+        type: string
+    required:
+    - modulo
+    type: object
+  github_com_thepantheon_api_internal_model.CreateCourseRequest:
+    properties:
+      categoria_id:
+        type: string
+      imagem:
+        type: string
+      modulos_ids:
+        items:
+          type: string
+        type: array
+      nome:
+        minLength: 2
+        type: string
+    required:
+    - nome
+    type: object
+  github_com_thepantheon_api_internal_model.CreateQuestaoRequest:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
+        type: string
     type: object
   github_com_thepantheon_api_internal_model.CreateUserRequest:
     properties:
@@ -482,6 +705,99 @@ definitions:
           $ref: '#/definitions/github_com_thepantheon_api_internal_model.User'
         type: array
     type: object
+  github_com_thepantheon_api_internal_model.Questao:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id:
+        type: integer
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
+        type: string
+    type: object
   github_com_thepantheon_api_internal_model.SocialAuthRequest:
     properties:
       access_token:
@@ -512,6 +828,143 @@ definitions:
       Cabecalho:
         type: string
       grupo:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCourseCategoryRequest:
+    properties:
+      cursos_ids:
+        items:
+          type: string
+        type: array
+      imagem:
+        type: string
+      nome:
+        minLength: 2
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCourseItemRequest:
+    properties:
+      conteudo:
+        minLength: 2
+        type: string
+      modulo_id:
+        type: string
+      tipo:
+        minLength: 2
+        type: string
+      titulo:
+        minLength: 2
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest:
+    properties:
+      modulo:
+        minLength: 2
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateCourseRequest:
+    properties:
+      categoria_id:
+        type: string
+      imagem:
+        type: string
+      modulos_ids:
+        items:
+          type: string
+        type: array
+      nome:
+        minLength: 2
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UpdateQuestaoRequest:
+    properties:
+      acertos_percentual:
+        type: number
+      alternativa_a:
+        type: string
+      alternativa_b:
+        type: string
+      alternativa_c:
+        type: string
+      alternativa_d:
+        type: string
+      alternativa_e:
+        type: string
+      ano:
+        type: integer
+      anulada:
+        type: boolean
+      area_conhecimento:
+        type: string
+      assunto:
+        type: string
+      banca:
+        type: string
+      campos_json:
+        items:
+          type: integer
+        type: array
+      cargo:
+        type: string
+      comentario:
+        type: string
+      concurso:
+        type: string
+      correcao_questao:
+        type: boolean
+      data_atualizacao:
+        type: string
+      data_captura:
+        type: string
+      desatualizada:
+        type: boolean
+      dificuldade:
+        type: string
+      disciplina:
+        type: string
+      enunciado:
+        type: string
+      formato_questao:
+        type: string
+      gabarito:
+        type: string
+      gabarito_preliminar:
+        type: boolean
+      html_completo:
+        type: string
+      id_questao:
+        type: string
+      id_questao_original:
+        type: string
+      instituicao:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      numero_alternativa_correta:
+        type: integer
+      orgao:
+        type: string
+      possui_resolucao_banca:
+        type: boolean
+      quantidade_resolucoes:
+        type: integer
+      questao_id:
+        type: integer
+      questao_oculta:
+        type: boolean
+      resolucao_banca:
+        type: string
+      resposta_correta:
+        type: string
+      tipo_prova:
+        type: string
+      tipo_questao:
+        type: string
+      titulo:
+        type: string
+      url:
         type: string
     type: object
   github_com_thepantheon_api_internal_model.UpdateVadeMecumCodigoRequest:
@@ -1484,6 +1937,314 @@ paths:
       summary: Login com provedor social
       tags:
       - auth
+  /cursos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.Course'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar cursos
+      tags:
+      - cursos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Curso
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCourseRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Course'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar curso
+      tags:
+      - cursos
+  /cursos/{id}:
+    delete:
+      parameters:
+      - description: ID do curso
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover curso
+      tags:
+      - cursos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID do curso
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Curso
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Course'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar curso
+      tags:
+      - cursos
+  /cursos/categorias:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseCategory'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar categorias
+      tags:
+      - categorias
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Categoria
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCourseCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseCategory'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar categoria
+      tags:
+      - categorias
+  /cursos/categorias/{id}:
+    delete:
+      parameters:
+      - description: ID da categoria
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover categoria
+      tags:
+      - categorias
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID da categoria
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Categoria
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseCategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseCategory'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar categoria
+      tags:
+      - categorias
   /health:
     get:
       description: Verifica se a API está funcionando
@@ -1499,6 +2260,283 @@ paths:
       summary: Health check
       tags:
       - health
+  /meus-cursos/itens:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseItem'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar itens
+      tags:
+      - meus-cursos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Item
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCourseItemRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseItem'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar item sem modulo
+      tags:
+      - meus-cursos
+  /meus-cursos/itens/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID do item
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Item
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseItemRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseItem'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar item
+      tags:
+      - meus-cursos
+  /meus-cursos/modulos:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseModule'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar modulos
+      tags:
+      - meus-cursos
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Modulo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateCourseModuleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseModule'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar modulo
+      tags:
+      - meus-cursos
+  /meus-cursos/modulos/{id}:
+    delete:
+      parameters:
+      - description: ID do modulo
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover modulo
+      tags:
+      - meus-cursos
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID do modulo
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Modulo
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.CourseModule'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar modulo
+      tags:
+      - meus-cursos
   /plans:
     get:
       description: Retorna todos os planos disponíveis e, para cada um, os usuários
@@ -1521,6 +2559,179 @@ paths:
       summary: Listar planos com usuários vinculados
       tags:
       - plans
+  /questoes:
+    get:
+      parameters:
+      - description: Disciplina
+        in: query
+        name: disciplina
+        type: string
+      - description: Assunto
+        in: query
+        name: assunto
+        type: string
+      - description: Banca
+        in: query
+        name: banca
+        type: string
+      - description: Orgao
+        in: query
+        name: orgao
+        type: string
+      - description: Cargo
+        in: query
+        name: cargo
+        type: string
+      - description: Concurso
+        in: query
+        name: concurso
+        type: string
+      - description: Area de conhecimento
+        in: query
+        name: area_conhecimento
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar questoes
+      tags:
+      - questoes
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Dados da questao
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateQuestaoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar questao
+      tags:
+      - questoes
+  /questoes/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remover questao
+      tags:
+      - questoes
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obter questao por ID
+      tags:
+      - questoes
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Campos para atualizacao
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.UpdateQuestaoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.Questao'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualizar questao
+      tags:
+      - questoes
   /vade-mecum:
     get:
       produces:
