@@ -4644,6 +4644,12 @@
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_thepantheon_api_internal_model.CourseModule"
+                    }
+                },
                 "tipo": {
                     "type": "string"
                 },
@@ -4662,9 +4668,6 @@
             "type": "object",
             "properties": {
                 "created_at": {
-                    "type": "string"
-                },
-                "curso_id": {
                     "type": "string"
                 },
                 "id": {
@@ -4797,6 +4800,12 @@
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "tipo": {
                     "type": "string",
                     "minLength": 2
@@ -4813,6 +4822,9 @@
                 "modulo"
             ],
             "properties": {
+                "curso_id": {
+                    "type": "string"
+                },
                 "itens_ids": {
                     "type": "array",
                     "items": {
@@ -5840,6 +5852,12 @@
                 "modulo_id": {
                     "type": "string"
                 },
+                "modulos_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "tipo": {
                     "type": "string",
                     "minLength": 2
@@ -5853,6 +5871,9 @@
         "github_com_thepantheon_api_internal_model.UpdateCourseModuleRequest": {
             "type": "object",
             "properties": {
+                "curso_id": {
+                    "type": "string"
+                },
                 "itens_ids": {
                     "type": "array",
                     "items": {

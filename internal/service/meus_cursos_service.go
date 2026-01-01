@@ -95,9 +95,6 @@ func (s *CourseService) DeleteCourse(userID, courseID uuid.UUID) error {
 	if _, err := s.repo.GetCourseByIDAndUser(courseID, userID); err != nil {
 		return err
 	}
-	if err := s.repo.ClearCourseFromOtherModules(userID, courseID, nil); err != nil {
-		return err
-	}
 	return s.repo.DeleteCourse(courseID)
 }
 
@@ -151,12 +148,22 @@ func (s *CourseService) DeleteCategory(userID, categoryID uuid.UUID) error {
 }
 
 func (s *CourseService) CreateModule(userID uuid.UUID, req *model.CreateCourseModuleRequest) (*model.CourseModule, error) {
+	if req.CursoID != nil {
+		if _, err := s.repo.GetCourseByIDAndUser(*req.CursoID, userID); err != nil {
+			return nil, errors.New("course not found")
+		}
+	}
 	module := &model.CourseModule{
 		UserID:    userID,
 		Title:     req.Modulo,
 	}
 	if err := s.repo.CreateModule(module); err != nil {
 		return nil, err
+	}
+	if req.CursoID != nil {
+		if err := s.repo.AddCourseModules(*req.CursoID, []uuid.UUID{module.ID}); err != nil {
+			return nil, err
+		}
 	}
 	if len(req.ItensIDs) > 0 {
 		if err := s.attachItemsToModule(userID, module.ID, req.ItensIDs); err != nil {
@@ -174,8 +181,18 @@ func (s *CourseService) UpdateModule(userID, moduleID uuid.UUID, req *model.Upda
 	if req.Modulo != "" {
 		module.Title = req.Modulo
 	}
+	if req.CursoID != nil {
+		if _, err := s.repo.GetCourseByIDAndUser(*req.CursoID, userID); err != nil {
+			return nil, errors.New("course not found")
+		}
+	}
 	if err := s.repo.UpdateModule(module); err != nil {
 		return nil, err
+	}
+	if req.CursoID != nil {
+		if err := s.repo.AddCourseModules(*req.CursoID, []uuid.UUID{module.ID}); err != nil {
+			return nil, err
+		}
 	}
 	if req.ItensIDs != nil {
 		if err := s.attachItemsToModule(userID, module.ID, *req.ItensIDs); err != nil {
@@ -201,20 +218,26 @@ func (s *CourseService) GetAllItems() ([]model.CourseItem, error) {
 }
 
 func (s *CourseService) CreateItem(userID uuid.UUID, req *model.CreateCourseItemRequest) (*model.CourseItem, error) {
-	if req.ModuloID != nil {
-		if _, err := s.repo.GetModuleByIDAndUser(*req.ModuloID, userID); err != nil {
-			return nil, err
-		}
+	moduleIDs := req.ModulosIDs
+	if len(moduleIDs) == 0 && req.ModuloID != nil {
+		moduleIDs = []uuid.UUID{*req.ModuloID}
 	}
 	item := &model.CourseItem{
-		UserID:   userID,
-		ModuleID: req.ModuloID,
-		Title:    req.Titulo,
-		Type:     req.Tipo,
-		Content:  req.Conteudo,
+		UserID:  userID,
+		Title:   req.Titulo,
+		Type:    req.Tipo,
+		Content: req.Conteudo,
+	}
+	if req.ModuloID != nil && len(req.ModulosIDs) == 0 {
+		item.ModuleID = req.ModuloID
 	}
 	if err := s.repo.CreateItem(item); err != nil {
 		return nil, err
+	}
+	if len(moduleIDs) > 0 {
+		if err := s.attachModulesToItem(userID, item.ID, moduleIDs); err != nil {
+			return nil, err
+		}
 	}
 	return item, nil
 }
@@ -224,10 +247,15 @@ func (s *CourseService) UpdateItem(userID, itemID uuid.UUID, req *model.UpdateCo
 	if err != nil {
 		return nil, err
 	}
-	if req.ModuloID != nil {
-		if _, err := s.repo.GetModuleByIDAndUser(*req.ModuloID, userID); err != nil {
-			return nil, err
-		}
+	moduleIDsProvided := false
+	var moduleIDs []uuid.UUID
+	if req.ModulosIDs != nil {
+		moduleIDsProvided = true
+		moduleIDs = *req.ModulosIDs
+		item.ModuleID = nil
+	} else if req.ModuloID != nil {
+		moduleIDsProvided = true
+		moduleIDs = []uuid.UUID{*req.ModuloID}
 		item.ModuleID = req.ModuloID
 	}
 	if req.Titulo != "" {
@@ -241,6 +269,11 @@ func (s *CourseService) UpdateItem(userID, itemID uuid.UUID, req *model.UpdateCo
 	}
 	if err := s.repo.UpdateItem(item); err != nil {
 		return nil, err
+	}
+	if moduleIDsProvided {
+		if err := s.attachModulesToItem(userID, item.ID, moduleIDs); err != nil {
+			return nil, err
+		}
 	}
 	return item, nil
 }
@@ -261,11 +294,8 @@ func (s *CourseService) attachModulesToCourse(userID, courseID uuid.UUID, module
 		if count != int64(len(moduleIDs)) {
 			return errors.New("module not found")
 		}
-		if err := s.repo.SetModulesCourseID(userID, courseID, moduleIDs); err != nil {
-			return err
-		}
 	}
-	return s.repo.ClearCourseFromOtherModules(userID, courseID, moduleIDs)
+	return s.repo.ReplaceCourseModules(courseID, moduleIDs)
 }
 
 func (s *CourseService) attachCoursesToCategory(userID, categoryID uuid.UUID, courseIDs []uuid.UUID) error {
@@ -293,9 +323,19 @@ func (s *CourseService) attachItemsToModule(userID, moduleID uuid.UUID, itemIDs 
 		if count != int64(len(itemIDs)) {
 			return errors.New("item not found")
 		}
-		if err := s.repo.SetItemsModuleID(userID, moduleID, itemIDs); err != nil {
+	}
+	return s.repo.ReplaceModuleItems(moduleID, itemIDs)
+}
+
+func (s *CourseService) attachModulesToItem(userID, itemID uuid.UUID, moduleIDs []uuid.UUID) error {
+	if len(moduleIDs) > 0 {
+		count, err := s.repo.CountModulesByIDsAndUser(moduleIDs, userID)
+		if err != nil {
 			return err
 		}
+		if count != int64(len(moduleIDs)) {
+			return errors.New("module not found")
+		}
 	}
-	return s.repo.ClearModuleFromOtherItems(userID, moduleID, itemIDs)
+	return s.repo.ReplaceItemModules(itemID, moduleIDs)
 }
