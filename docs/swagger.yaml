@@ -322,6 +322,20 @@ definitions:
       url:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.CreateUserPerformanceRequest:
+    properties:
+      data_gravacao:
+        type: string
+      questoes_corretas:
+        minimum: 0
+        type: integer
+      questoes_erradas:
+        minimum: 0
+        type: integer
+      total_questoes:
+        minimum: 0
+        type: integer
+    type: object
   github_com_thepantheon_api_internal_model.CreateUserRequest:
     properties:
       confirm:
@@ -1358,6 +1372,38 @@ definitions:
       updated_at:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.UserPerformance:
+    properties:
+      created_at:
+        type: string
+      data_gravacao:
+        type: string
+      id:
+        type: string
+      percentual_acerto:
+        type: number
+      questoes_corretas:
+        type: integer
+      questoes_erradas:
+        type: integer
+      total_questoes:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  github_com_thepantheon_api_internal_model.UserPerformanceSummary:
+    properties:
+      percentual_acerto:
+        type: number
+      questoes_corretas:
+        type: integer
+      questoes_erradas:
+        type: integer
+      total_questoes:
+        type: integer
+    type: object
   github_com_thepantheon_api_internal_model.VadeMecum:
     properties:
       cabecalho:
@@ -2313,6 +2359,124 @@ paths:
       summary: Health check
       tags:
       - health
+  /meu-desempenho:
+    get:
+      parameters:
+      - description: Data inicial (YYYY-MM-DD ou RFC3339)
+        in: query
+        name: data_inicio
+        type: string
+      - description: Data final (YYYY-MM-DD ou RFC3339)
+        in: query
+        name: data_fim
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/github_com_thepantheon_api_internal_model.UserPerformance'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Listar desempenho do usuario
+      tags:
+      - meu-desempenho
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Desempenho
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.CreateUserPerformanceRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.UserPerformance'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Registrar desempenho do usuario
+      tags:
+      - meu-desempenho
+  /meu-desempenho/resumo:
+    get:
+      parameters:
+      - description: Data inicial (YYYY-MM-DD ou RFC3339)
+        in: query
+        name: data_inicio
+        type: string
+      - description: Data final (YYYY-MM-DD ou RFC3339)
+        in: query
+        name: data_fim
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.UserPerformanceSummary'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Resumo do desempenho do usuario
+      tags:
+      - meu-desempenho
   /meus-cursos/itens:
     get:
       produces:
