@@ -85,13 +85,6 @@ func (h *Handlers) CreateAsaasPayment(c *gin.Context) {
 		return
 	}
 
-	if _, err := h.asaasCustomerService.GetByAsaasID(req.Customer); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "customer not registered"})
-		return
-	}
-
-	req.BillingType = "CREDIT_CARD"
-
 	reqJSON, err := json.Marshal(req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -136,8 +129,9 @@ func (h *Handlers) CreateAsaasPayment(c *gin.Context) {
 	}
 
 	c.JSON(status, gin.H{
-		"payment": resp,
-		"stored":  payment,
+		"payment":  resp,
+		"stored":   payment,
+		"asaas_id": asaasID,
 	})
 }
 
@@ -151,7 +145,7 @@ func (h *Handlers) CreateAsaasPayment(c *gin.Context) {
 // @Success      200      {object}  map[string]interface{}
 // @Failure      400      {object}  map[string]string
 // @Failure      500      {object}  map[string]string
-// @Router       /asaas/payments/{id}/confirm [post]
+// @Router       /asaas/payments/{id}/payWithCreditCard [post]
 func (h *Handlers) ConfirmAsaasCreditCardPayment(c *gin.Context) {
 	paymentID := c.Param("id")
 	if paymentID == "" {
@@ -162,11 +156,6 @@ func (h *Handlers) ConfirmAsaasCreditCardPayment(c *gin.Context) {
 	var req model.AsaasPaymentConfirmationRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	if _, err := h.asaasPaymentService.GetByAsaasID(paymentID); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "payment not registered"})
 		return
 	}
 

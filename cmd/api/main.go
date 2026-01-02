@@ -126,7 +126,7 @@ func main() {
 		{
 			asaas.POST("/customers", handlers.CreateAsaasCustomer)
 			asaas.POST("/payments", handlers.CreateAsaasPayment)
-			asaas.POST("/payments/:id/confirm", handlers.ConfirmAsaasCreditCardPayment)
+			asaas.POST("/payments/:id/payWithCreditCard", handlers.ConfirmAsaasCreditCardPayment)
 			asaas.POST("/webhooks", handlers.CreateAsaasWebhook)
 		}
 

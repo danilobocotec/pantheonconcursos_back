@@ -8,6 +8,16 @@ type AsaasCreditCard struct {
 	HolderName string `json:"holderName" binding:"required"`
 }
 
+type AsaasCreditCardHolderInfo struct {
+	Name          string `json:"name" binding:"required"`
+	Email         string `json:"email" binding:"required"`
+	CPFOrCNPJ     string `json:"cpfCnpj" binding:"required"`
+	PostalCode    string `json:"postalCode" binding:"required"`
+	AddressNumber string `json:"addressNumber" binding:"required"`
+	Phone         string `json:"phone" binding:"required"`
+}
+
 type AsaasPaymentConfirmationRequest struct {
-	CreditCard AsaasCreditCard `json:"creditCard" binding:"required"`
+	CreditCard           AsaasCreditCard           `json:"creditCard" binding:"required"`
+	CreditCardHolderInfo AsaasCreditCardHolderInfo `json:"creditCardHolderInfo" binding:"required"`
 }

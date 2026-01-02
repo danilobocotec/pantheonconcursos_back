@@ -1,10 +1,10 @@
 package model
 
 type AsaasCustomerRequest struct {
-	Name                 string `json:"name" binding:"required"`
-	CPFOrCNPJ            string `json:"cpfCnpj" binding:"required"`
-	Email                string `json:"email" binding:"required,email"`
-	Phone                string `json:"phone" binding:"required"`
+	Name                 string `json:"name" binding:"required" example:"teste "`
+	CPFOrCNPJ            string `json:"cpfCnpj" binding:"required" example:"616.236.260-48"`
+	Email                string `json:"email" binding:"required,email" example:"guilherme.matossouza@gmail.com"`
+	Phone                string `json:"phone" binding:"required" example:"(22) 2 2222-2222"`
 	MobilePhone          string `json:"mobilePhone,omitempty"`
 	ExternalReference    string `json:"externalReference,omitempty"`
 	NotificationDisabled bool   `json:"notificationDisabled,omitempty"`

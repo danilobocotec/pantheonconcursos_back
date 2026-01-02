@@ -19,21 +19,47 @@ definitions:
     - holderName
     - number
     type: object
-  github_com_thepantheon_api_internal_model.AsaasCustomerRequest:
+  github_com_thepantheon_api_internal_model.AsaasCreditCardHolderInfo:
     properties:
+      addressNumber:
+        type: string
       cpfCnpj:
         type: string
       email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      postalCode:
+        type: string
+    required:
+    - addressNumber
+    - cpfCnpj
+    - email
+    - name
+    - phone
+    - postalCode
+    type: object
+  github_com_thepantheon_api_internal_model.AsaasCustomerRequest:
+    properties:
+      cpfCnpj:
+        example: 616.236.260-48
+        type: string
+      email:
+        example: guilherme.matossouza@gmail.com
         type: string
       externalReference:
         type: string
       mobilePhone:
         type: string
       name:
+        example: 'teste '
         type: string
       notificationDisabled:
         type: boolean
       phone:
+        example: (22) 2 2222-2222
         type: string
     required:
     - cpfCnpj
@@ -45,8 +71,11 @@ definitions:
     properties:
       creditCard:
         $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCard'
+      creditCardHolderInfo:
+        $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCardHolderInfo'
     required:
     - creditCard
+    - creditCardHolderInfo
     type: object
   github_com_thepantheon_api_internal_model.AsaasPaymentRequest:
     properties:
@@ -1968,7 +1997,7 @@ paths:
       summary: Criar pagamento Asaas (cartao)
       tags:
       - asaas
-  /asaas/payments/{id}/confirm:
+  /asaas/payments/{id}/payWithCreditCard:
     post:
       consumes:
       - application/json

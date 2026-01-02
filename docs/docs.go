@@ -129,7 +129,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/asaas/payments/{id}/confirm": {
+        "/asaas/payments/{id}/payWithCreditCard": {
             "post": {
                 "description": "Confirma um pagamento de cartao no Asaas",
                 "consumes": [
@@ -4947,6 +4947,37 @@ const docTemplate = `{
                 }
             }
         },
+        "github_com_thepantheon_api_internal_model.AsaasCreditCardHolderInfo": {
+            "type": "object",
+            "required": [
+                "addressNumber",
+                "cpfCnpj",
+                "email",
+                "name",
+                "phone",
+                "postalCode"
+            ],
+            "properties": {
+                "addressNumber": {
+                    "type": "string"
+                },
+                "cpfCnpj": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.AsaasCustomerRequest": {
             "type": "object",
             "required": [
@@ -4957,10 +4988,12 @@ const docTemplate = `{
             ],
             "properties": {
                 "cpfCnpj": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "616.236.260-48"
                 },
                 "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "guilherme.matossouza@gmail.com"
                 },
                 "externalReference": {
                     "type": "string"
@@ -4969,24 +5002,30 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "teste "
                 },
                 "notificationDisabled": {
                     "type": "boolean"
                 },
                 "phone": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "(22) 2 2222-2222"
                 }
             }
         },
         "github_com_thepantheon_api_internal_model.AsaasPaymentConfirmationRequest": {
             "type": "object",
             "required": [
-                "creditCard"
+                "creditCard",
+                "creditCardHolderInfo"
             ],
             "properties": {
                 "creditCard": {
                     "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCard"
+                },
+                "creditCardHolderInfo": {
+                    "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCardHolderInfo"
                 }
             }
         },
