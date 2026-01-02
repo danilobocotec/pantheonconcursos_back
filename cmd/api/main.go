@@ -77,6 +77,8 @@ func main() {
 		cfg.OAuth.RedirectURL,
 		cfg.JWT.Secret,
 		cfg.Admin.Secret,
+		cfg.Asaas.BaseURL,
+		cfg.Asaas.Token,
 	)
 
 	// Swagger route
@@ -118,6 +120,14 @@ func main() {
 		plans := api.Group("/plans")
 		{
 			plans.GET("", handlers.GetPlans)
+		}
+
+		asaas := api.Group("/asaas")
+		{
+			asaas.POST("/customers", handlers.CreateAsaasCustomer)
+			asaas.POST("/payments", handlers.CreateAsaasPayment)
+			asaas.POST("/payments/:id/confirm", handlers.ConfirmAsaasCreditCardPayment)
+			asaas.POST("/webhooks", handlers.CreateAsaasWebhook)
 		}
 
 		cursos := api.Group("/cursos")

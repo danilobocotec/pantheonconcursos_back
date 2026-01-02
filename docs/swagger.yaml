@@ -1,5 +1,100 @@
 basePath: /api/v1
 definitions:
+  github_com_thepantheon_api_internal_model.AsaasCreditCard:
+    properties:
+      ccv:
+        type: string
+      expiryMonth:
+        type: string
+      expiryYear:
+        type: string
+      holderName:
+        type: string
+      number:
+        type: string
+    required:
+    - ccv
+    - expiryMonth
+    - expiryYear
+    - holderName
+    - number
+    type: object
+  github_com_thepantheon_api_internal_model.AsaasCustomerRequest:
+    properties:
+      cpfCnpj:
+        type: string
+      email:
+        type: string
+      externalReference:
+        type: string
+      mobilePhone:
+        type: string
+      name:
+        type: string
+      notificationDisabled:
+        type: boolean
+      phone:
+        type: string
+    required:
+    - cpfCnpj
+    - email
+    - name
+    - phone
+    type: object
+  github_com_thepantheon_api_internal_model.AsaasPaymentConfirmationRequest:
+    properties:
+      creditCard:
+        $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCard'
+    required:
+    - creditCard
+    type: object
+  github_com_thepantheon_api_internal_model.AsaasPaymentRequest:
+    properties:
+      billingType:
+        type: string
+      customer:
+        type: string
+      description:
+        type: string
+      dueDate:
+        type: string
+      externalReference:
+        type: string
+      value:
+        type: number
+    required:
+    - customer
+    - dueDate
+    - value
+    type: object
+  github_com_thepantheon_api_internal_model.AsaasWebhookRequest:
+    properties:
+      authToken:
+        type: string
+      email:
+        type: string
+      enabled:
+        type: boolean
+      events:
+        items:
+          type: string
+        minItems: 1
+        type: array
+      interrupted:
+        type: boolean
+      name:
+        type: string
+      sendType:
+        type: string
+      url:
+        type: string
+    required:
+    - enabled
+    - events
+    - interrupted
+    - name
+    - url
+    type: object
   github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo:
     properties:
       Cabecalho:
@@ -1803,6 +1898,151 @@ info:
   title: ThePantheon API
   version: "1.0"
 paths:
+  /asaas/customers:
+    post:
+      consumes:
+      - application/json
+      description: Cria um cliente no Asaas e armazena o retorno localmente
+      parameters:
+      - description: Dados do cliente
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasCustomerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar cliente Asaas
+      tags:
+      - asaas
+  /asaas/payments:
+    post:
+      consumes:
+      - application/json
+      description: Cria um pagamento por cartao no Asaas
+      parameters:
+      - description: Dados do pagamento
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasPaymentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar pagamento Asaas (cartao)
+      tags:
+      - asaas
+  /asaas/payments/{id}/confirm:
+    post:
+      consumes:
+      - application/json
+      description: Confirma um pagamento de cartao no Asaas
+      parameters:
+      - description: ID do pagamento Asaas
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados de confirmacao
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasPaymentConfirmationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Confirmar pagamento Asaas (cartao)
+      tags:
+      - asaas
+  /asaas/webhooks:
+    post:
+      consumes:
+      - application/json
+      description: Cria um webhook no Asaas
+      parameters:
+      - description: Dados do webhook
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_thepantheon_api_internal_model.AsaasWebhookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar webhook Asaas
+      tags:
+      - asaas
   /auth/admin/register:
     post:
       consumes:

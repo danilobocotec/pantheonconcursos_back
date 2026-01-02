@@ -23,6 +23,225 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/asaas/customers": {
+            "post": {
+                "description": "Cria um cliente no Asaas e armazena o retorno localmente",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "asaas"
+                ],
+                "summary": "Criar cliente Asaas",
+                "parameters": [
+                    {
+                        "description": "Dados do cliente",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasCustomerRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/asaas/payments": {
+            "post": {
+                "description": "Cria um pagamento por cartao no Asaas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "asaas"
+                ],
+                "summary": "Criar pagamento Asaas (cartao)",
+                "parameters": [
+                    {
+                        "description": "Dados do pagamento",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasPaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/asaas/payments/{id}/confirm": {
+            "post": {
+                "description": "Confirma um pagamento de cartao no Asaas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "asaas"
+                ],
+                "summary": "Confirmar pagamento Asaas (cartao)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID do pagamento Asaas",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Dados de confirmacao",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasPaymentConfirmationRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/asaas/webhooks": {
+            "post": {
+                "description": "Cria um webhook no Asaas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "asaas"
+                ],
+                "summary": "Criar webhook Asaas",
+                "parameters": [
+                    {
+                        "description": "Dados do webhook",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasWebhookRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/auth/admin/register": {
             "post": {
                 "description": "Cria uma conta de administrador usando um código secreto",
@@ -4701,6 +4920,144 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "github_com_thepantheon_api_internal_model.AsaasCreditCard": {
+            "type": "object",
+            "required": [
+                "ccv",
+                "expiryMonth",
+                "expiryYear",
+                "holderName",
+                "number"
+            ],
+            "properties": {
+                "ccv": {
+                    "type": "string"
+                },
+                "expiryMonth": {
+                    "type": "string"
+                },
+                "expiryYear": {
+                    "type": "string"
+                },
+                "holderName": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.AsaasCustomerRequest": {
+            "type": "object",
+            "required": [
+                "cpfCnpj",
+                "email",
+                "name",
+                "phone"
+            ],
+            "properties": {
+                "cpfCnpj": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "externalReference": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notificationDisabled": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.AsaasPaymentConfirmationRequest": {
+            "type": "object",
+            "required": [
+                "creditCard"
+            ],
+            "properties": {
+                "creditCard": {
+                    "$ref": "#/definitions/github_com_thepantheon_api_internal_model.AsaasCreditCard"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.AsaasPaymentRequest": {
+            "type": "object",
+            "required": [
+                "customer",
+                "dueDate",
+                "value"
+            ],
+            "properties": {
+                "billingType": {
+                    "type": "string"
+                },
+                "customer": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dueDate": {
+                    "type": "string"
+                },
+                "externalReference": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.AsaasWebhookRequest": {
+            "type": "object",
+            "required": [
+                "enabled",
+                "events",
+                "interrupted",
+                "name",
+                "url"
+            ],
+            "properties": {
+                "authToken": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "events": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "interrupted": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sendType": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
         "github_com_thepantheon_api_internal_model.CapaVadeMecumCodigo": {
             "type": "object",
             "properties": {
