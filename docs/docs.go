@@ -1902,6 +1902,78 @@ const docTemplate = `{
                 }
             }
         },
+        "/questoes/contador": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "questoes"
+                ],
+                "summary": "Contar questoes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Disciplina",
+                        "name": "disciplina",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Assunto",
+                        "name": "assunto",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Banca",
+                        "name": "banca",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Orgao",
+                        "name": "orgao",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cargo",
+                        "name": "cargo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Concurso",
+                        "name": "concurso",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Area de conhecimento",
+                        "name": "area_conhecimento",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_thepantheon_api_internal_model.QuestaoCountResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/questoes/filtros": {
             "get": {
                 "produces": [
@@ -6328,6 +6400,14 @@ const docTemplate = `{
                 },
                 "url": {
                     "type": "string"
+                }
+            }
+        },
+        "github_com_thepantheon_api_internal_model.QuestaoCountResponse": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
                 }
             }
         },

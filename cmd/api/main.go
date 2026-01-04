@@ -158,6 +158,7 @@ func main() {
 		{
 			questoes.GET("", handlers.GetQuestoes)
 			questoes.GET("/filtros", handlers.GetQuestaoFilters)
+			questoes.GET("/contador", handlers.GetQuestoesCount)
 			questoes.POST("", handlers.CreateQuestao)
 			questoes.GET("/:id", handlers.GetQuestaoByID)
 			questoes.PUT("/:id", handlers.UpdateQuestao)
