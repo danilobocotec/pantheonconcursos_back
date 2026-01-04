@@ -33,6 +33,30 @@ func (h *Handlers) GetQuestoes(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// GetQuestoesCount godoc
+// @Summary      Contar questoes
+// @Tags         questoes
+// @Produce      json
+// @Param        disciplina query string false "Disciplina"
+// @Param        assunto query string false "Assunto"
+// @Param        banca query string false "Banca"
+// @Param        orgao query string false "Orgao"
+// @Param        cargo query string false "Cargo"
+// @Param        concurso query string false "Concurso"
+// @Param        area_conhecimento query string false "Area de conhecimento"
+// @Success      200 {object} model.QuestaoCountResponse
+// @Failure      500 {object} map[string]string
+// @Router       /questoes/contador [get]
+func (h *Handlers) GetQuestoesCount(c *gin.Context) {
+	filters := buildQuestaoFilters(c)
+	count, err := h.questaoService.Count(filters)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, model.QuestaoCountResponse{Count: count})
+}
+
 // GetQuestaoFilters godoc
 // @Summary      Listar filtros de questoes
 // @Tags         questoes

@@ -168,3 +168,7 @@ type QuestaoFiltersResponse struct {
 	Concurso         []string `json:"concurso"`
 	AreaConhecimento []string `json:"area_conhecimento"`
 }
+
+type QuestaoCountResponse struct {
+	Count int64 `json:"count"`
+}

@@ -19,30 +19,7 @@ func (r *QuestaoRepository) Create(item *model.Questao) error {
 
 func (r *QuestaoRepository) GetAll(filters *model.QuestaoFilters) ([]model.Questao, error) {
 	var items []model.Questao
-	query := r.db.Model(&model.Questao{})
-	if filters != nil {
-		if filters.Disciplina != nil {
-			query = query.Where("disciplina = ?", *filters.Disciplina)
-		}
-		if filters.Assunto != nil {
-			query = query.Where("assunto = ?", *filters.Assunto)
-		}
-		if filters.Banca != nil {
-			query = query.Where("banca = ?", *filters.Banca)
-		}
-		if filters.Orgao != nil {
-			query = query.Where("orgao = ?", *filters.Orgao)
-		}
-		if filters.Cargo != nil {
-			query = query.Where("cargo = ?", *filters.Cargo)
-		}
-		if filters.Concurso != nil {
-			query = query.Where("concurso = ?", *filters.Concurso)
-		}
-		if filters.AreaConhecimento != nil {
-			query = query.Where("area_conhecimento = ?", *filters.AreaConhecimento)
-		}
-	}
+	query := r.buildQuestaoQuery(filters)
 
 	if err := query.Find(&items).Error; err != nil {
 		return nil, err
@@ -64,6 +41,14 @@ func (r *QuestaoRepository) Update(item *model.Questao) error {
 
 func (r *QuestaoRepository) Delete(id int) error {
 	return r.db.Delete(&model.Questao{}, "id = ?", id).Error
+}
+
+func (r *QuestaoRepository) Count(filters *model.QuestaoFilters) (int64, error) {
+	var count int64
+	err := r.buildQuestaoQuery(filters).
+		Where("erro_captura IS NULL OR erro_captura = ?", false).
+		Count(&count).Error
+	return count, err
 }
 
 func (r *QuestaoRepository) GetFilterOptions() (*model.QuestaoFiltersResponse, error) {
@@ -101,4 +86,33 @@ func (r *QuestaoRepository) GetFilterOptions() (*model.QuestaoFiltersResponse, e
 	}
 
 	return response, nil
+}
+
+func (r *QuestaoRepository) buildQuestaoQuery(filters *model.QuestaoFilters) *gorm.DB {
+	query := r.db.Model(&model.Questao{})
+	if filters == nil {
+		return query
+	}
+	if filters.Disciplina != nil {
+		query = query.Where("disciplina = ?", *filters.Disciplina)
+	}
+	if filters.Assunto != nil {
+		query = query.Where("assunto = ?", *filters.Assunto)
+	}
+	if filters.Banca != nil {
+		query = query.Where("banca = ?", *filters.Banca)
+	}
+	if filters.Orgao != nil {
+		query = query.Where("orgao = ?", *filters.Orgao)
+	}
+	if filters.Cargo != nil {
+		query = query.Where("cargo = ?", *filters.Cargo)
+	}
+	if filters.Concurso != nil {
+		query = query.Where("concurso = ?", *filters.Concurso)
+	}
+	if filters.AreaConhecimento != nil {
+		query = query.Where("area_conhecimento = ?", *filters.AreaConhecimento)
+	}
+	return query
 }

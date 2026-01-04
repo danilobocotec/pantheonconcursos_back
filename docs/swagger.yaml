@@ -948,6 +948,11 @@ definitions:
       url:
         type: string
     type: object
+  github_com_thepantheon_api_internal_model.QuestaoCountResponse:
+    properties:
+      count:
+        type: integer
+    type: object
   github_com_thepantheon_api_internal_model.QuestaoFiltersResponse:
     properties:
       area_conhecimento:
@@ -3253,6 +3258,53 @@ paths:
               type: string
             type: object
       summary: Atualizar questao
+      tags:
+      - questoes
+  /questoes/contador:
+    get:
+      parameters:
+      - description: Disciplina
+        in: query
+        name: disciplina
+        type: string
+      - description: Assunto
+        in: query
+        name: assunto
+        type: string
+      - description: Banca
+        in: query
+        name: banca
+        type: string
+      - description: Orgao
+        in: query
+        name: orgao
+        type: string
+      - description: Cargo
+        in: query
+        name: cargo
+        type: string
+      - description: Concurso
+        in: query
+        name: concurso
+        type: string
+      - description: Area de conhecimento
+        in: query
+        name: area_conhecimento
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_thepantheon_api_internal_model.QuestaoCountResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Contar questoes
       tags:
       - questoes
   /questoes/filtros:

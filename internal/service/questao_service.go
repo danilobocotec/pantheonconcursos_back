@@ -27,6 +27,10 @@ func (s *QuestaoService) GetByID(id int) (*model.Questao, error) {
 	return s.repo.GetByID(id)
 }
 
+func (s *QuestaoService) Count(filters *model.QuestaoFilters) (int64, error) {
+	return s.repo.Count(filters)
+}
+
 func (s *QuestaoService) Create(req *model.CreateQuestaoRequest) (*model.Questao, error) {
 	if req == nil {
 		return nil, errors.New("payload obrigatorio")
